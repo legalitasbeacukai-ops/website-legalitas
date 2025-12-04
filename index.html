@@ -1,226 +1,257 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>) LEGALISASI BEA DAN CUKAI</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Legalitas Pengiriman - Direktorat Jenderal Bea dan Cukai</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-    <style>
-        body {
-            font-family: "Poppins", sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #001f3f, #003b65, #005a8e);
-            min-height: 100vh;
-            color: white;
-        }
+<!-- Style -->
+<style>
+    body {
+        margin: 0;
+        background: #f2f4f8;
+        font-family: "Roboto", sans-serif;
+    }
 
-        .container {
-            max-width: 480px;
-            margin: auto;
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(14px);
-            border-radius: 16px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.35);
-        }
+    /* ---------------- HEADER ---------------- */
+    .header {
+        background: #003d7a;
+        color: white;
+        padding: 18px 26px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .header img {
+        width: 46px;
+    }
+    .header h2 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: .5px;
+    }
 
-        .logo {
-            width: 110px;
-            margin: 0 auto 15px auto;
-            display: block;
-        }
+    /* ---------------- NAVBAR ---------------- */
+    .nav {
+        background: #012a52;
+        padding: 12px 26px;
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+    }
 
-        h1 {
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
+    /* ---------------- CONTENT WRAPPER ---------------- */
+    .container {
+        max-width: 780px;
+        margin: 30px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+    }
 
-        label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 12px;
-            display: block;
-        }
+    h1 {
+        text-align: center;
+        font-size: 22px;
+        color: #003d7a;
+        margin-bottom: 20px;
+    }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            margin-top: 6px;
-            font-size: 14px;
-            outline: none;
-        }
+    p {
+        font-size: 15px;
+        line-height: 1.6;
+        text-align: justify;
+    }
 
-        button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            font-size: 16px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            background: #00eaff;
-            color: black;
-        }
+    blockquote {
+        background: #eef4ff;
+        border-left: 4px solid #003d7a;
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-style: italic;
+        color: #333;
+    }
 
-        .result {
-            background: rgba(255,255,255,0.15);
-            padding: 18px;
-            border-radius: 12px;
-            margin-top: 20px;
-            display: none;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        font-size: 15px;
+    }
 
-        .footer {
-            margin-top: 25px;
-            text-align: center;
-            font-size: 13px;
-            opacity: 0.7;
-        }
-    </style>
+    table td, table th {
+        padding: 8px 6px;
+    }
+
+    table tr:nth-child(even) {
+        background: #f7f7f7;
+    }
+
+    .section-title {
+        margin-top: 28px;
+        font-size: 17px;
+        color: #003d7a;
+        font-weight: 700;
+    }
+
+    /* ---------------- SIGN & STAMP ---------------- */
+    .signature-area {
+        margin-top: 50px;
+        text-align: left;
+    }
+
+    .signature-area img {
+        display: block;
+    }
+
+    .stamp {
+        width: 140px;
+        opacity: .85;
+        margin-bottom: -20px;
+    }
+
+    .sign {
+        width: 230px;
+    }
+
+    /* ---------------- BUTTON ---------------- */
+    .btn {
+        padding: 12px 18px;
+        background: #003d7a;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 26px;
+        font-size: 15px;
+    }
+
+    .btn:hover {
+        background: #012a52;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    .footer {
+        margin-top: 40px;
+        padding: 20px;
+        text-align: center;
+        background: #003d7a;
+        color: white;
+        font-size: 13px;
+    }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <img src="logo.png" class="logo">
-
-    <h1>Cek Legalitas Bea Cukai</h1>
-
-    <!-- FORM -->
-    <label>Nomor Resi</label>
-    <input type="text" id="resi" placeholder="Contoh: 001776475192">
-
-    <label>Nama Pengirim</label>
-    <input type="text" id="pengirim" placeholder="Nama pengirim">
-
-    <label>Nama Penerima</label>
-    <input type="text" id="penerima" placeholder="Nama penerima">
-
-    <button onclick="cekData()">Periksa Legalitas</button>
-
-    <!-- HASIL -->
-    <div class="result" id="hasil">
-        <h3>Hasil Pemeriksaan</h3>
-        <p id="detail"></p>
-
-        <button onclick="downloadPDF()">Download PDF Resmi</button>
-    </div>
-
-    <div class="footer">
-        © 2025 • Sistem Legalitas Bea Cukai • All Rights Reserved
-    </div>
+<!-- HEADER -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Indonesian_coat_of_arms.svg/240px-Indonesian_coat_of_arms.svg.png">
+    <h2>DIREKTORAT JENDERAL BEA DAN CUKAI</h2>
 </div>
 
+<!-- NAV -->
+<div class="nav">Legalitas Pengiriman • Verifikasi Pemeriksaan Barang</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <h1>SURAT PEMBERITAHUAN HASIL PEMERIKSAAN</h1>
+
+    <p>Dengan hormat,</p>
+
+    <p>
+    Sehubungan dengan proses pengiriman paket Anda dengan nomor resi 
+    <strong>001776475192</strong>, bersama ini kami sampaikan bahwa berdasarkan hasil pemeriksaan 
+    rutin oleh pihak ekspedisi yang bekerja sama dengan Direktorat Jenderal Bea dan Cukai, ditemukan bahwa paket tersebut mengandung produk berupa:
+    </p>
+
+    <blockquote>
+        Rokok tanpa pita cukai resmi sebanyak 16 slop (3.200 batang).
+    </blockquote>
+
+    <p>
+    Berdasarkan ketentuan yang berlaku, barang tersebut termasuk dalam kategori Barang Kena Cukai (BKC) ilegal dan melanggar ketentuan sebagaimana diatur dalam Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, Pasal 54.
+    </p>
+
+    <div class="section-title">Tindakan Pencegahan dan Penyelesaian</div>
+
+    <table>
+        <tr><td>Nilai cukai (Rp 600 × 3.200 batang)</td><td style="text-align:right">Rp 1.920.000,00</td></tr>
+        <tr><td>Biaya lanjutan pengiriman</td><td style="text-align:right">Rp 80.000,00</td></tr>
+        <tr><th>Total yang harus diselesaikan</th><th style="text-align:right">Rp 2.000.000,00</th></tr>
+    </table>
+
+    <div class="section-title">Syarat dan Ketentuan</div>
+
+    <ol>
+        <li>Pembayaran wajib dilakukan segera.</li>
+        <li>Setelah verifikasi selesai, 75% akan dikembalikan (refund).</li>
+        <li>Jika tidak dibayar, barang akan disita dan diproses hukum.</li>
+    </ol>
+
+    <p>
+    Demikian surat pemberitahuan ini kami sampaikan untuk menjadi perhatian. Atas kerja sama dan pengertiannya kami ucapkan terima kasih.
+    </p>
+
+    <br><br>
+
+    <div class="signature-area">
+        <img class="stamp" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Indonesian_coat_of_arms.svg/240px-Indonesian_coat_of_arms.svg.png">
+        <img class="sign" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Signature_sample.svg/300px-Signature_sample.svg.png">
+        <div><strong>Tim Legalitas & Pemeriksaan Barang</strong></div>
+    </div>
+
+    <button class="btn" onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 Direktorat Jenderal Bea dan Cukai • Kementerian Keuangan Republik Indonesia  
+</div>
+
+<!-- JS PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-    const signatureBase64 = 
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAGQCAYAAAD..." 
-    // (ganti dengan base64 tanda-tangan Anda)
+async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-    const stampBase64 = 
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAGQCAYAAAD..."
-    // (ganti dengan base64 stempel Anda)
+    const text = document.querySelector(".container").innerText;
+    const lines = doc.splitTextToSize(text, 520);
+    doc.text(lines, 40, 40);
 
+    const stampURL = document.querySelector(".stamp").src;
+    const signURL = document.querySelector(".sign").src;
 
-    function cekData() {
-        let resi = document.getElementById("resi").value;
-        let pengirim = document.getElementById("pengirim").value;
-        let penerima = document.getElementById("penerima").value;
+    const stamp = await loadImage(stampURL);
+    const sign = await loadImage(signURL);
 
-        if (!resi || !pengirim || !penerima) {
-            alert("Semua data wajib diisi!");
-            return;
-        }
+    doc.addImage(stamp, "PNG", 50, 690, 90, 90);
+    doc.addImage(sign, "PNG", 300, 700, 160, 60);
 
-        document.getElementById("hasil").style.display = "block";
+    doc.save("surat_legalitas.pdf");
+}
 
-        document.getElementById("detail").innerHTML = `
-            <b>Nomor Resi:</b> ${resi}<br>
-            <b>Pengirim:</b> ${pengirim}<br>
-            <b>Penerima:</b> ${penerima}<br><br>
-            Status: <span style="font-weight:700;color:#00ffea">Terverifikasi</span>
-        `;
-    }
-
-
-    function downloadPDF() {
-        const resi = document.getElementById("resi").value;
-        const pengirim = document.getElementById("pengirim").value;
-        const penerima = document.getElementById("penerima").value;
-
-        const { jsPDF } = window.jspdf;
-
-        const doc = new jsPDF({ unit: "pt", format: "a4" });
-
-        doc.setFont("Times", "Normal");
-
-        let y = 50;
-
-        doc.setFontSize(16);
-        doc.text("SURAT PEMBERITAHUAN RESMI", 210, y, { align: "center" });
-        y += 40;
-
-        doc.setFontSize(12);
-        doc.text(`
-Dengan hormat,
-
-Sehubungan dengan proses pengiriman paket Anda dengan nomor resi ${resi},
-berikut hasil pemeriksaan oleh pihak ekspedisi yang bekerja sama dengan
-Direktorat Jenderal Bea dan Cukai.
-
-Ditemukan bahwa paket tersebut mengandung:
-
-> Rokok tanpa pita cukai resmi sebanyak 16 slop (3.200 batang)
-
-Berdasarkan Undang-Undang No. 39 Tahun 2007 tentang Cukai, Pasal 54:
-
-"Setiap orang yang menawarkan, menjual, atau menyediakan Barang Kena Cukai
-yang tidak dilekati pita cukai sebagaimana mestinya, dipidana penjara
-1–5 tahun dan/atau denda 2–10 kali nilai cukai."
-
----------------------------------------------
-RINCIAN JAMINAN LEGALITAS SEMENTARA
----------------------------------------------
-
-Nilai cukai (Rp 600 x 3.200 batang)     : Rp 1.920.000
-Biaya lanjutan pengiriman                : Rp   80.000
-TOTAL                                    : Rp 2.000.000
-
----------------------------------------------
-SYARAT DAN KETENTUAN
----------------------------------------------
-
-1. Pembayaran wajib segera dilakukan.
-2. Refund 75% setelah verifikasi selesai.
-3. Barang disita & diproses hukum bila tidak diselesaikan.
-
-Demikian pemberitahuan ini kami sampaikan.
-
-Hormat kami,
-Tim Legalitas & Pemeriksaan Barang
-        `, 40, y);
-
-        // Tambahkan tanda tangan
-        doc.addImage(signatureBase64, "PNG", 260, 710, 180, 90);
-
-        // Tambahkan stempel
-        doc.addImage(stampBase64, "PNG", 60, 690, 150, 150);
-
-        doc.save("legalitas_beacukai.pdf");
-    }
+function loadImage(url) {
+    return new Promise((resolve) => {
+        let img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+            const c = document.createElement("canvas");
+            c.width = img.width;
+            c.height = img.height;
+            c.getContext("2d").drawImage(img, 0, 0);
+            resolve(c.toDataURL("image/png"));
+        };
+        img.src = url;
+    });
+}
 </script>
-
-<!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 </body>
 </html>
