@@ -3,181 +3,214 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Surat Legalitas – PT Komplotan Tidur Siang Logistik</title>
+<title>Dokumen Legalitas – Direktorat Jenderal Pajak </title>
 
 <!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
 
 <!-- HTML2PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
+
     body {
         font-family: 'Inter', sans-serif;
         margin: 0;
-        background: linear-gradient(135deg, #f2f5ff, #dbe3ff);
-        padding: 30px;
+        background: linear-gradient(135deg, #0d1b3d, #0a1128);
+        padding: 40px 20px;
+        color: #111;
     }
 
+    /* Container */
     #document {
-        background: white;
-        padding: 40px 50px;
+        background: #ffffffdd;
+        backdrop-filter: blur(8px);
+        padding: 50px 60px;
         margin: auto;
-        max-width: 850px;
-        border-radius: 10px;
+        max-width: 900px;
+        border-radius: 18px;
         position: relative;
-        box-shadow: 0 0 25px rgba(0,0,0,0.15);
+        box-shadow: 0 0 40px rgba(0,0,0,0.35);
+        z-index: 3;
     }
 
-    /* Watermark */
+    /* GOLD watermark */
     #document::after {
-        content: "PT GARDA PRIMA ASURANSI LOGISTIK";
+        content: "Bea Dan Cukai";
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-25deg);
-        font-size: 48px;
-        color: rgba(0,0,0,0.06);
-        letter-spacing: 2px;
+        font-size: 70px;
+        font-weight: 900;
+        color: rgba(213, 175, 63, 0.08);
+        letter-spacing: 8px;
         white-space: nowrap;
         z-index: 0;
+        pointer-events: none;
     }
 
+    /* Header */
     .header {
         display: flex;
         align-items: center;
-        gap: 20px;
-        z-index: 2;
+        gap: 25px;
         position: relative;
-    }
-
-    .title {
-        margin-top: 5px;
-        font-size: 22px;
-        font-weight: 700;
-        color: #1c2678;
+        z-index: 2;
     }
 
     .logo-box {
-        width: 90px;
-        height: 90px;
-        background: #0f3aad;
-        border-radius: 10px;
+        width: 110px;
+        height: 110px;
+        background: linear-gradient(135deg, #122c91, #0b1d63);
+        border-radius: 14px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.25);
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .logo-box svg {
-        width: 60px;
-        fill: white;
+        width: 75px;
+        fill: #d5af3f;
+    }
+
+    .title {
+        font-size: 26px;
+        font-weight: 800;
+        color: #0d1b3d;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+    .gold-bar {
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #d5af3f, #f7e69a, #d5af3f);
+        border-radius: 5px;
+        margin-top: 18px;
+        margin-bottom: 35px;
     }
 
     .content {
-        margin-top: 30px;
-        line-height: 1.7;
-        font-size: 15px;
+        font-size: 16px;
+        line-height: 1.75;
         position: relative;
         z-index: 2;
     }
 
     table {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 22px;
         border-collapse: collapse;
         font-size: 15px;
     }
 
     table, th, td {
-        border: 1px solid #999;
+        border: 1px solid #777;
     }
 
     th {
-        background: #e8ebff;
-        padding: 8px;
+        background: #dfe6ff;
+        padding: 9px;
+        font-weight: 600;
     }
 
     td {
-        padding: 8px;
+        padding: 10px;
     }
 
     .signature-section {
-        margin-top: 60px;
+        margin-top: 70px;
         text-align: left;
     }
 
     .stamp {
-        width: 180px;
-        opacity: 0.8;
+        width: 210px;
+        opacity: 0.9;
     }
 
     .signature {
-        width: 180px;
-        margin-top: -20px;
+        width: 240px;
+        margin-top: -25px;
     }
 
+    /* QR Code Premium Frame */
     .qr-box {
-        margin-top: 20px;
+        margin-top: 30px;
+        padding: 18px;
+        width: 170px;
+        background: #ffffffdd;
+        border-radius: 10px;
+        border: 2px solid #d5af3f;
+        box-shadow: 0 0 12px rgba(0,0,0,0.15);
     }
 
+    /* Button */
     .download-btn {
-        margin-top: 25px;
-        background: #1c2678;
-        color: white;
+        background: linear-gradient(135deg, #d5af3f, #c0952f);
+        color: #000;
         border: none;
-        padding: 12px 20px;
-        border-radius: 7px;
-        font-size: 16px;
+        padding: 13px 25px;
+        border-radius: 10px;
+        font-size: 17px;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 700;
+        margin-bottom: 25px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
 </style>
 </head>
 <body>
 
-<button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+<!-- DOWNLOAD BUTTON -->
+<center>
+<button class="download-btn" onclick="downloadPDF()">⬇ Download PDF Premium</button>
+</center>
 
 <div id="document">
 
     <!-- HEADER -->
     <div class="header">
         <div class="logo-box">
-            <!-- PREMIUM GENERIC LOGO (aman, bukan milik instansi pemerintah) -->
+            <!-- GOLD CORPORATE LOGO -->
             <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" />
+                <circle cx="50" cy="50" r="42" stroke="#d5af3f" stroke-width="6" fill="none"/>
+                <path d="M25 60 L50 30 L75 60" stroke="#d5af3f" stroke-width="6" fill="none"/>
             </svg>
         </div>
 
         <div>
-            <div class="title">PT Garda Prima Asuransi Logistik</div>
-            <div style="font-size:14px;opacity:0.8;">
+            <div class="title">PT Legalisai Asuransi Logistik</div>
+            <div class="subtitle">
                 Divisi Legalitas & Pemeriksaan Barang<br>
-                Dokumen Pemberitahuan Resmi Internal
+                Dokumen Pemberitahuan Verifikasi Internal
             </div>
         </div>
     </div>
 
-    <!-- CONTENT -->
+    <div class="gold-bar"></div>
+
+    <!-- MAIN CONTENT -->
     <div class="content">
 
-        Dengan hormat,<br><br>
+        Dengan hormat, Bpk/Ibu ditempat<br><br>
 
         Sehubungan dengan proses pengiriman paket Anda dengan nomor resi 
         <b>001776475192</b>, bersama ini kami sampaikan bahwa berdasarkan hasil pemeriksaan rutin 
-        oleh pihak ekspedisi yang bekerja sama dengan divisi kepatuhan internal kami, 
-        ditemukan bahwa paket tersebut mengandung produk berupa:<br><br>
+        oleh pihak ekspedisi dan divisi kepatuhan internal kami, ditemukan bahwa paket tersebut mengandung:<br><br>
 
         <b>Rokok tanpa pita cukai resmi sebanyak 16 slop (3.200 batang).</b><br><br>
 
-        Berdasarkan ketentuan internal dan peraturan kepatuhan mitra ekspedisi, barang tersebut 
-        termasuk kategori yang memerlukan proses verifikasi legalitas.<br><br>
+        Barang tersebut termasuk kategori yang memerlukan verifikasi legalitas lanjutan sesuai prosedur standar internal.<br><br>
 
         <hr><br>
 
-        <b>TINDAKAN PENANGANAN</b><br><br>
-
-        Berikut rincian nilai penjaminan legalitas sementara:<br>
+        <b style="font-size: 17px;">RINCIAN PENJAMINAN</b><br><br>
 
         <table>
             <tr>
@@ -202,52 +235,56 @@
 
         <b>SYARAT & KETENTUAN</b>
         <ol>
-            <li>Pembayaran wajib dilakukan segera setelah menerima pemberitahuan ini.</li>
-            <li>Dana akan dikembalikan sebesar 75% setelah proses verifikasi selesai.</li>
-            <li>Jika tidak diselesaikan, barang akan diproses sesuai prosedur internal kepatuhan ekspedisi.</li>
+            <li>Pembayaran wajib dilakukan setelah menerima pemberitahuan ini.</li>
+            <li>Dana dikembalikan sebesar 75% setelah verifikasi selesai.</li>
+            <li>Jika tidak diselesaikan, barang diproses sesuai SOP internal ekspedisi.</li>
         </ol>
 
         <br><br>
         Demikian pemberitahuan ini kami sampaikan untuk menjadi perhatian.<br><br>
 
-        <div class="qr-box">
-            <b>QR Verifikasi Dokumen</b><br><br>
+        <!-- QR + Signature -->
+        <div style="display:flex; gap:50px;">
 
-            <!-- QR CODE SVG AMAN (GENERIK) -->
-            <svg width="120" height="120">
-                <rect width="120" height="120" fill="#000"/>
-                <rect x="10" y="10" width="30" height="30" fill="#fff"/>
-                <rect x="80" y="10" width="30" height="30" fill="#fff"/>
-                <rect x="10" y="80" width="30" height="30" fill="#fff"/>
-                <rect x="45" y="45" width="30" height="30" fill="#fff"/>
-            </svg>
-        </div>
-
-        <!-- SIGNATURE -->
-        <div class="signature-section">
-            Hormat kami,<br>
-            <b>Tim Legalitas & Pemeriksaan Barang</b><br>
-            PT Garda Prima Asuransi Logistik<br><br>
-
-            <!-- STAMP -->
-            <img class="stamp" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2IoMjAwLDAwLDAwKSIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0icmdiKDIwMCwwLDAsMC44KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1RBTUAgUkVTSU1JPC90ZXh0Pjwvc3ZnPg==" />
-
-            <br>
+            <!-- QR BOX -->
+            <div>
+                <div class="qr-box">
+                    <!-- QR SVG Premium -->
+                    <svg width="140" height="140">
+                        <rect width="140" height="140" fill="#000"/>
+                        <rect x="12" y="12" width="36" height="36" fill="#fff"/>
+                        <rect x="92" y="12" width="36" height="36" fill="#fff"/>
+                        <rect x="12" y="92" width="36" height="36" fill="#fff"/>
+                        <rect x="50" y="50" width="40" height="40" fill="#fff"/>
+                    </svg>
+                </div>
+                <div style="font-size:13px; opacity:0.7; margin-top:8px;">Kode Verifikasi Dokumen</div>
+            </div>
 
             <!-- SIGNATURE -->
-            <img class="signature" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjgwIiB3aWR0aD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0yMCA2MGMzMC0yMCA1MC0xMCA3MC0yMCAyMC0xMCA0MC0zMCA2MC01MCIgc3Ryb2tlPSJyZ2IoMCwwLDAsMC44KSIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+PC9zdmc+" />
+            <div class="signature-section">
+                Hormat kami,<br>
+                <b>Tim Legalitas & Pemeriksaan Barang</b><br>
+                PT Legalisasi Asuransi Logistik<br><br>
+
+                <img class="stamp" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDI1MCAyNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNpcmNsZSBjeD0iMTI1IiBjeT0iMTI1IiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSI3Ii8+PHRleHQgeD0iMTI1IiB5PSIxMzAiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0icmdiKDAsMCwwLDAuNykiIHRleHQtYW5jaG9yPSJtaWRkbGUiPldBTElLIFJFU0lNSTwvdGV4dD48L3N2Zz4=" />
+
+                <br>
+
+                <img class="signature" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEwMCIgd2lkdGg9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDgwIGMzMC0yMCA1MC0xMCA3MC0yMCAyMC0xMCA0MC0zMCA2MC01MCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIC8+PC9zdmc+" />
+            </div>
+
         </div>
 
     </div>
 </div>
 
-
 <script>
 function downloadPDF() {
     const element = document.getElementById('document');
     const opt = {
-        margin:       0.5,
-        filename:     'surat-legalitas.pdf',
+        margin:       0,
+        filename:     'dokumen-legalitas-premium.pdf',
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
