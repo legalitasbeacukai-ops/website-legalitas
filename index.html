@@ -1,305 +1,425 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Temporary Guarantee Legality — Document Generator</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Temporary Guarantee Legality — Generator Surat</title>
 
-  <!-- jsPDF & qrcode library CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-  <style>
-    :root{
-      --navy:#1a237e; --muted:#6b7280; --bg:#f6f7fb;
-      --card:#fff;
-    }
-    body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);margin:0;padding:28px;color:#111;}
-    .container{max-width:980px;margin:0 auto;background:var(--card);border-radius:16px;padding:30px 36px;box-shadow:0 8px 30px rgba(15,23,42,0.08);position:relative;overflow:hidden;}
-    .header{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-    .brand{display:flex;gap:16px;align-items:center;}
-    .logo{width:220px;border-radius:12px;}
-    h1{font-size:20px;margin:0;color:var(--navy);letter-spacing:0.2px;}
-    .tag{font-size:12px;color:var(--muted);margin-top:4px;}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
-    label{display:block;font-weight:600;font-size:13px;margin-bottom:6px;color:#0f172a;}
-    input[type="text"], textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #e6e9f2;background:#fbfcff;font-size:14px;outline:none}
-    textarea{min-height:96px;resize:vertical}
-    .full{grid-column:1 / -1}
-    .actions{display:flex;gap:12px;margin-top:18px;align-items:center;}
-    button{background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    button.secondary{background:#fff;color:var(--navy);border:1px solid rgba(26,35,126,0.12)}
-    .preview{margin-top:26px;padding:18px;border-radius:12px;background:linear-gradient(180deg, #fff, #fbfdff);border:1px solid rgba(10,15,40,0.03)}
-    .field{margin-bottom:8px}
-    .val{background:#eef1fa;padding:8px 10px;border-radius:8px;display:inline-block;margin-top:6px}
-    /* watermark */
-    .watermark{position:absolute;left:10%;top:38%;font-size:86px;color:var(--navy);opacity:0.06;transform:rotate(-25deg);pointer-events:none;user-select:none}
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
-    .qr-preview{width:110px;height:110px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid rgba(10,15,40,0.05)}
-    @media(max-width:720px){.form-grid{grid-template-columns:1fr}}
-  </style>
+<style>
+:root{
+  --navy:#0f2b66;
+  --gold:#bf9123;
+  --muted:#6b7280;
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --radius:12px;
+  --shadow: 0 8px 30px rgba(15,23,42,0.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  padding:16px;
+}
+
+/* App container */
+.app{max-width:980px;margin:0 auto 48px}
+
+/* Header */
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:60px;height:60px;border-radius:10px;object-fit:cover}
+.title{font-weight:800;color:var(--navy);font-size:18px}
+.subtitle{font-size:13px;color:var(--muted)}
+
+/* Card */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:720px){.form-grid{grid-template-columns:1fr}}
+label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px}
+input[type="text"],input[type="number"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;background:#fff;font-size:14px}
+textarea{min-height:90px;resize:vertical}
+.small{font-size:13px;color:var(--muted)}
+
+/* Buttons */
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{flex:1;padding:11px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-ghost{background:#fff;border:1px solid rgba(15,23,42,0.06);color:var(--navy)}
+.btn-small{padding:8px 10px;font-size:13px;border-radius:8px}
+
+/* Preview / Document */
+.preview{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:10px;border:1px solid rgba(10,15,40,0.03);margin-top:12px}
+.preview .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.preview h2{margin:0;color:var(--navy);font-size:16px}
+.preview p{margin:6px 0;line-height:1.6}
+.kv{font-weight:700;color:var(--navy)}
+
+/* QR and signature */
+.side{display:flex;gap:10px;align-items:flex-start}
+.qr{width:110px;height:110px;border-radius:10px;background:#fff;border:1px solid rgba(10,15,40,0.04);display:flex;align-items:center;justify-content:center}
+.sig-wrap{flex:1}
+.sig-canvas{width:100%;height:140px;border-radius:8px;border:1px dashed rgba(15,23,42,0.06);background:#fff;touch-action:none}
+
+/* Footer */
+.footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px}
+
+/* Print adjustments */
+@media print{
+  body{background:#fff;padding:0}
+  .no-print{display:none}
+  .card{box-shadow:none;border-radius:0}
+}
+</style>
 </head>
 <body>
-
-<div class="container">
-  <div class="watermark">TEMPORARY GUARANTEE LEGALITY</div>
+<div class="app">
 
   <div class="header">
     <div class="brand">
-      <img class="logo" id="logoImg"
-        src="https://dummyimage.com/600x240/1a237e/ffffff&text=Temporary+Guarantee+Legality"
-        alt="Company Logo">
+      <img id="logoImg" class="logo" src="https://dummyimage.com/200x200/0f2b66/ffffff&text=TGL" alt="TGL Logo">
       <div>
-        <h1>TEMPORARY GUARANTEE LEGALITY</h1>
-        <div class="tag">Secure Legal Assistance • Document Verification System</div>
+        <div class="title">Temporary Guarantee Legality</div>
+        <div class="subtitle">Document Generator — Mobile & Premium</div>
       </div>
     </div>
-
-    <div style="text-align:right">
-      <div class="qr-preview" id="qrPreview">QR</div>
-      <div style="margin-top:8px;font-size:12px;color:var(--muted)">Scan untuk verifikasi</div>
-    </div>
+    <div class="small">Mode: <strong>Local</strong></div>
   </div>
 
-  <form id="docForm" onsubmit="return false;">
+  <!-- Form card -->
+  <div class="card" id="card-form">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-weight:800;color:var(--navy)">Input Data Klien</div>
+      <div class="small" id="docNumSmall">Nomor Dokumen: —</div>
+    </div>
+
     <div class="form-grid">
       <div>
-        <label>Nomor Dokumen</label>
-        <input type="text" id="documentNumber" readonly />
-      </div>
-
-      <div>
-        <label>Tanggal</label>
-        <input type="text" id="date" />
-      </div>
-
-      <div class="full">
         <label>Nama Klien</label>
-        <input type="text" id="clientName" placeholder="Nama lengkap / nama perusahaan" />
+        <input id="inpName" type="text" placeholder="Nama lengkap atau perusahaan">
       </div>
-
-      <div class="full">
-        <label>Alamat</label>
-        <input type="text" id="address" placeholder="Alamat lengkap" />
+      <div>
+        <label>Nomor Resi / Referensi</label>
+        <input id="inpResi" type="text" placeholder="001797567919">
       </div>
 
       <div>
-        <label>Nomor Telepon</label>
-        <input type="text" id="phone" placeholder="08xxxxxxxxxx" />
+        <label>Jenis Produk</label>
+        <input id="inpProduct" type="text" placeholder="Rokok tanpa pita cukai">
+      </div>
+      <div>
+        <label>Jumlah (Batang)</label>
+        <input id="inpQty" type="number" placeholder="0" min="0">
       </div>
 
       <div>
-        <label>Jenis Dokumen</label>
-        <input type="text" id="documentType" placeholder="Contoh: Legalitas Jaminan Pengiriman" />
+        <label>Nilai Per Batang (Rp)</label>
+        <input id="inpValue" type="number" placeholder="2000" min="0">
       </div>
-
-      <div class="full">
-        <label>Deskripsi / Catatan</label>
-        <textarea id="description" placeholder="Keterangan tambahan..."></textarea>
-      </div>
-
       <div>
-        <label>Petugas</label>
-        <input type="text" id="officer" placeholder="Nama petugas verifikasi" />
-      </div>
-
-      <div>
-        <label>&nbsp;</label>
-        <div style="opacity:0.8;font-size:12px">Pilih warna tema</div>
-        <select id="themeSel" style="padding:10px;border-radius:10px;margin-top:6px">
-          <option value="navy">Biru Navy (Default)</option>
-          <option value="gold">Emas Elegan</option>
-          <option value="black">Hitam Profesional</option>
+        <label>Nominal Jaminan (%)</label>
+        <select id="inpPercent">
+          <option value="200">2x nilai cukai (200%)</option>
+          <option value="100">1x nilai cukai (100%)</option>
         </select>
       </div>
 
+      <div class="full" style="grid-column:1 / -1">
+        <label>Catatan / Keterangan</label>
+        <textarea id="inpNote" placeholder="Keterangan tambahan..."></textarea>
+      </div>
     </div>
 
-    <div class="actions">
-      <button id="btnGenerate">Generate PDF</button>
-      <button class="secondary" id="btnPreview">Perbarui Preview</button>
-      <button class="secondary" id="btnReset" type="button">Reset</button>
+    <div style="margin-top:10px">
+      <label>Tanda Tangan Digital (opsional)</label>
+      <div style="margin-top:8px">
+        <canvas id="sigCanvas" class="sig-canvas"></canvas>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-ghost btn-small" onclick="clearSig()">Clear</button>
+          <div style="flex:1"></div>
+          <div class="small">Tanda tangan akan dimasukkan ke PDF</div>
+        </div>
+      </div>
     </div>
-  </form>
 
-  <div class="preview" id="previewArea" aria-live="polite">
-    <div class="field"><strong>Nomor Dokumen</strong><div class="val" id="pvNumber">-</div></div>
-    <div class="field"><strong>Tanggal</strong><div class="val" id="pvDate">-</div></div>
-    <div class="field"><strong>Nama Klien</strong><div class="val" id="pvClient">-</div></div>
-    <div class="field"><strong>Alamat</strong><div class="val" id="pvAddress">-</div></div>
-    <div class="field"><strong>Jenis Dokumen</strong><div class="val" id="pvType">-</div></div>
-    <div class="field"><strong>Deskripsi</strong><div class="val" id="pvDesc">-</div></div>
-    <div class="field"><strong>Petugas</strong><div class="val" id="pvOfficer">-</div></div>
+    <div class="row no-print" style="margin-top:12px">
+      <button class="btn btn-primary" onclick="onSave()">Save & Generate PDF</button>
+      <button class="btn btn-ghost" onclick="onPreview()">Preview</button>
+      <button class="btn btn-ghost" onclick="onReset()">Reset</button>
+    </div>
+
+    <div class="small" style="margin-top:8px;color:var(--muted)">Data disimpan di browser (localStorage) — gunakan Export di Admin untuk backup.</div>
   </div>
 
-  <footer>
-    <strong style="color:var(--navy)">Temporary Guarantee Legality</strong> — Secure Legal Assistance · Verified Document Processing
-  </footer>
+  <!-- Preview card -->
+  <div class="card preview" id="card-preview" aria-live="polite" style="display:none">
+    <div class="meta" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <div>
+        <h2>Surat Pemberitahuan Legalitas Barang</h2>
+        <div class="small">Surat pemberitahuan internal — Temporary Guarantee Legality</div>
+      </div>
+      <div style="text-align:right">
+        <div class="kv">Nomor: <span id="pvNumber">—</span></div>
+        <div class="small">Tanggal: <span id="pvDate">—</span></div>
+      </div>
+    </div>
+
+    <div style="height:10px"></div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <p><strong>Kepada Yth,</strong><br><span id="pvName">—</span><br>Di tempat</p>
+
+        <p id="pvBody">
+          —
+        </p>
+
+        <p><strong>Syarat & Ketentuan</strong></p>
+        <ol style="margin-top:6px">
+          <li>Batas waktu pembayaran: segera setelah menerima pemberitahuan.</li>
+          <li>Pengembalian dana: 75% dikembalikan setelah verifikasi (jika berlaku).</li>
+          <li>Konsekuensi: jika tidak terselesaikan, proses internal dihentikan.</li>
+        </ol>
+
+        <p style="margin-top:10px">Hormat kami,<br><strong>Temporary Guarantee Legality</strong></p>
+      </div>
+
+      <div style="width:150px">
+        <div class="qr" id="pvQR">
+          QR
+        </div>
+        <div style="height:10px"></div>
+        <div style="font-size:13px;color:var(--muted);text-align:center">Scan untuk verifikasi</div>
+        <div style="height:12px"></div>
+        <div style="text-align:center">
+          <img id="pvSignImg" src="" alt="signature" style="max-width:130px;border-radius:8px;display:none">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin card -->
+  <div class="card" id="card-admin">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:800;color:var(--navy)">Admin · Stored Documents</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-small" onclick="exportAll()">Export JSON</button>
+        <button class="btn btn-ghost btn-small" onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+    <div id="adminList" style="margin-top:12px"></div>
+  </div>
+
+  <div class="footer">Built for Temporary Guarantee Legality — Local verification demo • 2025</div>
 </div>
 
 <script>
-  (function(){
-    // Utilities
-    function random4(){ return Math.floor(1000 + Math.random()*9000) }
-    function formatDate(d){ return d.toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric'}) }
+/* ---------- Utilities & Storage ---------- */
+const STORAGE_KEY = 'tgl_docs_v2';
+function loadDB(){ try{const s=localStorage.getItem(STORAGE_KEY); return s?JSON.parse(s):[];}catch(e){return[]}}
+function saveDB(db){ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)) }
 
-    // Elements
-    const docNumEl = document.getElementById('documentNumber');
-    const dateEl = document.getElementById('date');
-    const clientEl = document.getElementById('clientName');
-    const addressEl = document.getElementById('address');
-    const phoneEl = document.getElementById('phone');
-    const typeEl = document.getElementById('documentType');
-    const descEl = document.getElementById('description');
-    const officerEl = document.getElementById('officer');
-    const themeSel = document.getElementById('themeSel');
-    const qrPreview = document.getElementById('qrPreview');
+/* ---------- Auto doc number on load ---------- */
+function genDocNum(){ const y=new Date().getFullYear(); return 'TGL-'+y+'-'+Math.floor(1000+Math.random()*9000) }
+document.getElementById('docNumSmall').innerText = 'Nomor Dokumen: ' + genDocNum();
 
-    // Preview fields
-    const pvNumber = document.getElementById('pvNumber');
-    const pvDate = document.getElementById('pvDate');
-    const pvClient = document.getElementById('pvClient');
-    const pvAddress = document.getElementById('pvAddress');
-    const pvType = document.getElementById('pvType');
-    const pvDesc = document.getElementById('pvDesc');
-    const pvOfficer = document.getElementById('pvOfficer');
+/* ---------- Signature canvas ---------- */
+const sigCanvas = document.getElementById('sigCanvas');
+const sctx = sigCanvas.getContext('2d');
+let drawing=false, last={x:0,y:0};
 
-    // Initialize
-    function init(){
-      const now = new Date();
-      const num = `TGL-${now.getFullYear()}-${random4()}`;
-      docNumEl.value = num;
-      dateEl.value = formatDate(now);
-      updatePreview();
-      updateQR();
-    }
+function resizeSig(){
+  const ratio = window.devicePixelRatio || 1;
+  const rect = sigCanvas.getBoundingClientRect();
+  sigCanvas.width = rect.width * ratio;
+  sigCanvas.height = rect.height * ratio;
+  sigCanvas.style.width = rect.width + 'px';
+  sigCanvas.style.height = rect.height + 'px';
+  sctx.scale(ratio, ratio);
+  sctx.lineWidth = 2.6;
+  sctx.lineCap = 'round';
+  sctx.strokeStyle = '#0f172a';
+}
+window.addEventListener('resize', resizeSig);
+resizeSig();
 
-    function updatePreview(){
-      pvNumber.textContent = docNumEl.value;
-      pvDate.textContent = dateEl.value;
-      pvClient.textContent = clientEl.value || '-';
-      pvAddress.textContent = addressEl.value || '-';
-      pvType.textContent = typeEl.value || '-';
-      pvDesc.textContent = descEl.value || '-';
-      pvOfficer.textContent = officerEl.value || '-';
-    }
+function getPos(e){
+  const rect = sigCanvas.getBoundingClientRect();
+  const p = e.touches?e.touches[0]:e;
+  return {x: p.clientX - rect.left, y: p.clientY - rect.top};
+}
+sigCanvas.addEventListener('pointerdown', (e)=>{ drawing=true; last=getPos(e); });
+sigCanvas.addEventListener('pointermove', (e)=>{ if(!drawing) return; const p=getPos(e); sctx.beginPath(); sctx.moveTo(last.x,last.y); sctx.lineTo(p.x,p.y); sctx.stroke(); last=p; });
+sigCanvas.addEventListener('pointerup', ()=>{ drawing=false; });
+sigCanvas.addEventListener('pointercancel', ()=>{ drawing=false; });
+function clearSig(){ sctx.clearRect(0,0,sigCanvas.width,sigCanvas.height); document.getElementById('pvSignImg').style.display='none' }
 
-    function updateQR(){
-      const link = `https://verify.example.com/doc/${encodeURIComponent(docNumEl.value)}`;
-      // generate dataURL and show as image inside div
-      QRCode.toDataURL(link, {width:250, margin:1})
-        .then(url=>{
-          qrPreview.innerHTML = '';
-          const img = document.createElement('img');
-          img.src = url; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='contain'; img.style.borderRadius='8px';
-          qrPreview.appendChild(img);
-        })
-        .catch(err=>{
-          qrPreview.textContent = 'QR Err';
-          console.error(err);
-        });
-    }
+/* ---------- Main actions ---------- */
+function onPreview(){
+  const item = collectForm(false);
+  renderPreview(item);
+}
 
-    // Theme
-    themeSel.addEventListener('change', ()=>{
-      const t = themeSel.value;
-      if(t==='gold'){
-        document.documentElement.style.setProperty('--navy','#854d0e');
-        document.documentElement.style.setProperty('--bg','#fffaf0');
-      } else if(t==='black'){
-        document.documentElement.style.setProperty('--navy','#0f172a');
-        document.documentElement.style.setProperty('--bg','#f3f4f6');
-      } else {
-        document.documentElement.style.setProperty('--navy','#1a237e');
-        document.documentElement.style.setProperty('--bg','#f6f7fb');
-      }
-    });
+function collectForm(generateId=true){
+  const client = document.getElementById('inpName').value.trim();
+  const resi = document.getElementById('inpResi').value.trim();
+  const product = document.getElementById('inpProduct').value.trim() || '—';
+  const qty = parseInt(document.getElementById('inpQty').value) || 0;
+  const val = parseInt(document.getElementById('inpValue').value) || 0;
+  const percent = parseInt(document.getElementById('inpPercent').value) || 200;
+  const note = document.getElementById('inpNote').value.trim();
 
-    // Buttons
-    document.getElementById('btnPreview').addEventListener('click', (ev)=>{
-      ev.preventDefault();
-      updatePreview();
-      updateQR();
-      alert('Preview diperbarui.');
-    });
+  const sigData = sigCanvas.toDataURL('image/png');
 
-    document.getElementById('btnReset').addEventListener('click', ()=>{
-      clientEl.value = addressEl.value = phoneEl.value = typeEl.value = descEl.value = officerEl.value = '';
-      init();
-    });
+  const id = generateId? genDocNum() : 'PREVIEW';
+  const date = new Date().toLocaleDateString('id-ID');
 
-    // Generate PDF
-    document.getElementById('btnGenerate').addEventListener('click', async (ev)=>{
-      ev.preventDefault();
-      updatePreview();
-      updateQR();
+  // compute: total cukai = qty * val * (percent/100)
+  const totalCukai = Math.round(qty * val * (percent/100));
+  const formattedTotal = totalCukai.toLocaleString('id-ID');
 
-      // collect data
-      const data = {
-        documentNumber: docNumEl.value,
-        date: dateEl.value,
-        client: clientEl.value || '-',
-        address: addressEl.value || '-',
-        phone: phoneEl.value || '-',
-        type: typeEl.value || '-',
-        desc: descEl.value || '-',
-        officer: officerEl.value || '-'
-      };
+  return {
+    id, date, client, resi, product, qty, val, percent, totalCukai, totalFormatted: formattedTotal, note, signature: sigData,
+    qr: location.origin + location.pathname + '#verify?doc=' + encodeURIComponent(id)
+  };
+}
 
-      // create PDF
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF({unit:'pt', format:'a4'});
+function renderPreview(item){
+  document.getElementById('card-preview').style.display='block';
+  document.getElementById('pvNumber').innerText = item.id;
+  document.getElementById('pvDate').innerText = item.date;
+  document.getElementById('pvName').innerText = item.client || '-';
+  const body = `
+    <p>Sehubungan dengan proses verifikasi internal terhadap paket dengan nomor resi <strong>${item.resi}</strong>, bersama ini kami sampaikan bahwa paket teridentifikasi mengandung <strong>${item.product}</strong> sebanyak <strong>${item.qty} batang</strong>.</p>
+    <p>Dalam rangka penyelesaian administrasi, diperlukan jaminan pengurusan sementara sebesar <strong>Rp ${item.totalFormatted}</strong>. Jumlah ini adalah perhitungan berdasarkan jumlah dan nilai per batang sesuai kebijakan layanan.</p>
+    <p><strong>Catatan:</strong> ${item.note || '-'}</p>
+  `;
+  document.getElementById('pvBody').innerHTML = body;
 
-      // header
-      pdf.setFontSize(18);
-      pdf.setTextColor(26,35,126);
-      pdf.text('TEMPORARY GUARANTEE LEGALITY', 40, 60);
-      pdf.setFontSize(11);
-      pdf.setTextColor(50,50,50);
-      pdf.text('Secure Legal Assistance • Document Verification System', 40, 78);
-      pdf.setLineWidth(0.5);
-      pdf.line(40,88,555,88);
+  // QR
+  const qrDiv = document.getElementById('pvQR');
+  const qrUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' + encodeURIComponent(item.qr);
+  qrDiv.innerHTML = '<img src="'+qrUrl+'" style="width:100%;height:100%;object-fit:contain;border-radius:8px"/>';
 
-      // QR (generate again and add)
-      try{
-        const qrData = await QRCode.toDataURL(`https://verify.example.com/doc/${encodeURIComponent(data.documentNumber)}`, {width:300});
-        pdf.addImage(qrData, 'PNG', 420, 40, 120, 120);
-      } catch(e){ console.warn('QR generation failed', e) }
+  // signature
+  const signImg = document.getElementById('pvSignImg');
+  if(item.signature && item.signature.indexOf('data:image')===0 && !isCanvasBlank(sigCanvas)){
+    signImg.src = item.signature; signImg.style.display='block';
+  } else { signImg.style.display='none' }
 
-      // content fields
-      let y = 120;
-      const add = (label, value) => {
-        pdf.setFontSize(11);
-        pdf.setTextColor(30,30,30);
-        pdf.text(`${label}:`, 40, y);
-        pdf.setFontSize(11);
-        pdf.text(String(value), 170, y);
-        y += 20;
-      };
+  // update doc num display top
+  document.getElementById('docNumSmall').innerText = 'Nomor Dokumen: ' + item.id;
+}
 
-      add('Document Number', data.documentNumber);
-      add('Date', data.date);
-      add('Client Name', data.client);
-      add('Address', data.address);
-      add('Phone', data.phone);
-      add('Document Type', data.type);
-      add('Description', data.desc);
-      add('Officer', data.officer);
+/* helper: check blank canvas */
+function isCanvasBlank(c){
+  const blank = document.createElement('canvas');
+  blank.width = c.width; blank.height = c.height;
+  return c.toDataURL() === blank.toDataURL();
+}
 
-      // footer
-      pdf.setFontSize(10);
-      pdf.setTextColor(110,110,110);
-      pdf.text('Verified by TGL Digital Compliance System', 40, 760);
-      // save
-      pdf.save(`${data.documentNumber}.pdf`);
-    });
+/* ---------- Save & Generate PDF ---------- */
+async function onSave(){
+  const item = collectForm(true);
 
-    // init page
-    init();
+  // save to localStorage (prepend)
+  const db = loadDB();
+  db.unshift(item);
+  saveDB(db);
+  renderAdminList();
 
-  })();
+  // render preview
+  renderPreview(item);
+
+  // generate PDF
+  await generatePDF(item);
+
+  alert('Tersimpan dan PDF ter-download. Nomor: ' + item.id);
+}
+
+/* ---------- PDF generation using html2canvas + jsPDF ---------- */
+async function generatePDF(item){
+  const el = document.getElementById('card-preview');
+
+  // temporarily ensure preview rendered with current item
+  renderPreview(item);
+
+  // clone node and style for A4 print layout
+  const clone = el.cloneNode(true);
+  clone.style.width = '794px'; // approx A4 px at 96dpi
+  clone.style.padding = '24px';
+  // create wrapper
+  const wrapper = document.createElement('div');
+  wrapper.style.background = '#fff';
+  wrapper.style.padding = '12px';
+  wrapper.appendChild(clone);
+
+  document.body.appendChild(wrapper);
+  // render to canvas
+  const canvas = await html2canvas(wrapper, {scale:2, useCORS:true});
+  document.body.removeChild(wrapper);
+
+  const img = canvas.toDataURL('image/png');
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p','mm','a4');
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
+  pdf.save(item.id + '.pdf');
+}
+
+/* ---------- Admin: render list ---------- */
+function renderAdminList(){
+  const db = loadDB();
+  const el = document.getElementById('adminList');
+  if(db.length===0){ el.innerHTML = '<div class="small">Belum ada data tersimpan.</div>'; return; }
+  let html = '';
+  db.forEach(d => {
+    html += `<div style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.04);margin-bottom:8px;background:#fff">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><strong>${escapeHtml(d.id)}</strong><div class="small" style="color:var(--muted)">${escapeHtml(d.client)}</div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-small" onclick="downloadJSON('${d.id}')">JSON</button>
+          <button class="btn btn-ghost btn-small" onclick="deleteDoc('${d.id}')">Delete</button>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:13px;color:var(--muted)">${escapeHtml(d.date)} • Resi: ${escapeHtml(d.resi||'-')}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+/* ---------- helpers ---------- */
+function escapeHtml(t){ if(!t) return ''; return String(t).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function downloadJSON(id){ const db=loadDB(); const item=db.find(x=>x.id===id); if(!item) return alert('Not found'); const blob=new Blob([JSON.stringify(item,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=id+'.json'; a.click(); URL.revokeObjectURL(a.href); }
+function deleteDoc(id){ if(!confirm('Hapus dokumen ' + id + '?')) return; let db=loadDB().filter(x=>x.id!==id); saveDB(db); renderAdminList(); }
+function exportAll(){ const db=loadDB(); const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='tgl_docs_backup.json'; a.click(); URL.revokeObjectURL(a.href); }
+function clearAll(){ if(!confirm('Hapus semua data lokal?')) return; saveDB([]); renderAdminList(); }
+
+/* ---------- Init ---------- */
+renderAdminList();
+
+/* optional: fill sample for testing */
+function fillSampleData(){
+  document.getElementById('inpName').value='Bpk. Client';
+  document.getElementById('inpResi').value='001797567919';
+  document.getElementById('inpProduct').value='Rokok tanpa pita cukai';
+  document.getElementById('inpQty').value='0';
+  document.getElementById('inpValue').value='2000';
+  document.getElementById('inpNote').value='-';
+}
 </script>
-
 </body>
-</html>                                                  </html>
-                                                   
+</html>
+  
