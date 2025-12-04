@@ -1,12 +1,147 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Temporary Guarantee Legality</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temporary Guarantee Legality — Premium Certificate</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 0;
+        color: #222;
+    }
+
+    .page {
+        max-width: 850px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #1d3ca6;
+        padding-bottom: 15px;
+    }
+
+    .logo {
+        width: 110px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #1d3ca6;
+        margin-top: 25px;
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .info-box {
+        margin-top: 25px;
+        padding: 20px;
+        border: 2px solid #1d3ca6;
+        border-radius: 10px;
+        background: #f8faff;
+    }
+
+    .info-box label {
+        font-weight: 600;
+        color: #1d3ca6;
+    }
+
+    .info-box div {
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 13px;
+        color: #666;
+    }
+
+    .stamp {
+        margin-top: 40px;
+        text-align: right;
+    }
+
+    .stamp img {
+        width: 120px;
+        opacity: 0.85;
+    }
+
+    button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 15px;
+        background: #1d3ca6;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #162f82;
+    }
+
+</style>
+
+<script>
+    function generateAutoNumber() {
+        let year = new Date().getFullYear();
+        let random = Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("docNumber").innerText =
+            "TGL-" + year + "-" + random;
+    }
+    window.onload = generateAutoNumber;
+</script>
+
 </head>
 <body>
-  <h1>Website Aktif</h1>
-  <p>Ini halaman awal. Kode premium akan dimasukkan setelah langkah ini.</p>
+
+<div class="page">
+
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Emblem_of_Indonesia_Garuda_Pancasila.svg/240px-Emblem_of_Indonesia_Garuda_Pancasila.svg.png" class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Bea_Cukai_Indonesia_Logo.png" class="logo">
+</header>
+
+<h1>TEMPORARY GUARANTEE LEGALITY</h1>
+
+<div class="info-box">
+    <div><label>Nomor Dokumen:</label> <span id="docNumber"></span></div>
+    <div><label>Nama Perusahaan:</label> Temporary Guarantee Legality</div>
+    <div><label>Status:</label> Administrasi — Company that helps with legalization</div>
+    <div><label>Jenis Legalitas:</label> Document Verification & Logistic Compliance</div>
+    <div><label>Diterbitkan Pada:</label> <script>document.write(new Date().toLocaleDateString("id-ID"));</script></div>
+</div>
+
+<div class="stamp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Indonesia_stamp.png">
+</div>
+
+<div class="footer">
+    Dokumen ini dihasilkan secara otomatis sebagai bukti administrasi dan verifikasi.  
+    Tidak memerlukan tanda tangan basah.  
+    <br><br>
+    © Temporary Guarantee Legality — 2025
+</div>
+
+<button onclick="window.print()">Download / Cetak PDF</button>
+
+</div>
 </body>
 </html>
