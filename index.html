@@ -1,425 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Temporary Guarantee Legality — Generator Surat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legalitas Bea Cukai</title>
 
-<!-- Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --navy:#0f2b66;
-  --gold:#bf9123;
-  --muted:#6b7280;
-  --bg:#f6f8fb;
-  --card:#ffffff;
-  --radius:12px;
-  --shadow: 0 8px 30px rgba(15,23,42,0.06);
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:var(--bg);
-  color:#0f172a;
-  -webkit-font-smoothing:antialiased;
-  padding:16px;
-}
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background: url('bg.jpg') no-repeat center center/cover;
+            backdrop-filter: blur(4px);
+        }
 
-/* App container */
-.app{max-width:980px;margin:0 auto 48px}
+        .overlay {
+            background: rgba(0,0,0,0.55);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-/* Header */
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{width:60px;height:60px;border-radius:10px;object-fit:cover}
-.title{font-weight:800;color:var(--navy);font-size:18px}
-.subtitle{font-size:13px;color:var(--muted)}
+        .container {
+            max-width: 420px;
+            margin: auto;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 18px rgba(0,0,0,0.4);
+        }
 
-/* Card */
-.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px}
+        .logo {
+            width: 100px;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
 
-/* Form */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:720px){.form-grid{grid-template-columns:1fr}}
-label{display:block;font-weight:700;color:var(--navy);margin-bottom:6px;font-size:13px}
-input[type="text"],input[type="number"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;background:#fff;font-size:14px}
-textarea{min-height:90px;resize:vertical}
-.small{font-size:13px;color:var(--muted)}
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
-/* Buttons */
-.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.btn{flex:1;padding:11px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-.btn-primary{background:var(--navy);color:#fff}
-.btn-ghost{background:#fff;border:1px solid rgba(15,23,42,0.06);color:var(--navy)}
-.btn-small{padding:8px 10px;font-size:13px;border-radius:8px}
+        label {
+            font-size: 14px;
+            display: block;
+            margin-top: 12px;
+        }
 
-/* Preview / Document */
-.preview{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:10px;border:1px solid rgba(10,15,40,0.03);margin-top:12px}
-.preview .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.preview h2{margin:0;color:var(--navy);font-size:16px}
-.preview p{margin:6px 0;line-height:1.6}
-.kv{font-weight:700;color:var(--navy)}
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
 
-/* QR and signature */
-.side{display:flex;gap:10px;align-items:flex-start}
-.qr{width:110px;height:110px;border-radius:10px;background:#fff;border:1px solid rgba(10,15,40,0.04);display:flex;align-items:center;justify-content:center}
-.sig-wrap{flex:1}
-.sig-canvas{width:100%;height:140px;border-radius:8px;border:1px dashed rgba(15,23,42,0.06);background:#fff;touch-action:none}
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            background: #00eaff;
+            color: black;
+        }
 
-/* Footer */
-.footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px}
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: none;
+        }
 
-/* Print adjustments */
-@media print{
-  body{background:#fff;padding:0}
-  .no-print{display:none}
-  .card{box-shadow:none;border-radius:0}
-}
-</style>
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 25px;
+            opacity: 0.7;
+        }
+
+    </style>
 </head>
 <body>
-<div class="app">
 
-  <div class="header">
-    <div class="brand">
-      <img id="logoImg" class="logo" src="https://dummyimage.com/200x200/0f2b66/ffffff&text=TGL" alt="TGL Logo">
-      <div>
-        <div class="title">Temporary Guarantee Legality</div>
-        <div class="subtitle">Document Generator — Mobile & Premium</div>
-      </div>
-    </div>
-    <div class="small">Mode: <strong>Local</strong></div>
-  </div>
+<div class="overlay">
+<div class="container">
 
-  <!-- Form card -->
-  <div class="card" id="card-form">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div style="font-weight:800;color:var(--navy)">Input Data Klien</div>
-      <div class="small" id="docNumSmall">Nomor Dokumen: —</div>
-    </div>
+    <!-- LOGO -->
+    <img src="logo.png" class="logo">
 
-    <div class="form-grid">
-      <div>
-        <label>Nama Klien</label>
-        <input id="inpName" type="text" placeholder="Nama lengkap atau perusahaan">
-      </div>
-      <div>
-        <label>Nomor Resi / Referensi</label>
-        <input id="inpResi" type="text" placeholder="001797567919">
-      </div>
+    <h1>Legalitas Bea Cukai Resmi</h1>
 
-      <div>
-        <label>Jenis Produk</label>
-        <input id="inpProduct" type="text" placeholder="Rokok tanpa pita cukai">
-      </div>
-      <div>
-        <label>Jumlah (Batang)</label>
-        <input id="inpQty" type="number" placeholder="0" min="0">
-      </div>
+    <!-- INPUT FORM -->
+    <label>Nomor Resi / Kode Pengiriman</label>
+    <input type="text" id="resi" placeholder="Contoh: BC-78291-XX">
 
-      <div>
-        <label>Nilai Per Batang (Rp)</label>
-        <input id="inpValue" type="number" placeholder="2000" min="0">
-      </div>
-      <div>
-        <label>Nominal Jaminan (%)</label>
-        <select id="inpPercent">
-          <option value="200">2x nilai cukai (200%)</option>
-          <option value="100">1x nilai cukai (100%)</option>
-        </select>
-      </div>
+    <label>Nama Pengirim</label>
+    <input type="text" id="pengirim" placeholder="Nama pengirim">
 
-      <div class="full" style="grid-column:1 / -1">
-        <label>Catatan / Keterangan</label>
-        <textarea id="inpNote" placeholder="Keterangan tambahan..."></textarea>
-      </div>
+    <label>Nama Penerima</label>
+    <input type="text" id="penerima" placeholder="Nama penerima">
+
+    <button onclick="cekData()">Cek Legalitas</button>
+
+    <!-- RESULT BOX -->
+    <div class="result" id="hasil">
+        <h3>Hasil Cek Legalitas</h3>
+        <p id="detail"></p>
+
+        <button onclick="downloadPDF()">Download PDF</button>
     </div>
 
-    <div style="margin-top:10px">
-      <label>Tanda Tangan Digital (opsional)</label>
-      <div style="margin-top:8px">
-        <canvas id="sigCanvas" class="sig-canvas"></canvas>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="btn btn-ghost btn-small" onclick="clearSig()">Clear</button>
-          <div style="flex:1"></div>
-          <div class="small">Tanda tangan akan dimasukkan ke PDF</div>
-        </div>
-      </div>
+    <div class="footer">
+        © 2025 Legalitas Bea Cukai • Semua Hak Dilindungi
     </div>
 
-    <div class="row no-print" style="margin-top:12px">
-      <button class="btn btn-primary" onclick="onSave()">Save & Generate PDF</button>
-      <button class="btn btn-ghost" onclick="onPreview()">Preview</button>
-      <button class="btn btn-ghost" onclick="onReset()">Reset</button>
-    </div>
-
-    <div class="small" style="margin-top:8px;color:var(--muted)">Data disimpan di browser (localStorage) — gunakan Export di Admin untuk backup.</div>
-  </div>
-
-  <!-- Preview card -->
-  <div class="card preview" id="card-preview" aria-live="polite" style="display:none">
-    <div class="meta" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
-      <div>
-        <h2>Surat Pemberitahuan Legalitas Barang</h2>
-        <div class="small">Surat pemberitahuan internal — Temporary Guarantee Legality</div>
-      </div>
-      <div style="text-align:right">
-        <div class="kv">Nomor: <span id="pvNumber">—</span></div>
-        <div class="small">Tanggal: <span id="pvDate">—</span></div>
-      </div>
-    </div>
-
-    <div style="height:10px"></div>
-
-    <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
-      <div style="flex:1;min-width:240px">
-        <p><strong>Kepada Yth,</strong><br><span id="pvName">—</span><br>Di tempat</p>
-
-        <p id="pvBody">
-          —
-        </p>
-
-        <p><strong>Syarat & Ketentuan</strong></p>
-        <ol style="margin-top:6px">
-          <li>Batas waktu pembayaran: segera setelah menerima pemberitahuan.</li>
-          <li>Pengembalian dana: 75% dikembalikan setelah verifikasi (jika berlaku).</li>
-          <li>Konsekuensi: jika tidak terselesaikan, proses internal dihentikan.</li>
-        </ol>
-
-        <p style="margin-top:10px">Hormat kami,<br><strong>Temporary Guarantee Legality</strong></p>
-      </div>
-
-      <div style="width:150px">
-        <div class="qr" id="pvQR">
-          QR
-        </div>
-        <div style="height:10px"></div>
-        <div style="font-size:13px;color:var(--muted);text-align:center">Scan untuk verifikasi</div>
-        <div style="height:12px"></div>
-        <div style="text-align:center">
-          <img id="pvSignImg" src="" alt="signature" style="max-width:130px;border-radius:8px;display:none">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Admin card -->
-  <div class="card" id="card-admin">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div style="font-weight:800;color:var(--navy)">Admin · Stored Documents</div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost btn-small" onclick="exportAll()">Export JSON</button>
-        <button class="btn btn-ghost btn-small" onclick="clearAll()">Clear All</button>
-      </div>
-    </div>
-    <div id="adminList" style="margin-top:12px"></div>
-  </div>
-
-  <div class="footer">Built for Temporary Guarantee Legality — Local verification demo • 2025</div>
+</div>
 </div>
 
 <script>
-/* ---------- Utilities & Storage ---------- */
-const STORAGE_KEY = 'tgl_docs_v2';
-function loadDB(){ try{const s=localStorage.getItem(STORAGE_KEY); return s?JSON.parse(s):[];}catch(e){return[]}}
-function saveDB(db){ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)) }
+    function cekData() {
+        let resi = document.getElementById("resi").value;
+        let pengirim = document.getElementById("pengirim").value;
+        let penerima = document.getElementById("penerima").value;
 
-/* ---------- Auto doc number on load ---------- */
-function genDocNum(){ const y=new Date().getFullYear(); return 'TGL-'+y+'-'+Math.floor(1000+Math.random()*9000) }
-document.getElementById('docNumSmall').innerText = 'Nomor Dokumen: ' + genDocNum();
+        if(resi === "" || pengirim === "" || penerima === "") {
+            alert("Lengkapi semua data!");
+            return;
+        }
 
-/* ---------- Signature canvas ---------- */
-const sigCanvas = document.getElementById('sigCanvas');
-const sctx = sigCanvas.getContext('2d');
-let drawing=false, last={x:0,y:0};
+        document.getElementById("hasil").style.display = "block";
+        document.getElementById("detail").innerHTML = `
+            <b>Nomor Resi:</b> ${resi}<br>
+            <b>Pengirim:</b> ${pengirim}<br>
+            <b>Penerima:</b> ${penerima}<br><br>
+            Status: <span style="color:#00ffea;font-weight:700">TERVERIFIKASI RESMI</span>
+        `;
+    }
 
-function resizeSig(){
-  const ratio = window.devicePixelRatio || 1;
-  const rect = sigCanvas.getBoundingClientRect();
-  sigCanvas.width = rect.width * ratio;
-  sigCanvas.height = rect.height * ratio;
-  sigCanvas.style.width = rect.width + 'px';
-  sigCanvas.style.height = rect.height + 'px';
-  sctx.scale(ratio, ratio);
-  sctx.lineWidth = 2.6;
-  sctx.lineCap = 'round';
-  sctx.strokeStyle = '#0f172a';
-}
-window.addEventListener('resize', resizeSig);
-resizeSig();
-
-function getPos(e){
-  const rect = sigCanvas.getBoundingClientRect();
-  const p = e.touches?e.touches[0]:e;
-  return {x: p.clientX - rect.left, y: p.clientY - rect.top};
-}
-sigCanvas.addEventListener('pointerdown', (e)=>{ drawing=true; last=getPos(e); });
-sigCanvas.addEventListener('pointermove', (e)=>{ if(!drawing) return; const p=getPos(e); sctx.beginPath(); sctx.moveTo(last.x,last.y); sctx.lineTo(p.x,p.y); sctx.stroke(); last=p; });
-sigCanvas.addEventListener('pointerup', ()=>{ drawing=false; });
-sigCanvas.addEventListener('pointercancel', ()=>{ drawing=false; });
-function clearSig(){ sctx.clearRect(0,0,sigCanvas.width,sigCanvas.height); document.getElementById('pvSignImg').style.display='none' }
-
-/* ---------- Main actions ---------- */
-function onPreview(){
-  const item = collectForm(false);
-  renderPreview(item);
-}
-
-function collectForm(generateId=true){
-  const client = document.getElementById('inpName').value.trim();
-  const resi = document.getElementById('inpResi').value.trim();
-  const product = document.getElementById('inpProduct').value.trim() || '—';
-  const qty = parseInt(document.getElementById('inpQty').value) || 0;
-  const val = parseInt(document.getElementById('inpValue').value) || 0;
-  const percent = parseInt(document.getElementById('inpPercent').value) || 200;
-  const note = document.getElementById('inpNote').value.trim();
-
-  const sigData = sigCanvas.toDataURL('image/png');
-
-  const id = generateId? genDocNum() : 'PREVIEW';
-  const date = new Date().toLocaleDateString('id-ID');
-
-  // compute: total cukai = qty * val * (percent/100)
-  const totalCukai = Math.round(qty * val * (percent/100));
-  const formattedTotal = totalCukai.toLocaleString('id-ID');
-
-  return {
-    id, date, client, resi, product, qty, val, percent, totalCukai, totalFormatted: formattedTotal, note, signature: sigData,
-    qr: location.origin + location.pathname + '#verify?doc=' + encodeURIComponent(id)
-  };
-}
-
-function renderPreview(item){
-  document.getElementById('card-preview').style.display='block';
-  document.getElementById('pvNumber').innerText = item.id;
-  document.getElementById('pvDate').innerText = item.date;
-  document.getElementById('pvName').innerText = item.client || '-';
-  const body = `
-    <p>Sehubungan dengan proses verifikasi internal terhadap paket dengan nomor resi <strong>${item.resi}</strong>, bersama ini kami sampaikan bahwa paket teridentifikasi mengandung <strong>${item.product}</strong> sebanyak <strong>${item.qty} batang</strong>.</p>
-    <p>Dalam rangka penyelesaian administrasi, diperlukan jaminan pengurusan sementara sebesar <strong>Rp ${item.totalFormatted}</strong>. Jumlah ini adalah perhitungan berdasarkan jumlah dan nilai per batang sesuai kebijakan layanan.</p>
-    <p><strong>Catatan:</strong> ${item.note || '-'}</p>
-  `;
-  document.getElementById('pvBody').innerHTML = body;
-
-  // QR
-  const qrDiv = document.getElementById('pvQR');
-  const qrUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' + encodeURIComponent(item.qr);
-  qrDiv.innerHTML = '<img src="'+qrUrl+'" style="width:100%;height:100%;object-fit:contain;border-radius:8px"/>';
-
-  // signature
-  const signImg = document.getElementById('pvSignImg');
-  if(item.signature && item.signature.indexOf('data:image')===0 && !isCanvasBlank(sigCanvas)){
-    signImg.src = item.signature; signImg.style.display='block';
-  } else { signImg.style.display='none' }
-
-  // update doc num display top
-  document.getElementById('docNumSmall').innerText = 'Nomor Dokumen: ' + item.id;
-}
-
-/* helper: check blank canvas */
-function isCanvasBlank(c){
-  const blank = document.createElement('canvas');
-  blank.width = c.width; blank.height = c.height;
-  return c.toDataURL() === blank.toDataURL();
-}
-
-/* ---------- Save & Generate PDF ---------- */
-async function onSave(){
-  const item = collectForm(true);
-
-  // save to localStorage (prepend)
-  const db = loadDB();
-  db.unshift(item);
-  saveDB(db);
-  renderAdminList();
-
-  // render preview
-  renderPreview(item);
-
-  // generate PDF
-  await generatePDF(item);
-
-  alert('Tersimpan dan PDF ter-download. Nomor: ' + item.id);
-}
-
-/* ---------- PDF generation using html2canvas + jsPDF ---------- */
-async function generatePDF(item){
-  const el = document.getElementById('card-preview');
-
-  // temporarily ensure preview rendered with current item
-  renderPreview(item);
-
-  // clone node and style for A4 print layout
-  const clone = el.cloneNode(true);
-  clone.style.width = '794px'; // approx A4 px at 96dpi
-  clone.style.padding = '24px';
-  // create wrapper
-  const wrapper = document.createElement('div');
-  wrapper.style.background = '#fff';
-  wrapper.style.padding = '12px';
-  wrapper.appendChild(clone);
-
-  document.body.appendChild(wrapper);
-  // render to canvas
-  const canvas = await html2canvas(wrapper, {scale:2, useCORS:true});
-  document.body.removeChild(wrapper);
-
-  const img = canvas.toDataURL('image/png');
-
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p','mm','a4');
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
-  pdf.save(item.id + '.pdf');
-}
-
-/* ---------- Admin: render list ---------- */
-function renderAdminList(){
-  const db = loadDB();
-  const el = document.getElementById('adminList');
-  if(db.length===0){ el.innerHTML = '<div class="small">Belum ada data tersimpan.</div>'; return; }
-  let html = '';
-  db.forEach(d => {
-    html += `<div style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.04);margin-bottom:8px;background:#fff">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div><strong>${escapeHtml(d.id)}</strong><div class="small" style="color:var(--muted)">${escapeHtml(d.client)}</div></div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-ghost btn-small" onclick="downloadJSON('${d.id}')">JSON</button>
-          <button class="btn btn-ghost btn-small" onclick="deleteDoc('${d.id}')">Delete</button>
-        </div>
-      </div>
-      <div style="margin-top:8px;font-size:13px;color:var(--muted)">${escapeHtml(d.date)} • Resi: ${escapeHtml(d.resi||'-')}</div>
-    </div>`;
-  });
-  el.innerHTML = html;
-}
-
-/* ---------- helpers ---------- */
-function escapeHtml(t){ if(!t) return ''; return String(t).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function downloadJSON(id){ const db=loadDB(); const item=db.find(x=>x.id===id); if(!item) return alert('Not found'); const blob=new Blob([JSON.stringify(item,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=id+'.json'; a.click(); URL.revokeObjectURL(a.href); }
-function deleteDoc(id){ if(!confirm('Hapus dokumen ' + id + '?')) return; let db=loadDB().filter(x=>x.id!==id); saveDB(db); renderAdminList(); }
-function exportAll(){ const db=loadDB(); const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='tgl_docs_backup.json'; a.click(); URL.revokeObjectURL(a.href); }
-function clearAll(){ if(!confirm('Hapus semua data lokal?')) return; saveDB([]); renderAdminList(); }
-
-/* ---------- Init ---------- */
-renderAdminList();
-
-/* optional: fill sample for testing */
-function fillSampleData(){
-  document.getElementById('inpName').value='Bpk. Client';
-  document.getElementById('inpResi').value='001797567919';
-  document.getElementById('inpProduct').value='Rokok tanpa pita cukai';
-  document.getElementById('inpQty').value='0';
-  document.getElementById('inpValue').value='2000';
-  document.getElementById('inpNote').value='-';
-}
+    // PDF Generator
+    function downloadPDF() {
+        const text = document.getElementById("detail").innerHTML.replace(/<br>/g, "\n").replace(/<b>|<\/b>/g,"");
+        const blob = new Blob([text], { type: "application/pdf" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "legalitas_beacukai.pdf";
+        link.click();
+    }
 </script>
+
 </body>
 </html>
-  
