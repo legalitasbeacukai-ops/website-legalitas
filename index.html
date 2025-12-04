@@ -1,182 +1,259 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistem Legalitas Bea Cukai</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surat Legalitas – PT Komplotan Tidur Siang Logistik</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+<!-- HTML2PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
     body {
+        font-family: 'Inter', sans-serif;
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f5f6fa;
+        background: linear-gradient(135deg, #f2f5ff, #dbe3ff);
+        padding: 30px;
     }
 
-    /* NAVBAR */
-    .navbar {
-        background: #002060;
-        padding: 15px 25px;
-        color: white;
-        font-size: 18px;
+    #document {
+        background: white;
+        padding: 40px 50px;
+        margin: auto;
+        max-width: 850px;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0 0 25px rgba(0,0,0,0.15);
+    }
+
+    /* Watermark */
+    #document::after {
+        content: "PT GARDA PRIMA ASURANSI LOGISTIK";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        font-size: 48px;
+        color: rgba(0,0,0,0.06);
+        letter-spacing: 2px;
+        white-space: nowrap;
+        z-index: 0;
+    }
+
+    .header {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        z-index: 2;
+        position: relative;
+    }
+
+    .title {
+        margin-top: 5px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #1c2678;
+    }
+
+    .logo-box {
+        width: 90px;
+        height: 90px;
+        background: #0f3aad;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
         align-items: center;
     }
 
-    .navbar a {
-        color: white;
-        margin-left: 18px;
-        text-decoration: none;
-        font-weight: bold;
+    .logo-box svg {
+        width: 60px;
+        fill: white;
     }
 
-    /* HERO */
-    .hero {
-        background: #002060;
-        color: white;
-        padding: 80px 25px;
-        text-align: center;
+    .content {
+        margin-top: 30px;
+        line-height: 1.7;
+        font-size: 15px;
+        position: relative;
+        z-index: 2;
     }
 
-    /* PAGE WRAPPER */
-    .page {
-        display: none;
-        padding: 25px;
-        max-width: 900px;
-        margin: auto;
-        background: white;
-        border-radius: 8px;
-        margin-top: 25px;
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        font-size: 15px;
     }
 
-    /* SURAT */
-    .surat-header {
-        text-align: center;
-        margin-bottom: 25px;
+    table, th, td {
+        border: 1px solid #999;
     }
 
-    .surat-header img {
-        width: 140px;
-        margin-bottom: 10px;
+    th {
+        background: #e8ebff;
+        padding: 8px;
     }
 
-    .stempel {
+    td {
+        padding: 8px;
+    }
+
+    .signature-section {
+        margin-top: 60px;
+        text-align: left;
+    }
+
+    .stamp {
         width: 180px;
-        opacity: .9;
+        opacity: 0.8;
     }
 
-    .ttd {
-        width: 260px;
+    .signature {
+        width: 180px;
+        margin-top: -20px;
     }
 
-    .footer {
-        background: #002060;
+    .qr-box {
+        margin-top: 20px;
+    }
+
+    .download-btn {
+        margin-top: 25px;
+        background: #1c2678;
         color: white;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 7px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 600;
     }
 
 </style>
-
-<script>
-function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById(page).style.display = 'block';
-    window.scrollTo(0, 0);
-}
-</script>
-
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div><b>SISTEM LEGALITAS BEA CUKAI</b></div>
-    <div>
-        <a href="#" onclick="showPage('home')">Beranda</a>
-        <a href="#" onclick="showPage('cek')">Cek Resi</a>
-        <a href="#" onclick="showPage('surat')">Surat Legalitas</a>
+<button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+<div id="document">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-box">
+            <!-- PREMIUM GENERIC LOGO (aman, bukan milik instansi pemerintah) -->
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" />
+            </svg>
+        </div>
+
+        <div>
+            <div class="title">PT Garda Prima Asuransi Logistik</div>
+            <div style="font-size:14px;opacity:0.8;">
+                Divisi Legalitas & Pemeriksaan Barang<br>
+                Dokumen Pemberitahuan Resmi Internal
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        Dengan hormat,<br><br>
+
+        Sehubungan dengan proses pengiriman paket Anda dengan nomor resi 
+        <b>001776475192</b>, bersama ini kami sampaikan bahwa berdasarkan hasil pemeriksaan rutin 
+        oleh pihak ekspedisi yang bekerja sama dengan divisi kepatuhan internal kami, 
+        ditemukan bahwa paket tersebut mengandung produk berupa:<br><br>
+
+        <b>Rokok tanpa pita cukai resmi sebanyak 16 slop (3.200 batang).</b><br><br>
+
+        Berdasarkan ketentuan internal dan peraturan kepatuhan mitra ekspedisi, barang tersebut 
+        termasuk kategori yang memerlukan proses verifikasi legalitas.<br><br>
+
+        <hr><br>
+
+        <b>TINDAKAN PENANGANAN</b><br><br>
+
+        Berikut rincian nilai penjaminan legalitas sementara:<br>
+
+        <table>
+            <tr>
+                <th>Uraian</th>
+                <th>Jumlah</th>
+            </tr>
+            <tr>
+                <td>Nilai penjaminan legalitas (Rp 600 x 3.200 batang)</td>
+                <td>Rp 1.920.000,00</td>
+            </tr>
+            <tr>
+                <td>Biaya lanjutan pengiriman</td>
+                <td>Rp 80.000,00</td>
+            </tr>
+            <tr>
+                <td><b>Total</b></td>
+                <td><b>Rp 2.000.000,00</b></td>
+            </tr>
+        </table>
+
+        <br><hr><br>
+
+        <b>SYARAT & KETENTUAN</b>
+        <ol>
+            <li>Pembayaran wajib dilakukan segera setelah menerima pemberitahuan ini.</li>
+            <li>Dana akan dikembalikan sebesar 75% setelah proses verifikasi selesai.</li>
+            <li>Jika tidak diselesaikan, barang akan diproses sesuai prosedur internal kepatuhan ekspedisi.</li>
+        </ol>
+
+        <br><br>
+        Demikian pemberitahuan ini kami sampaikan untuk menjadi perhatian.<br><br>
+
+        <div class="qr-box">
+            <b>QR Verifikasi Dokumen</b><br><br>
+
+            <!-- QR CODE SVG AMAN (GENERIK) -->
+            <svg width="120" height="120">
+                <rect width="120" height="120" fill="#000"/>
+                <rect x="10" y="10" width="30" height="30" fill="#fff"/>
+                <rect x="80" y="10" width="30" height="30" fill="#fff"/>
+                <rect x="10" y="80" width="30" height="30" fill="#fff"/>
+                <rect x="45" y="45" width="30" height="30" fill="#fff"/>
+            </svg>
+        </div>
+
+        <!-- SIGNATURE -->
+        <div class="signature-section">
+            Hormat kami,<br>
+            <b>Tim Legalitas & Pemeriksaan Barang</b><br>
+            PT Garda Prima Asuransi Logistik<br><br>
+
+            <!-- STAMP -->
+            <img class="stamp" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2IoMjAwLDAwLDAwKSIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0icmdiKDIwMCwwLDAsMC44KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1RBTUAgUkVTSU1JPC90ZXh0Pjwvc3ZnPg==" />
+
+            <br>
+
+            <!-- SIGNATURE -->
+            <img class="signature" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjgwIiB3aWR0aD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0yMCA2MGMzMC0yMCA1MC0xMCA3MC0yMCAyMC0xMCA0MC0zMCA2MC01MCIgc3Ryb2tlPSJyZ2IoMCwwLDAsMC44KSIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+PC9zdmc+" />
+        </div>
+
     </div>
 </div>
 
-<!-- HERO -->
-<div class="hero" id="home">
-    <h1>Direktorat Jenderal Bea dan Cukai</h1>
-    <p>Portal Verifikasi Legalitas Barang & Pengiriman</p>
-</div>
 
-<!-- ======================== PAGE: CEK RESI ======================== -->
-<div class="page" id="cek">
-    <h2>Cek Legalitas Pengiriman</h2>
-    <label>Masukkan Nomor Resi:</label><br><br>
-    <input id="resi" type="text" style="width:300px;padding:10px">
-    <button onclick="hasilCek()" style="padding:10px 20px;background:#002060;color:white;border:none;">Cek</button>
-
-    <div id="hasil" style="margin-top:20px;font-size:18px;"></div>
-
-    <script>
-        function hasilCek() {
-            let resi = document.getElementById("resi").value.trim();
-            if(resi === "") return alert("Masukkan nomor resi!");
-
-            document.getElementById("hasil").innerHTML =
-                "<b>Nomor Resi:</b> " + resi +
-                "<br>Status: <span style='color:green'>Perlu Verifikasi Manual</span>" +
-                "<br><br><i>Klik menu 'Surat Legalitas' untuk melihat dokumen.</i>";
-        }
-    </script>
-</div>
-
-<!-- ======================== PAGE: SURAT LEGALITAS ======================== -->
-<div class="page" id="surat">
-    <div class="surat-header">
-        
-        <!-- LOGO BASE64 -->
-        <img src="PASTE_BASE64_LOGO_DI_SINI">
-
-        <h2>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA <br>DIREKTORAT JENDERAL BEA DAN CUKAI</h2>
-        <hr>
-    </div>
-
-    <p>
-    Dengan hormat,<br><br>
-    Sehubungan dengan proses pengiriman paket Anda dengan nomor resi <b>001776475192</b>,
-    bersama ini kami sampaikan bahwa paket tersebut mengandung:
-    </p>
-
-    <ul>
-        <li>Rokok tanpa pita cukai sebanyak <b>16 slop (3.200 batang)</b>.</li>
-    </ul>
-
-    <p>
-    Barang tersebut termasuk kategori Barang Kena Cukai (BKC) ilegal sesuai UU No. 39 Tahun 2007 pasal 54.
-    </p>
-
-    <h3>Rincian Pembayaran</h3>
-    <table border="1" cellpadding="10" cellspacing="0" width="100%">
-        <tr><td>Nilai Cukai (600 × 3200)</td><td>Rp 1.920.000</td></tr>
-        <tr><td>Biaya Administrasi</td><td>Rp 80.000</td></tr>
-        <tr><th>Total</th><th>Rp 2.000.000</th></tr>
-    </table>
-
-    <br><br>
-
-    <p>Demikian surat ini disampaikan.</p>
-
-    <br><br>
-
-    <div style="text-align:right;">
-        <img class="stempel" src="https://pastebin.com/raw/S1QMHzvS"><br>
-        <img class="ttd" src="https://pastebin.com/raw/AvxLGQej><br>
-        <b>Tim Legalitas & Pemeriksaan Barang</b>
-    </div>
-
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-    © 2025 Direktorat Jenderal Bea dan Cukai</div>
+<script>
+function downloadPDF() {
+    const element = document.getElementById('document');
+    const opt = {
+        margin:       0.5,
+        filename:     'surat-legalitas.pdf',
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+</script>
 
 </body>
 </html>
