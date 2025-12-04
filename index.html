@@ -1,181 +1,305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Temporary Guarantee Legality — Document Verification</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Temporary Guarantee Legality — Document Generator</title>
 
-<style>
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    margin: 0;
-    background: #f4f6fa;
-    color: #222;
-}
+  <!-- jsPDF & qrcode library CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 
-.container {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.12);
-    position: relative;
-    overflow: hidden;
-}
-
-/* WATERMARK */
-.container::before {
-    content: "TEMPORARY GUARANTEE LEGALITY";
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-20deg);
-    font-size: 60px;
-    font-weight: 700;
-    opacity: 0.07;
-    white-space: nowrap;
-    color: #1d3ca6;
-    pointer-events: none;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 4px solid #1d3ca6;
-    padding-bottom: 15px;
-}
-
-.header img {
-    width: 110px;
-}
-
-.title {
-    text-align: center;
-    color: #1d3ca6;
-    font-size: 28px;
-    margin-top: 20px;
-    font-weight: 700;
-}
-
-.box {
-    margin-top: 25px;
-    padding: 20px;
-    border: 2px solid #1d3ca6;
-    border-radius: 12px;
-    background: #f9fbff;
-}
-
-.box div {
-    margin-bottom: 10px;
-}
-
-.label {
-    font-weight: 700;
-    color: #1d3ca6;
-}
-
-.qr {
-    text-align: right;
-    margin-top: 30px;
-}
-
-.qr img {
-    width: 140px;
-    border-radius: 10px;
-}
-
-.stamp {
-    text-align: right;
-    margin-top: 40px;
-}
-
-.stamp img {
-    width: 120px;
-    opacity: .85;
-}
-
-.footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 13px;
-    color: #555;
-}
-
-button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #1d3ca6;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-button:hover {
-    background: #162e7c;
-}
-
-</style>
-
-<script>
-function generateDoc() {
-    let year = new Date().getFullYear();
-    let rand = Math.floor(1000 + Math.random() * 9000);
-    let doc = "TGL-" + year + "-" + rand;
-    document.getElementById("docNum").innerText = doc;
-
-    // QR generator
-    document.getElementById("qrCode").src =
-        "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=" + 
-        encodeURIComponent("Document Verified: " + doc);
-}
-window.onload = generateDoc;
-</script>
-
+  <style>
+    :root{
+      --navy:#1a237e; --muted:#6b7280; --bg:#f6f7fb;
+      --card:#fff;
+    }
+    body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);margin:0;padding:28px;color:#111;}
+    .container{max-width:980px;margin:0 auto;background:var(--card);border-radius:16px;padding:30px 36px;box-shadow:0 8px 30px rgba(15,23,42,0.08);position:relative;overflow:hidden;}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .brand{display:flex;gap:16px;align-items:center;}
+    .logo{width:220px;border-radius:12px;}
+    h1{font-size:20px;margin:0;color:var(--navy);letter-spacing:0.2px;}
+    .tag{font-size:12px;color:var(--muted);margin-top:4px;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+    label{display:block;font-weight:600;font-size:13px;margin-bottom:6px;color:#0f172a;}
+    input[type="text"], textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #e6e9f2;background:#fbfcff;font-size:14px;outline:none}
+    textarea{min-height:96px;resize:vertical}
+    .full{grid-column:1 / -1}
+    .actions{display:flex;gap:12px;margin-top:18px;align-items:center;}
+    button{background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    button.secondary{background:#fff;color:var(--navy);border:1px solid rgba(26,35,126,0.12)}
+    .preview{margin-top:26px;padding:18px;border-radius:12px;background:linear-gradient(180deg, #fff, #fbfdff);border:1px solid rgba(10,15,40,0.03)}
+    .field{margin-bottom:8px}
+    .val{background:#eef1fa;padding:8px 10px;border-radius:8px;display:inline-block;margin-top:6px}
+    /* watermark */
+    .watermark{position:absolute;left:10%;top:38%;font-size:86px;color:var(--navy);opacity:0.06;transform:rotate(-25deg);pointer-events:none;user-select:none}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+    .qr-preview{width:110px;height:110px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid rgba(10,15,40,0.05)}
+    @media(max-width:720px){.form-grid{grid-template-columns:1fr}}
+  </style>
 </head>
-
 <body>
 
 <div class="container">
+  <div class="watermark">TEMPORARY GUARANTEE LEGALITY</div>
 
-<div class="header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Emblem_of_Indonesia_Garuda_Pancasila.svg/240px-Emblem_of_Indonesia_Garuda_Pancasila.svg.png">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Bea_Cukai_Indonesia_Logo.png">
-</div>
-
-<h1 class="title">TEMPORARY GUARANTEE LEGALITY</h1>
-
-<div class="box">
-    <div><span class="label">Nomor Dokumen:</span> <span id="docNum"></span></div>
-    <div><span class="label">Nama Perusahaan:</span> Temporary Guarantee Legality</div>
-    <div><span class="label">Status:</span> Administrasi — Legalization Support Company</div>
-    <div><span class="label">Jenis Layanan:</span> Document Verification & Logistic Compliance</div>
-    <div><span class="label">Tanggal:</span> 
-        <script>document.write(new Date().toLocaleDateString("id-ID"))</script>
+  <div class="header">
+    <div class="brand">
+      <img class="logo" id="logoImg"
+        src="https://dummyimage.com/600x240/1a237e/ffffff&text=Temporary+Guarantee+Legality"
+        alt="Company Logo">
+      <div>
+        <h1>TEMPORARY GUARANTEE LEGALITY</h1>
+        <div class="tag">Secure Legal Assistance • Document Verification System</div>
+      </div>
     </div>
+
+    <div style="text-align:right">
+      <div class="qr-preview" id="qrPreview">QR</div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted)">Scan untuk verifikasi</div>
+    </div>
+  </div>
+
+  <form id="docForm" onsubmit="return false;">
+    <div class="form-grid">
+      <div>
+        <label>Nomor Dokumen</label>
+        <input type="text" id="documentNumber" readonly />
+      </div>
+
+      <div>
+        <label>Tanggal</label>
+        <input type="text" id="date" />
+      </div>
+
+      <div class="full">
+        <label>Nama Klien</label>
+        <input type="text" id="clientName" placeholder="Nama lengkap / nama perusahaan" />
+      </div>
+
+      <div class="full">
+        <label>Alamat</label>
+        <input type="text" id="address" placeholder="Alamat lengkap" />
+      </div>
+
+      <div>
+        <label>Nomor Telepon</label>
+        <input type="text" id="phone" placeholder="08xxxxxxxxxx" />
+      </div>
+
+      <div>
+        <label>Jenis Dokumen</label>
+        <input type="text" id="documentType" placeholder="Contoh: Legalitas Jaminan Pengiriman" />
+      </div>
+
+      <div class="full">
+        <label>Deskripsi / Catatan</label>
+        <textarea id="description" placeholder="Keterangan tambahan..."></textarea>
+      </div>
+
+      <div>
+        <label>Petugas</label>
+        <input type="text" id="officer" placeholder="Nama petugas verifikasi" />
+      </div>
+
+      <div>
+        <label>&nbsp;</label>
+        <div style="opacity:0.8;font-size:12px">Pilih warna tema</div>
+        <select id="themeSel" style="padding:10px;border-radius:10px;margin-top:6px">
+          <option value="navy">Biru Navy (Default)</option>
+          <option value="gold">Emas Elegan</option>
+          <option value="black">Hitam Profesional</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button id="btnGenerate">Generate PDF</button>
+      <button class="secondary" id="btnPreview">Perbarui Preview</button>
+      <button class="secondary" id="btnReset" type="button">Reset</button>
+    </div>
+  </form>
+
+  <div class="preview" id="previewArea" aria-live="polite">
+    <div class="field"><strong>Nomor Dokumen</strong><div class="val" id="pvNumber">-</div></div>
+    <div class="field"><strong>Tanggal</strong><div class="val" id="pvDate">-</div></div>
+    <div class="field"><strong>Nama Klien</strong><div class="val" id="pvClient">-</div></div>
+    <div class="field"><strong>Alamat</strong><div class="val" id="pvAddress">-</div></div>
+    <div class="field"><strong>Jenis Dokumen</strong><div class="val" id="pvType">-</div></div>
+    <div class="field"><strong>Deskripsi</strong><div class="val" id="pvDesc">-</div></div>
+    <div class="field"><strong>Petugas</strong><div class="val" id="pvOfficer">-</div></div>
+  </div>
+
+  <footer>
+    <strong style="color:var(--navy)">Temporary Guarantee Legality</strong> — Secure Legal Assistance · Verified Document Processing
+  </footer>
 </div>
 
-<div class="qr">
-    <img id="qrCode" src="">
-</div>
+<script>
+  (function(){
+    // Utilities
+    function random4(){ return Math.floor(1000 + Math.random()*9000) }
+    function formatDate(d){ return d.toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric'}) }
 
-<div class="stamp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Indonesia_stamp.png">
-</div>
+    // Elements
+    const docNumEl = document.getElementById('documentNumber');
+    const dateEl = document.getElementById('date');
+    const clientEl = document.getElementById('clientName');
+    const addressEl = document.getElementById('address');
+    const phoneEl = document.getElementById('phone');
+    const typeEl = document.getElementById('documentType');
+    const descEl = document.getElementById('description');
+    const officerEl = document.getElementById('officer');
+    const themeSel = document.getElementById('themeSel');
+    const qrPreview = document.getElementById('qrPreview');
 
-<div class="footer">
-    Dokumen ini dihasilkan secara otomatis sebagai bukti administrasi legal.<br>
-    Tidak memerlukan tanda tangan basah.<br><br>
-    © Temporary Guarantee Legality — 2025
-</div>
+    // Preview fields
+    const pvNumber = document.getElementById('pvNumber');
+    const pvDate = document.getElementById('pvDate');
+    const pvClient = document.getElementById('pvClient');
+    const pvAddress = document.getElementById('pvAddress');
+    const pvType = document.getElementById('pvType');
+    const pvDesc = document.getElementById('pvDesc');
+    const pvOfficer = document.getElementById('pvOfficer');
 
-<button onclick="window.print()">Download / Cetak sebagai PDF</button>
+    // Initialize
+    function init(){
+      const now = new Date();
+      const num = `TGL-${now.getFullYear()}-${random4()}`;
+      docNumEl.value = num;
+      dateEl.value = formatDate(now);
+      updatePreview();
+      updateQR();
+    }
 
-</div>
+    function updatePreview(){
+      pvNumber.textContent = docNumEl.value;
+      pvDate.textContent = dateEl.value;
+      pvClient.textContent = clientEl.value || '-';
+      pvAddress.textContent = addressEl.value || '-';
+      pvType.textContent = typeEl.value || '-';
+      pvDesc.textContent = descEl.value || '-';
+      pvOfficer.textContent = officerEl.value || '-';
+    }
+
+    function updateQR(){
+      const link = `https://verify.example.com/doc/${encodeURIComponent(docNumEl.value)}`;
+      // generate dataURL and show as image inside div
+      QRCode.toDataURL(link, {width:250, margin:1})
+        .then(url=>{
+          qrPreview.innerHTML = '';
+          const img = document.createElement('img');
+          img.src = url; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='contain'; img.style.borderRadius='8px';
+          qrPreview.appendChild(img);
+        })
+        .catch(err=>{
+          qrPreview.textContent = 'QR Err';
+          console.error(err);
+        });
+    }
+
+    // Theme
+    themeSel.addEventListener('change', ()=>{
+      const t = themeSel.value;
+      if(t==='gold'){
+        document.documentElement.style.setProperty('--navy','#854d0e');
+        document.documentElement.style.setProperty('--bg','#fffaf0');
+      } else if(t==='black'){
+        document.documentElement.style.setProperty('--navy','#0f172a');
+        document.documentElement.style.setProperty('--bg','#f3f4f6');
+      } else {
+        document.documentElement.style.setProperty('--navy','#1a237e');
+        document.documentElement.style.setProperty('--bg','#f6f7fb');
+      }
+    });
+
+    // Buttons
+    document.getElementById('btnPreview').addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      updatePreview();
+      updateQR();
+      alert('Preview diperbarui.');
+    });
+
+    document.getElementById('btnReset').addEventListener('click', ()=>{
+      clientEl.value = addressEl.value = phoneEl.value = typeEl.value = descEl.value = officerEl.value = '';
+      init();
+    });
+
+    // Generate PDF
+    document.getElementById('btnGenerate').addEventListener('click', async (ev)=>{
+      ev.preventDefault();
+      updatePreview();
+      updateQR();
+
+      // collect data
+      const data = {
+        documentNumber: docNumEl.value,
+        date: dateEl.value,
+        client: clientEl.value || '-',
+        address: addressEl.value || '-',
+        phone: phoneEl.value || '-',
+        type: typeEl.value || '-',
+        desc: descEl.value || '-',
+        officer: officerEl.value || '-'
+      };
+
+      // create PDF
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({unit:'pt', format:'a4'});
+
+      // header
+      pdf.setFontSize(18);
+      pdf.setTextColor(26,35,126);
+      pdf.text('TEMPORARY GUARANTEE LEGALITY', 40, 60);
+      pdf.setFontSize(11);
+      pdf.setTextColor(50,50,50);
+      pdf.text('Secure Legal Assistance • Document Verification System', 40, 78);
+      pdf.setLineWidth(0.5);
+      pdf.line(40,88,555,88);
+
+      // QR (generate again and add)
+      try{
+        const qrData = await QRCode.toDataURL(`https://verify.example.com/doc/${encodeURIComponent(data.documentNumber)}`, {width:300});
+        pdf.addImage(qrData, 'PNG', 420, 40, 120, 120);
+      } catch(e){ console.warn('QR generation failed', e) }
+
+      // content fields
+      let y = 120;
+      const add = (label, value) => {
+        pdf.setFontSize(11);
+        pdf.setTextColor(30,30,30);
+        pdf.text(`${label}:`, 40, y);
+        pdf.setFontSize(11);
+        pdf.text(String(value), 170, y);
+        y += 20;
+      };
+
+      add('Document Number', data.documentNumber);
+      add('Date', data.date);
+      add('Client Name', data.client);
+      add('Address', data.address);
+      add('Phone', data.phone);
+      add('Document Type', data.type);
+      add('Description', data.desc);
+      add('Officer', data.officer);
+
+      // footer
+      pdf.setFontSize(10);
+      pdf.setTextColor(110,110,110);
+      pdf.text('Verified by TGL Digital Compliance System', 40, 760);
+      // save
+      pdf.save(`${data.documentNumber}.pdf`);
+    });
+
+    // init page
+    init();
+
+  })();
+</script>
 
 </body>
-</html>
+</html>                                                  </html>
+                                                   
