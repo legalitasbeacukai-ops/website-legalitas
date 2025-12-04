@@ -1,55 +1,182 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Direktorat Jenderal — Demo Edukasi</title>
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Legalitas Bea Cukai</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f6fa;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        background: #002060;
+        padding: 15px 25px;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar a {
+        color: white;
+        margin-left: 18px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+        background: #002060;
+        color: white;
+        padding: 80px 25px;
+        text-align: center;
+    }
+
+    /* PAGE WRAPPER */
+    .page {
+        display: none;
+        padding: 25px;
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        border-radius: 8px;
+        margin-top: 25px;
+    }
+
+    /* SURAT */
+    .surat-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .surat-header img {
+        width: 140px;
+        margin-bottom: 10px;
+    }
+
+    .stempel {
+        width: 180px;
+        opacity: .9;
+    }
+
+    .ttd {
+        width: 260px;
+    }
+
+    .footer {
+        background: #002060;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+</style>
+
+<script>
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    document.getElementById(page).style.display = 'block';
+    window.scrollTo(0, 0);
+}
+</script>
+
 </head>
 <body>
-  <div class="watermark">FOR EDUCATIONAL / SAMPLE</div>
 
-  <header class="site-header">
-    <div class="brand">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Indonesian_coat_of_arms.svg/240px-Indonesian_coat_of_arms.svg.png" alt="logo">
-      <div>
-        <h1>Direktorat Jenderal Bea dan Cukai</h1>
-        <div class="small">LEGALITAS JAMINAN PENGIRIMAN</div>
-      </div>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><b>SISTEM LEGALITAS BEA CUKAI</b></div>
+    <div>
+        <a href="#" onclick="showPage('home')">Beranda</a>
+        <a href="#" onclick="showPage('cek')">Cek Resi</a>
+        <a href="#" onclick="showPage('surat')">Surat Legalitas</a>
     </div>
-  </header>
+</div>
 
-  <nav class="site-nav container">
-    <a href="index.html">Home</a>
-    <a href="cek.html">Cek Resi & Generate PDF</a>
-    <a href="surat.html">LEGALISASI</a>
-  </nav>
+<!-- HERO -->
+<div class="hero" id="home">
+    <h1>Direktorat Jenderal Bea dan Cukai</h1>
+    <p>Portal Verifikasi Legalitas Barang & Pengiriman</p>
+</div>
 
-  <main class="container">
-    <section class="hero card">
-      <div class="left">
-        <h2>Hasil Pemeriksaan</h2>
-        <p>Legalitas Jaminan Sementara</p>
-        <div style="margin-top:12px">
-          <a class="btn" href="cek.html">Mulai Cek Resi</a>
-          <a class="btn secondary" href="surat.html" style="margin-left:8px">Lihat Contoh Surat</a>
-        </div>
-      </div>
-      <div class="right center" style="width:220px">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Indonesian_coat_of_arms.svg/240px-Indonesian_coat_of_arms.svg.png" alt="Garuda" style="width:140px">
-      </div>
-    </section>
+<!-- ======================== PAGE: CEK RESI ======================== -->
+<div class="page" id="cek">
+    <h2>Cek Legalitas Pengiriman</h2>
+    <label>Masukkan Nomor Resi:</label><br><br>
+    <input id="resi" type="text" style="width:300px;padding:10px">
+    <button onclick="hasilCek()" style="padding:10px 20px;background:#002060;color:white;border:none;">Cek</button>
 
-    <div style="margin-top:18px" class="card">
-      <h3>Apa yang ditunjukkan</h3>
-      <p>Website ini menunjukkan cara membangun antarmuka pemeriksaan paket, menghasilkan surat, dan mengekspor PDF berkualitas tinggi yang menyertakan stempel serta tanda tangan digital.</p>
+    <div id="hasil" style="margin-top:20px;font-size:18px;"></div>
+
+    <script>
+        function hasilCek() {
+            let resi = document.getElementById("resi").value.trim();
+            if(resi === "") return alert("Masukkan nomor resi!");
+
+            document.getElementById("hasil").innerHTML =
+                "<b>Nomor Resi:</b> " + resi +
+                "<br>Status: <span style='color:green'>Perlu Verifikasi Manual</span>" +
+                "<br><br><i>Klik menu 'Surat Legalitas' untuk melihat dokumen.</i>";
+        }
+    </script>
+</div>
+
+<!-- ======================== PAGE: SURAT LEGALITAS ======================== -->
+<div class="page" id="surat">
+    <div class="surat-header">
+        
+        <!-- LOGO BASE64 -->
+        <img src="PASTE_BASE64_LOGO_DI_SINI">
+
+        <h2>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA <br>DIREKTORAT JENDERAL BEA DAN CUKAI</h2>
+        <hr>
     </div>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container">© 2025 Direktorat Jenderal Bea dan Cukai</div>
-  </footer>
+    <p>
+    Dengan hormat,<br><br>
+    Sehubungan dengan proses pengiriman paket Anda dengan nomor resi <b>001776475192</b>,
+    bersama ini kami sampaikan bahwa paket tersebut mengandung:
+    </p>
 
-  <script src="js/main.js"></script>
+    <ul>
+        <li>Rokok tanpa pita cukai sebanyak <b>16 slop (3.200 batang)</b>.</li>
+    </ul>
+
+    <p>
+    Barang tersebut termasuk kategori Barang Kena Cukai (BKC) ilegal sesuai UU No. 39 Tahun 2007 pasal 54.
+    </p>
+
+    <h3>Rincian Pembayaran</h3>
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <tr><td>Nilai Cukai (600 × 3200)</td><td>Rp 1.920.000</td></tr>
+        <tr><td>Biaya Administrasi</td><td>Rp 80.000</td></tr>
+        <tr><th>Total</th><th>Rp 2.000.000</th></tr>
+    </table>
+
+    <br><br>
+
+    <p>Demikian surat ini disampaikan.</p>
+
+    <br><br>
+
+    <div style="text-align:right;">
+        <img class="stempel" src="https://pastebin.com/raw/S1QMHzvS"><br>
+        <img class="ttd" src="https://pastebin.com/raw/AvxLGQej><br>
+        <b>Tim Legalitas & Pemeriksaan Barang</b>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 Direktorat Jenderal Bea dan Cukai</div>
+
 </body>
 </html>
