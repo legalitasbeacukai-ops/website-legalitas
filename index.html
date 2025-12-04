@@ -3,130 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Temporary Guarantee Legality — Premium Certificate</title>
+<title>Temporary Guarantee Legality — Document Verification</title>
 
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, sans-serif;
-        background: #f5f7fa;
-        margin: 0;
-        padding: 0;
-        color: #222;
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    background: #f4f6fa;
+    color: #222;
+}
 
-    .page {
-        max-width: 850px;
-        margin: 30px auto;
-        background: #fff;
-        padding: 40px;
-        border-radius: 12px;
-        border: 1px solid #ddd;
-        box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+}
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 3px solid #1d3ca6;
-        padding-bottom: 15px;
-    }
+/* WATERMARK */
+.container::before {
+    content: "TEMPORARY GUARANTEE LEGALITY";
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    font-size: 60px;
+    font-weight: 700;
+    opacity: 0.07;
+    white-space: nowrap;
+    color: #1d3ca6;
+    pointer-events: none;
+}
 
-    .logo {
-        width: 110px;
-    }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #1d3ca6;
+    padding-bottom: 15px;
+}
 
-    h1 {
-        text-align: center;
-        color: #1d3ca6;
-        margin-top: 25px;
-        font-size: 28px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+.header img {
+    width: 110px;
+}
 
-    .info-box {
-        margin-top: 25px;
-        padding: 20px;
-        border: 2px solid #1d3ca6;
-        border-radius: 10px;
-        background: #f8faff;
-    }
+.title {
+    text-align: center;
+    color: #1d3ca6;
+    font-size: 28px;
+    margin-top: 20px;
+    font-weight: 700;
+}
 
-    .info-box label {
-        font-weight: 600;
-        color: #1d3ca6;
-    }
+.box {
+    margin-top: 25px;
+    padding: 20px;
+    border: 2px solid #1d3ca6;
+    border-radius: 12px;
+    background: #f9fbff;
+}
 
-    .info-box div {
-        margin-bottom: 8px;
-    }
+.box div {
+    margin-bottom: 10px;
+}
 
-    .footer {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 13px;
-        color: #666;
-    }
+.label {
+    font-weight: 700;
+    color: #1d3ca6;
+}
 
-    .stamp {
-        margin-top: 40px;
-        text-align: right;
-    }
+.qr {
+    text-align: right;
+    margin-top: 30px;
+}
 
-    .stamp img {
-        width: 120px;
-        opacity: 0.85;
-    }
+.qr img {
+    width: 140px;
+    border-radius: 10px;
+}
 
-    button {
-        margin-top: 25px;
-        width: 100%;
-        padding: 15px;
-        background: #1d3ca6;
-        border: none;
-        color: #fff;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+.stamp {
+    text-align: right;
+    margin-top: 40px;
+}
 
-    button:hover {
-        background: #162f82;
-    }
+.stamp img {
+    width: 120px;
+    opacity: .85;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+}
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #1d3ca6;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #162e7c;
+}
 
 </style>
 
 <script>
-    function generateAutoNumber() {
-        let year = new Date().getFullYear();
-        let random = Math.floor(1000 + Math.random() * 9000);
-        document.getElementById("docNumber").innerText =
-            "TGL-" + year + "-" + random;
-    }
-    window.onload = generateAutoNumber;
+function generateDoc() {
+    let year = new Date().getFullYear();
+    let rand = Math.floor(1000 + Math.random() * 9000);
+    let doc = "TGL-" + year + "-" + rand;
+    document.getElementById("docNum").innerText = doc;
+
+    // QR generator
+    document.getElementById("qrCode").src =
+        "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=" + 
+        encodeURIComponent("Document Verified: " + doc);
+}
+window.onload = generateDoc;
 </script>
 
 </head>
+
 <body>
 
-<div class="page">
+<div class="container">
 
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Emblem_of_Indonesia_Garuda_Pancasila.svg/240px-Emblem_of_Indonesia_Garuda_Pancasila.svg.png" class="logo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Bea_Cukai_Indonesia_Logo.png" class="logo">
-</header>
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Emblem_of_Indonesia_Garuda_Pancasila.svg/240px-Emblem_of_Indonesia_Garuda_Pancasila.svg.png">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Bea_Cukai_Indonesia_Logo.png">
+</div>
 
-<h1>TEMPORARY GUARANTEE LEGALITY</h1>
+<h1 class="title">TEMPORARY GUARANTEE LEGALITY</h1>
 
-<div class="info-box">
-    <div><label>Nomor Dokumen:</label> <span id="docNumber"></span></div>
-    <div><label>Nama Perusahaan:</label> Temporary Guarantee Legality</div>
-    <div><label>Status:</label> Administrasi — Company that helps with legalization</div>
-    <div><label>Jenis Legalitas:</label> Document Verification & Logistic Compliance</div>
-    <div><label>Diterbitkan Pada:</label> <script>document.write(new Date().toLocaleDateString("id-ID"));</script></div>
+<div class="box">
+    <div><span class="label">Nomor Dokumen:</span> <span id="docNum"></span></div>
+    <div><span class="label">Nama Perusahaan:</span> Temporary Guarantee Legality</div>
+    <div><span class="label">Status:</span> Administrasi — Legalization Support Company</div>
+    <div><span class="label">Jenis Layanan:</span> Document Verification & Logistic Compliance</div>
+    <div><span class="label">Tanggal:</span> 
+        <script>document.write(new Date().toLocaleDateString("id-ID"))</script>
+    </div>
+</div>
+
+<div class="qr">
+    <img id="qrCode" src="">
 </div>
 
 <div class="stamp">
@@ -134,14 +168,14 @@
 </div>
 
 <div class="footer">
-    Dokumen ini dihasilkan secara otomatis sebagai bukti administrasi dan verifikasi.  
-    Tidak memerlukan tanda tangan basah.  
-    <br><br>
+    Dokumen ini dihasilkan secara otomatis sebagai bukti administrasi legal.<br>
+    Tidak memerlukan tanda tangan basah.<br><br>
     © Temporary Guarantee Legality — 2025
 </div>
 
-<button onclick="window.print()">Download / Cetak PDF</button>
+<button onclick="window.print()">Download / Cetak sebagai PDF</button>
 
 </div>
+
 </body>
 </html>
