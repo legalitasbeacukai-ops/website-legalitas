@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contoh Surat — Hasil Pemeriksaan</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Indonesian_coat_of_arms.svg/240px-Indonesian_coat_of_arms.svg.png" alt="logo">
+      <div>
+        <h1>Direktorat Jenderal Bea dan Cukai</h1>
+        <div class="small">Contoh surat (demo)</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="site-nav container">
+    <a href="index.html">Home</a>
+    <a href="cek.html">Cek Resi & Generate PDF</a>
+    <a href="surat.html">Contoh Surat</a>
+  </nav>
+
+  <main class="container">
+    <div class="card">
+      <h3>Contoh Surat Pemberitahuan</h3>
+      <div id="letterShow"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Template edukasi — tidak untuk penggunaan resmi. © 2025</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+      const html = buildLetterHTML({resi:"001776475192", pengirim:"PT. Contoh Kirim", penerima:"Bapak/Ibu Contoh", note:"Contoh catatan"});
+      document.getElementById('letterShow').innerHTML = html;
+    });
+  </script>
+</body>
+</html>
