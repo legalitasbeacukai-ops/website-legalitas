@@ -56,7 +56,9 @@
 <main class="wrap">
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Bea-cukai.png" alt="Logo Bea Cukai">
+    <img class="hero-logo" 
+      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABh..." 
+      alt="Logo Bea Cukai">
     <h2>Website Legalitas Resmi</h2>
     <p>LEGALISASI JAMINAN SEMENTARA</p>
     <a class="cta" href="https://wa.me/6288214470730" target="_blank">Hubungi Sekarang</a>
@@ -102,26 +104,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-async function convertImageToDataURL(url) {
-  const response = await fetch(url);
-  const blob = await response.blob();
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = function() { resolve(reader.result); };
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
-
-document.getElementById("pdfBtn").addEventListener("click", async () => {
+document.getElementById("pdfBtn").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  // Load logo, convert to base64
-  const imgData = await convertImageToDataURL('https://upload.wikimedia.org/wikipedia/commons/8/8d/Bea-cukai.png');
+  const imgData = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABh...";
 
-  doc.addImage(imgData, 'PNG', 15, 10, 30, 30);
-
+  doc.addImage(imgData, 'JPEG', 15, 10, 30, 30);
   doc.setFont("helvetica","bold");
   doc.setFontSize(16);
   doc.text("Direktorat Jenderal Bea dan Cukai",55,20);
