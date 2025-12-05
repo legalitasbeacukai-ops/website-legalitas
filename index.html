@@ -2,196 +2,248 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dokumen Resmi Bea Cukai</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- STYLE -->
 <style>
-:root {
-  --blue:#00338D;
-  --dark:#021A4C;
-  --gold:#F4C524;
-  --white:#ffffff;
-}
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #e9edf5;
+    }
 
-body{
-  margin:0;
-  font-family:Poppins,system-ui;
-  background:linear-gradient(160deg,var(--dark),var(--blue));
-  color:#fff;
-}
+    .container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0px 5px 25px rgba(0,0,0,0.1);
+        border-top: 6px solid #10224E;
+    }
 
-.wrap{max-width:1180px;margin:auto;padding:22px;}
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 2px solid #0068b3;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
 
-.section{
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.12);
-  padding:38px;
-  border-radius:22px;
-  backdrop-filter:blur(10px);
-  margin:40px 0;
-}
+    .header img {
+        height: 80px;
+    }
 
-.hero{text-align:center;padding:80px 22px;}
-.hero img{width:160px}
-.hero h1{font-size:46px;margin:10px 0 0;}
-.cta{
-  display:inline-block;margin-top:28px;padding:15px 36px;border-radius:14px;
-  background:var(--gold);color:#000;font-weight:700;text-decoration:none;font-size:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.35);
-}
+    .header-text h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #10224E;
+    }
 
-h2{font-size:28px;color:var(--gold);}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.card{padding:20px;border:1px solid rgba(255,255,255,0.18);border-radius:14px;background:rgba(255,255,255,0.08)}
+    .header-text small {
+        font-size: 13px;
+        color: #555;
+    }
 
-.download-btn{
-  margin-top:30px;display:inline-block;padding:14px 30px;
-  border-radius:12px;background:var(--gold);color:#000;font-weight:700;
-  box-shadow:0 12px 30px rgba(0,0,0,0.4);text-decoration:none;
-}
+    .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #10224E;
+        margin-bottom: 8px;
+        margin-top: 20px;
+    }
 
-footer{text-align:center;color:#fff;padding:40px 0;font-size:15px;}
+    .info-box {
+        background: #f6f9ff;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #dbe3fa;
+    }
+
+    label {
+        font-weight: 500;
+        color: #10224E;
+        font-size: 13px;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #cdd5e1;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        height: 80px;
+    }
+
+    button {
+        background: #0068b3;
+        border: none;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+        transition: .3s;
+    }
+
+    button:hover {
+        background: #004f86;
+    }
+
+    /* PDF STYLE (hidden in page) */
+    #pdf-content {
+        display: none;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .pdf-header {
+        text-align: center;
+        border-bottom: 2px solid #003b70;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .pdf-header img {
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .pdf-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 5px;
+        text-transform: uppercase;
+    }
+
+    .pdf-section {
+        margin-bottom: 15px;
+    }
+
+    .pdf-label {
+        font-weight: 600;
+        color: #003b70;
+        font-size: 14px;
+        margin-bottom: 3px;
+        display: block;
+    }
+
+    .pdf-value {
+        font-size: 14px;
+        border-bottom: 1px solid #cdd5e1;
+        padding-bottom: 5px;
+    }
 
 </style>
 </head>
 <body>
 
-<main class="wrap">
+<div class="container">
+    <div class="header">
+        <img src="https://www.beacukai.go.id/resources/images/logo.png" alt="Logo Bea Cukai">
+        <div class="header-text">
+            <h1>Kementerian Keuangan Republik Indonesia</h1>
+            <small>Direktorat Jenderal Bea dan Cukai</small>
+        </div>
+    </div>
 
-<section class="hero">
-  <img src="https://www.beacukai.go.id/resources/images/logo.png" alt="Logo Bea Cukai"/>
-  <h1>LEGALITAS DOKUMEN</h1>
-  <p>Direktorat Jenderal Bea dan Cukai</p>
-  <a class="cta" href="https://wa.me/6288214470730" target="_blank">Hubungi Sekarang</a>
-</section>
+    <div class="section-title">Data Pemohon</div>
+    <div class="info-box">
+        <label>Nama Lengkap</label>
+        <input id="nama">
 
-<section class="section">
-  <h2>Informasi Penerima</h2>
-  <div class="cards">
-    <div class="card"><h3>Nama</h3><p id="nm">Teuku Rijul</p></div>
-    <div class="card"><h3>No. HP</h3><p id="hp">0895-3283-23138</p></div>
-    <div class="card"><h3>Alamat</h3><p id="al">Desa Karangduren, Pakisaji, Malang, Jawa Timur</p></div>
-    <div class="card"><h3>Jumlah Barang</h3><p id="jb">10 Slop / 2.000 Btg Non Pita Cukai</p></div>
-  </div>
+        <label>No. Telepon</label>
+        <input id="telepon">
 
-  <a class="download-btn" id="pdfBtn">Download Dokumen Resmi (PDF)</a>
-</section>
+        <label>Alamat Lengkap</label>
+        <textarea id="alamat"></textarea>
 
-<footer>© 2025 Direktorat Jenderal Bea dan Cukai</footer>
+        <label>Jumlah Barang</label>
+        <input id="jumlah">
 
-</main>
+        <button onclick="generatePDF()">Download Dokumen PDF</button>
+    </div>
+</div>
 
+<!-- PDF Content -->
+<div id="pdf-content">
+    <div class="pdf-header">
+        <img src="https://www.beacukai.go.id/resources/images/logo.png">
+        <div class="pdf-title">Dokumen Resmi Pemohon</div>
+        <div>Direktorat Jenderal Bea dan Cukai</div>
+    </div>
 
-<!-- PDF Tools -->
+    <div class="pdf-section">
+        <span class="pdf-label">Nama Lengkap</span>
+        <div class="pdf-value" id="pdf-nama"></div>
+    </div>
+
+    <div class="pdf-section">
+        <span class="pdf-label">No. Telepon</span>
+        <div class="pdf-value" id="pdf-telepon"></div>
+    </div>
+
+    <div class="pdf-section">
+        <span class="pdf-label">Alamat Lengkap</span>
+        <div class="pdf-value" id="pdf-alamat"></div>
+    </div>
+
+    <div class="pdf-section">
+        <span class="pdf-label">Jumlah Barang</span>
+        <div class="pdf-value" id="pdf-jumlah"></div>
+    </div>
+</div>
+
+<!-- SCRIPT PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-
 <script>
-document.getElementById("pdfBtn").addEventListener("click", async ()=>{
 
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({
-    orientation: "portrait",
-    unit: "mm",
-    format: "a4"
-  });
+function generatePDF() {
+    // isi konten ke PDF template
+    document.getElementById("pdf-nama").innerText = document.getElementById("nama").value;
+    document.getElementById("pdf-telepon").innerText = document.getElementById("telepon").value;
+    document.getElementById("pdf-alamat").innerText = document.getElementById("alamat").value;
+    document.getElementById("pdf-jumlah").innerText = document.getElementById("jumlah").value;
 
-  // margin 25mm kiri kanan
-  let y = 25;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-  // Header Logo
-  const logoUrl = "https://www.beacukai.go.id/resources/images/logo.png";
-  const logo = await toDataURL(logoUrl);
-  pdf.addImage(logo,"PNG",25,y,30,30);
+    doc.addImage("https://www.beacukai.go.id/resources/images/logo.png", "PNG", 80, 10, 50, 30);
+    doc.setFont("Helvetica","bold");
+    doc.setFontSize(13);
+    doc.text("DOKUMEN RESMI PEMOHON", 105, 50, {align:"center"});
 
-  pdf.setFont("helvetica","bold");
-  pdf.setFontSize(14);
-  pdf.text("KEMENTERIAN KEUANGAN REPUBLIK INDONESIA", 60, y+10);
-  pdf.text("DIREKTORAT JENDERAL BEA DAN CUKAI", 60, y+18);
+    doc.setFontSize(11);
+    doc.setFont("Helvetica","");
 
-  y += 35;
-  pdf.setDrawColor(0);
-  pdf.line(25,y,185,y);
-  y += 10;
+    let y = 70;
 
-  // Nomor Surat (acak)
-  const surat = "BC/" + Math.floor(Math.random()*89999+10000) + "/2025";
-  pdf.setFontSize(12);
-  pdf.setFont("helvetica","normal");
-  pdf.text("Nomor : " + surat, 25, y);
-  y += 10;
+    function add(label, value) {
+        doc.setFont("Helvetica","bold");
+        doc.text(label, 20, y);
+        doc.setFont("Helvetica","");
+        doc.text(": " + value, 70, y);
+        y += 10;
+    }
 
-  pdf.setFont("helvetica","bold");
-  pdf.setFontSize(13);
-  pdf.text("PERIHAL : LEGALISASI DOKUMEN PENGIRIMAN", 25, y);
-  y += 15;
+    add("Nama Lengkap", document.getElementById("nama").value);
+    add("No. Telepon", document.getElementById("telepon").value);
+    add("Alamat", document.getElementById("alamat").value);
+    add("Jumlah Barang", document.getElementById("jumlah").value);
 
-  // Data penerima
-  const nm = document.getElementById("nm").innerText;
-  const hp = document.getElementById("hp").innerText;
-  const al = document.getElementById("al").innerText;
-  const jb = document.getElementById("jb").innerText;
-
-  pdf.setFont("helvetica","normal");
-  pdf.setFontSize(12);
-  pdf.text("Nama Penerima : " + nm, 25, y); y+=8;
-  pdf.text("No. HP        : " + hp, 25, y); y+=8;
-  pdf.text("Alamat        : " + al, 25, y); y+=8;
-  pdf.text("Jumlah Barang : " + jb, 25, y); y+=14;
-
-  pdf.text("Dokumen ini merupakan bukti legalisasi sementara atas proses pengesahan dokumen", 25, y); y+=7;
-  pdf.text("pengiriman barang kena cukai berdasarkan ketentuan Undang-Undang Nomor 39 Tahun", 25, y); y+=7;
-  pdf.text("2007 tentang Cukai.", 25, y); y+=14;
-
-  pdf.text("Apabila proses pembayaran tidak dilaksanakan sesuai ketentuan, maka barang akan", 25, y); y+=7;
-  pdf.text("dilakukan penahanan serta dapat diproses hukum sesuai peraturan perundang-undangan.", 25, y); y+=20;
-
-
-  // Tanda Tangan
-  pdf.text("Malang, 2025", 135, y); y+=7;
-  pdf.text("Direktorat Jenderal Bea dan Cukai", 135, y); y+=20;
-  pdf.text("(........................................)", 135, y); y+=20;
-
-
-  // QR Code
-  const qrData = await makeQR("https://beacukai.go.id/");
-  pdf.addImage(qrData,"PNG",25,y,35,35);
-
-  // Cap (simulasi sederhana)
-  pdf.setDrawColor(255,0,0);
-  pdf.setFontSize(16);
-  pdf.setTextColor(255,0,0);
-  pdf.text("BEA CUKAI",65,y+15);
-
-  pdf.save("Dokumen-Resmi-BeaCukai.pdf");
-});
-
-
-// URL to Base64
-function toDataURL(url) {
-  return new Promise((resolve) => {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      var reader = new FileReader();
-      reader.onloadend = function() {
-        resolve(reader.result);
-      }
-      reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-  });
-}
-
-// QR code
-function makeQR(text){
-  return new Promise(resolve=>{
-    QRCode.toDataURL(text,{type:'image/png'},(err,url)=>{
-      resolve(url);
-    });
-  })
+    doc.save("Dokumen-Resmi-BeaCukai.pdf");
 }
 </script>
 
