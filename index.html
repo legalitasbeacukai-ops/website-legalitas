@@ -3,138 +3,225 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DIREKTORAT JENDERAL BEA DAN CUKAI</title>
+  <title>DIREKTORAT JENDERAL PAJAK BEA DAN CUKAI</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --gov-blue:#003087;
-      --gov-blue-light:#1A4BA8;
-      --gov-bg:#f4f9ff;
+      --main-blue:#0054a6;
+      --blue-light:#1c7bd9;
+      --bg:#f6f9ff;
       --white:#ffffff;
       --gold:#D4A017;
-      --text-dark:#1f2b45;
-      --border:#cdd5e6;
+      --text:#1f2b45;
+      --border:#d7dfef;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family:Poppins,system-ui; background:var(--gov-bg); color:var(--text-dark); line-height:1.6; }
-    header { background:var(--gov-blue); padding:16px 22px; text-align:center; color:#fff; }
-    header h1 { font-size:22px; font-weight:600; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:Poppins,system-ui; background:var(--bg); color:var(--text); line-height:1.6; }
+
+    header { background:var(--main-blue); padding:18px; text-align:center; color:#fff; }
+    header h1 { font-size:22px; font-weight:700; margin-bottom:4px; }
+
     .wrap { max-width:1100px; margin:30px auto; padding:0 16px; }
-    .section { background:#fff; border:1px solid var(--border); padding:36px 24px; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,0.08); margin:30px 0; }
+
+    .section {
+      background:#fff; border:1px solid var(--border);
+      padding:36px 24px; border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      margin:30px 0;
+    }
+
     .hero { text-align:center; padding:60px 16px; }
-    .hero-logo { width:180px; height:180px; object-fit:cover; border-radius:50%; border:5px solid var(--gov-blue); background:#fff; box-shadow:0 12px 32px rgba(0,0,0,0.15); }
-    .hero h2 { font-size:38px; margin-top:20px; color:var(--gov-blue); font-weight:700; }
-    .hero p { margin-top:8px; font-size:18px; color:#44536e; }
-    .cta { display:inline-block; margin-top:28px; padding:14px 32px; border-radius:12px; background:var(--gov-blue); color:#fff; font-weight:700; text-decoration:none; font-size:17px; transition:background .25s; }
-    .cta:hover { background:var(--gov-blue-light); }
-    h2 { font-size:28px; margin-bottom:18px; color:var(--gov-blue); font-weight:600; }
-    p { font-size:16px; color:var(--text-dark); }
-    .table-box { width:100%; border-collapse:collapse; margin-top:20px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--border); }
-    .table-box th { background:var(--gov-blue); color:#fff; padding:14px; font-size:15px; text-align:left; }
-    .table-box td { padding:14px; font-size:15px; border-top:1px solid var(--border); color:var(--text-dark); }
-    .download-btn { margin-top:30px; display:inline-block; padding:12px 28px; border-radius:12px; background:var(--gov-blue-light); color:#fff; font-weight:700; text-decoration:none; font-size:16px; transition:background .25s; }
-    .download-btn:hover { background:var(--gov-blue); }
-    .verification-icons { display:flex; justify-content:center; gap:24px; margin-top:16px; }
-    .verification-icons img { width:50px; height:auto; }
-    footer { text-align:center; color:#5e6b85; padding:40px 0 20px; font-size:14px; }
+
+    .hero-logo {
+      width:180px; height:180px; object-fit:cover;
+      border-radius:50%; background:#fff;
+      border:5px solid var(--main-blue);
+      box-shadow:0 12px 32px rgba(0,0,0,0.15);
+    }
+
+    .hero h2 { font-size:38px; margin-top:20px; color:var(--main-blue); font-weight:700; }
+    .hero p { font-size:18px; color:#44536e; margin-top:8px; }
+
+    .verified {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:16px; font-weight:600; color:var(--main-blue);
+      margin-top:6px;
+    }
+    .verified img {
+      width:20px; height:20px;
+    }
+
+    .cta {
+      display:inline-block; margin-top:28px; padding:14px 32px;
+      border-radius:12px; background:var(--main-blue); color:#fff;
+      font-weight:700; text-decoration:none; font-size:17px;
+      transition:.25s;
+    }
+    .cta:hover { background:var(--blue-light); }
+
+    h2 { font-size:28px; margin-bottom:18px; color:var(--main-blue); font-weight:600; }
+    p { font-size:16px; }
+
+    .table-box {
+      width:100%; border-collapse:collapse; margin-top:20px;
+      border-radius:10px; overflow:hidden;
+      border:1px solid var(--border);
+    }
+    .table-box th {
+      background:var(--main-blue); color:#fff;
+      padding:14px; text-align:left; font-size:15px;
+    }
+    .table-box td {
+      padding:14px; border-top:1px solid var(--border);
+      font-size:15px; color:var(--text);
+    }
+
+    .download-btn {
+      margin-top:30px; display:inline-block; padding:12px 28px;
+      border-radius:12px; background:var(--blue-light);
+      color:#fff; font-weight:700; text-decoration:none;
+      transition:.25s;
+    }
+    .download-btn:hover { background:var(--main-blue); }
+
+    .verification-icons {
+      display:flex; justify-content:center; gap:24px; margin-top:16px;
+    }
+    .verification-icons img { width:50px; }
+
+    footer {
+      text-align:center; padding:40px 0 20px;
+      font-size:14px; color:#69758d;
+    }
+
     @media (max-width:768px) {
+      .hero-logo { width:150px; height:150px; }
       .hero h2 { font-size:32px; }
-      .hero-logo { width:140px; height:140px; }
-      .cta { padding:12px 24px; font-size:15px; }
       .section { padding:28px 16px; }
-      .table-box th, .table-box td { padding:12px; font-size:14px; }
-      h2 { font-size:24px; }
+      .table-box td, .table-box th { padding:12px; font-size:14px; }
     }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
+  <h1>LEGALITAS JAMINAN SEMENTARA</h1>
+  <div style="font-size:14px; opacity:0.9;">Legalitas & Verifikasi</div>
 </header>
 
 <main class="wrap">
+
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-logo" 
-      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABh..." 
-      alt="Logo Bea Cukai">
+    <img class="hero-logo"
+      src="https://i.imgur.com/Yc7F0lB.png"
+      alt="Logo Legalitas Swasta">
+
     <h2>Website Legalitas Resmi</h2>
     <p>LEGALISASI JAMINAN SEMENTARA</p>
+
+    <div class="verified">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg">
+      Terverifikasi Sistem
+    </div>
+
     <a class="cta" href="https://wa.me/6288214470730" target="_blank">Hubungi Sekarang</a>
   </section>
 
-  <!-- BEA CUKAI INFO -->
+  <!-- INFO -->
   <section class="section">
-    <h2>Direktorat Jenderal Bea dan Cukai</h2>
+    <h2>BEA DAN CUKAI</h2>
     <p>
-      Konsekuensi Hukum: Jika pembayaran tidak dilakukan sesuai ketentuan, barang akan ditahan, disita, dan diproses hukum oleh Bea Cukai sesuai ketentuan UU No. 39 Tahun 2007 tentang Cukai.
+      Konsekuensi Hukum: Jika pembayaran tidak dilakukan sesuai ketentuan, 
+      barang akan ditahan, disita, dan diproses hukum sesuai ketentuan yang berlaku. barang tersebut termasuk dalam kategori Barang Kena Cukai ilegal dan melanggar ketentuan sebagaimana diatur dalam : Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, Pasal 54, yang menyatakan bahwa: "Setiap orang yang menawarkan, menyerahkan, menjual, atau menyediakan untuk dijual Barang Kena Cukai yang tidak dikemas untuk penjualan eceran atau tidak dilekati pita cukai sebagaimana mestinya, dipidana dengan pidana penjara paling singkat 1 (satu) tahun dan paling lama 5 (lima) tahun, serta/atau pidana denda paling sedikit 2 (dua) kali nilai cukai yang seharusnya dibayar dan paling banyak 10 (sepuluh) kali nilai cukai yang seharusnya dibayar.
     </p>
+
     <p style="margin-top:16px;font-weight:700;font-size:16px;">
-      Denda Cukai Minimal • <span style="color: var(--gold);">2x — 4x Nilai Pita Cukai</span>
+      Denda Minimal • <span style="color: var(--gold);">2x — 4x Nilai Pita Cukai</span>
     </p>
   </section>
 
   <!-- IDENTITAS -->
   <section class="section">
     <h2>Identitas Penerima</h2>
+
     <table class="table-box">
       <tr><th>Nama</th><td>Teuku Rijul</td></tr>
       <tr><th>No. HP</th><td>0895-3283-23138</td></tr>
       <tr><th>Alamat</th><td>Desa Karangduren, Kec. Pakisaji, Kab. Malang, Jawa Timur 65162.</td></tr>
       <tr><th>Jumlah Barang</th><td>10 Slop / 2.000 Btg, Non Pita Cukai</td></tr>
     </table>
+
     <a class="download-btn" id="pdfBtn">Download Dokumen Resmi (PDF)</a>
   </section>
 
   <!-- VERIFIKASI -->
   <section class="section">
-    <h2>Verifikasi Legalisasi✔️</h2>
+    <h2>Verifikasi Legalisasi</h2>
     <div class="verification-icons">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png" alt="Icon 1">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Icon 2">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="Icon 3">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
     </div>
   </section>
+
 </main>
 
 <footer>
-  © 2025 Website Legalitas — Bea Dan Cukai
+  © 2025 Direktorat Jenderal Pajak — Bea Dan Cukai
 </footer>
 
+<!-- PDF SCRIPT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 document.getElementById("pdfBtn").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  const imgData = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABh...";
+  // Logo ringan
+  const imgData = "https://i.imgur.com/Yc7F0lB.png";
 
-  doc.addImage(imgData, 'JPEG', 15, 10, 30, 30);
-  doc.setFont("helvetica","bold");
-  doc.setFontSize(16);
-  doc.text("Direktorat Jenderal Bea dan Cukai",55,20);
+  // load image → convert to base64
+  const img = new Image();
+  img.src = imgData;
+  img.crossOrigin = "Anonymous";
 
-  doc.setFont("helvetica","normal");
-  doc.setFontSize(11);
-  doc.text("Dokumen Legalitas Pengiriman Barang Kena Cukai",55,28);
+  img.onload = function() {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    const base64 = canvas.toDataURL("image/png");
 
-  doc.line(10,42,200,42);
+    doc.addImage(base64, 'PNG', 15, 10, 30, 30);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(16);
+    doc.text("Legalitas Swasta",55,20);
 
-  doc.setFont("helvetica","bold");
-  doc.setFontSize(13);
-  doc.text("Data Penerima",10,55);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(11);
+    doc.text("Dokumen Legalitas Pengiriman",55,28);
 
-  doc.setFont("helvetica","normal");
-  doc.setFontSize(11);
-  doc.text("Nama: Teuku Rijul",10,70);
-  doc.text("No. HP: 0895-3283-23138",10,80);
-  doc.text("Alamat: Desa Karangduren, Pakisaji, Malang, Jawa Timur",10,90);
-  doc.text("Jumlah Barang: 10 Slop / 2.000 Btg Non Pita Cukai",10,100);
+    doc.line(10,42,200,42);
 
-  doc.text("Ini merupakan dokumen resmi untuk verifikasi sementara.",10,120);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(13);
+    doc.text("Data Penerima",10,55);
 
-  doc.save("Dokumen-Bea-Cukai.pdf");
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(11);
+    doc.text("Nama: Teuku Rijul",10,70);
+    doc.text("No. HP: 0895-3283-23138",10,80);
+    doc.text("Alamat: Desa Karangduren, Pakisaji, Malang, Jawa Timur",10,90);
+    doc.text("Jumlah Barang: 10 Slop / 2.000 Btg Non Pita Cukai",10,100);
+
+    doc.text("Ini merupakan dokumen resmi untuk verifikasi sementara.",10,120);
+
+    doc.save("Dokumen-Legalitas.pdf");
+  };
 });
 </script>
 
