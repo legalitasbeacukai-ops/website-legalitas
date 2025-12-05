@@ -1,294 +1,197 @@
-<!doctype html>
-<html lang="id" class="light">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>DIREKTORAT JENDERAL PAJAK— BEA DAN CUKAI</title>
-<meta name="description" content="LEGALITAS - Legalisasi sementara dan bukan merupakan denda tetap, melainkan sebagai bagian dari proses klarifikasi dan pengesahan dokumen pengiriman." />
-<meta name="author" content="BEACUKAI" />
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>Dokumen Resmi Bea Cukai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --navy:#00338D;
-  --navy-dark:#021A4C;
+  --blue:#00338D;
+  --dark:#021A4C;
   --gold:#F4C524;
-  --text:#0f1c2e;
-  --soft:#5d6b82;
-  --rad:20px;
-  --card-bg:#ffffff;
+  --white:#ffffff;
 }
 
 body{
   margin:0;
   font-family:Poppins,system-ui;
-  background:linear-gradient(140deg,var(--navy-dark),var(--navy));
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-.wrap{max-width:1180px;margin:40px auto;padding:22px;}
-
-/* HERO */
-.hero{
-  padding:120px 20px;
-  text-align:center;
+  background:linear-gradient(160deg,var(--dark),var(--blue));
   color:#fff;
 }
-.hero h1{
-  font-size:52px;
-  margin:0;
-  font-weight:700;
-  opacity:0;
-  animation:fadeUp .9s ease forwards;
-}
-.hero p{
-  margin:16px 0 0;
-  font-size:22px;
-  font-weight:400;
-  opacity:0;
-  animation:fadeUp 1.2s ease forwards;
-}
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(26px);}
-  to{opacity:1;transform:none;}
-}
+.wrap{max-width:1180px;margin:auto;padding:22px;}
 
-.cta{
-  display:inline-block;
-  margin-top:32px;
-  padding:15px 36px;
-  border-radius:14px;
-  background:linear-gradient(90deg,var(--gold),#ffdd60);
-  color:#000;
-  font-weight:700;
-  text-decoration:none;
-  font-size:18px;
-  box-shadow:0 10px 24px rgba(244,197,36,0.35);
-  transition:.3s;
-}
-.cta:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 28px rgba(244,197,36,0.45);
-}
-
-/* SECTIONS */
 .section{
-  padding:60px;
-  margin:45px 0;
-  background:var(--card-bg);
-  border-radius:var(--rad);
-  box-shadow:0 12px 32px rgba(0,0,0,0.09);
-}
-.row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:34px;
-  align-items:center;
-}
-.profile{
-  width:230px;
-  height:230px;
-  border-radius:var(--rad);
-  object-fit:cover;
-  border:6px solid var(--gold);
-  box-shadow:0 18px 40px rgba(0,0,0,0.15);
-}
-h2{
-  margin:0 0 14px;
-  font-size:34px;
-  font-weight:700;
-}
-p{color:var(--soft);line-height:1.65;font-weight:400;}
-
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-}
-.card{
-  padding:24px;
-  border-radius:var(--rad);
-  background:#fff;
-  border:1px solid #eee;
-  transition:.3s;
-  box-shadow:0 15px 30px rgba(0,0,0,0.05);
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 22px 40px rgba(0,0,0,0.08);
-}
-.card h3{margin:0 0 10px;font-weight:600;}
-.price{margin-top:12px;font-size:20px;font-weight:700;color:var(--navy);}
-
-/* SOCIALS */
-.socials{
-  display:flex;
-  gap:18px;
-  margin-top:20px;
-  justify-content:center;
-}
-.socials img{
-  width:50px;
-  height:50px;
-  border-radius:14px;
-  box-shadow:0 12px 22px rgba(0,0,0,0.12);
-  transition:.3s;
-  background:white;
-  padding:6px;
-}
-.socials img:hover{transform:scale(1.14);}
-
-/* REVIEWS */
-.reviews .meta{text-align:center;color:var(--soft);margin-bottom:14px;}
-.slider{
-  display:flex;
-  gap:18px;
-  overflow:hidden;
-  padding:8px;
-}
-.rev{
-  min-width:270px;
-  padding:22px;
-  border-radius:var(--rad);
-  background:#fff;
-  border:1px solid #eee;
-  box-shadow:0 14px 30px rgba(0,0,0,0.05);
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:38px;
+  border-radius:22px;
+  backdrop-filter:blur(10px);
+  margin:40px 0;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#fff;
-  padding:50px 0;
-  font-size:15px;
+.hero{text-align:center;padding:80px 22px;}
+.hero img{width:160px}
+.hero h1{font-size:46px;margin:10px 0 0;}
+.cta{
+  display:inline-block;margin-top:28px;padding:15px 36px;border-radius:14px;
+  background:var(--gold);color:#000;font-weight:700;text-decoration:none;font-size:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35);
 }
 
-/* WHATSAPP */
-.wa{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  background:#25D366;
-  display:grid;
-  place-items:center;
-  box-shadow:0 12px 28px rgba(0,184,107,.2);
-  z-index:999;
-}
-.wa img{
-  width:36px;
-  height:36px;
-  filter:brightness(0) invert(1);
+h2{font-size:28px;color:var(--gold);}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.card{padding:20px;border:1px solid rgba(255,255,255,0.18);border-radius:14px;background:rgba(255,255,255,0.08)}
+
+.download-btn{
+  margin-top:30px;display:inline-block;padding:14px 30px;
+  border-radius:12px;background:var(--gold);color:#000;font-weight:700;
+  box-shadow:0 12px 30px rgba(0,0,0,0.4);text-decoration:none;
 }
 
-/* FADE SCROLL */
-.fade{opacity:0;transform:translateY(20px);transition:1s ease;}
-.fade.in{opacity:1;transform:none;}
+footer{text-align:center;color:#fff;padding:40px 0;font-size:15px;}
 
-@media(max-width:640px){
-  .hero h1{font-size:36px;}
-  .profile{width:190px;height:190px;}
-  .section{padding:34px;}
-}
 </style>
 </head>
 <body>
 
-<main class="wrap" id="main">
+<main class="wrap">
 
-<section class="hero fade" data-fade>
-<h1>Website Legalitas</h1>
-<p>LEGALISASI JAMINAN SEMENTARA</p>
-<a class="cta" href="https://wa.me/6288214470730" target="_blank">Hubungi Sekarang</a>
+<section class="hero">
+  <img src="https://www.beacukai.go.id/resources/images/logo.png" alt="Logo Bea Cukai"/>
+  <h1>LEGALITAS DOKUMEN</h1>
+  <p>Direktorat Jenderal Bea dan Cukai</p>
+  <a class="cta" href="https://wa.me/6288214470730" target="_blank">Hubungi Sekarang</a>
 </section>
 
-<section class="section fade" data-fade>
-<div class="row">
-<img class="profile" src="https://share.google/images/tuV5nzUZje66RcVs3" alt="Logo Bea Cukai"/>
-<div>
-<h2>Bea Dan Cukai</h2>
-<p>Konsekuensi Hukum: Jika pembayaran tidak dilakukan sesuai ketentuan, barang akan ditahan, disita, dan diproses hukum oleh Bea Cukai sesuai ketentuan UU No. 39 Tahun 2007 tentang Cukai.</p>
-<div style="margin-top:12px;font-weight:600;color:var(--text)">
-Denda Cukai Minimal •
-<span style="color:var(--navy)">2x — 4x Nilai Pita Cukai</span>
-</div>
-</div>
-</div>
+<section class="section">
+  <h2>Informasi Penerima</h2>
+  <div class="cards">
+    <div class="card"><h3>Nama</h3><p id="nm">Teuku Rijul</p></div>
+    <div class="card"><h3>No. HP</h3><p id="hp">0895-3283-23138</p></div>
+    <div class="card"><h3>Alamat</h3><p id="al">Desa Karangduren, Pakisaji, Malang, Jawa Timur</p></div>
+    <div class="card"><h3>Jumlah Barang</h3><p id="jb">10 Slop / 2.000 Btg Non Pita Cukai</p></div>
+  </div>
+
+  <a class="download-btn" id="pdfBtn">Download Dokumen Resmi (PDF)</a>
 </section>
 
-<section class="section fade" data-fade>
-<h2>Identitas Penerima</h2>
-<div class="cards">
-<div class="card"><h3>Nama</h3><p>Teuku Rijul</p><div class="price">Client</div></div>
-<div class="card"><h3>No. Hp</h3><p>0895-3283-23138</p><div class="price">Pribadi</div></div>
-<div class="card"><h3>Alamat</h3><p>Desa Karangduren, Kec. Pakisaji, Kab. Malang, Jawa Timur 65162.</p><div class="price">Alamat Pribadi</div></div>
-<div class="card"><h3>Jumlah Barang</h3><p>10 Slop/ 2.000 Btg, Non Pita Cukai Resmi </p><div class="price">Ilegal</div></div>
-</div>
-</section>
-
-<section class="section fade" data-fade>
-<h2>Sosial Media</h2>
-<div class="socials">
-<a href="https://www.facebook.com/share/1HbYBbPLcH/" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png" alt="Facebook"/>
-</a>
-
-<a href="https://www.instagram.com/beacukairi?igsh=N3l5OHF0NHBua2g1" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"/>
-</a>
-
-<a href="https://www.tiktok.com/@beacukairi?_r=1&_t=ZS-91xcoakOgss" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok"/>
-</a>
-</div>
-</section>
-
-<section class="section fade reviews" data-fade>
-<h2>Ulasan</h2>
-<div class="meta">★★★★★ — 3.000+ Klien Sudah Legalisasi</div>
-<div class="slider" id="slider">
-<div class="rev"><strong>Rahmat S.</strong><div style="color:#ffb400">★★★★★</div><p>Jaminan cepat dan amanah.</p></div>
-<div class="rev"><strong>Andi P.</strong><div style="color:#ffb400">★★★★★</div><p>Sangat profesional dan komunikatif.</p></div>
-<div class="rev"><strong>Dewi L.</strong><div style="color:#ffb400">★★★★★</div><p>Hasil memuaskan dan refund cepat.</p></div>
-</div>
-</section>
-
-<footer>© 2025 Website Legalitas — Bea Dan Cukai. All Rights Reserved.</footer>
+<footer>© 2025 Direktorat Jenderal Bea dan Cukai</footer>
 
 </main>
 
-<a class="wa" href="https://wa.me/6288214470730" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/>
-</a>
+
+<!-- PDF Tools -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
 <script>
-// Fade in on scroll
-const io = new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-  if(e.isIntersecting){
-    e.target.classList.add('in');
-    io.unobserve(e.target);
-  }
-});
-},{threshold:0.2});
-document.querySelectorAll('[data-fade]').forEach(el=>io.observe(el));
+document.getElementById("pdfBtn").addEventListener("click", async ()=>{
 
-// Simple slider
-const slider = document.getElementById('slider');
-if(slider){
-let idx=0;
-const items = slider.children;
-const total = items.length;
-setInterval(()=>{
-  idx=(idx+1)%total;
-  slider.scrollTo({left: idx*(items[0].offsetWidth+18), behavior:'smooth'});
-},3000);
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "a4"
+  });
+
+  // margin 25mm kiri kanan
+  let y = 25;
+
+  // Header Logo
+  const logoUrl = "https://www.beacukai.go.id/resources/images/logo.png";
+  const logo = await toDataURL(logoUrl);
+  pdf.addImage(logo,"PNG",25,y,30,30);
+
+  pdf.setFont("helvetica","bold");
+  pdf.setFontSize(14);
+  pdf.text("KEMENTERIAN KEUANGAN REPUBLIK INDONESIA", 60, y+10);
+  pdf.text("DIREKTORAT JENDERAL BEA DAN CUKAI", 60, y+18);
+
+  y += 35;
+  pdf.setDrawColor(0);
+  pdf.line(25,y,185,y);
+  y += 10;
+
+  // Nomor Surat (acak)
+  const surat = "BC/" + Math.floor(Math.random()*89999+10000) + "/2025";
+  pdf.setFontSize(12);
+  pdf.setFont("helvetica","normal");
+  pdf.text("Nomor : " + surat, 25, y);
+  y += 10;
+
+  pdf.setFont("helvetica","bold");
+  pdf.setFontSize(13);
+  pdf.text("PERIHAL : LEGALISASI DOKUMEN PENGIRIMAN", 25, y);
+  y += 15;
+
+  // Data penerima
+  const nm = document.getElementById("nm").innerText;
+  const hp = document.getElementById("hp").innerText;
+  const al = document.getElementById("al").innerText;
+  const jb = document.getElementById("jb").innerText;
+
+  pdf.setFont("helvetica","normal");
+  pdf.setFontSize(12);
+  pdf.text("Nama Penerima : " + nm, 25, y); y+=8;
+  pdf.text("No. HP        : " + hp, 25, y); y+=8;
+  pdf.text("Alamat        : " + al, 25, y); y+=8;
+  pdf.text("Jumlah Barang : " + jb, 25, y); y+=14;
+
+  pdf.text("Dokumen ini merupakan bukti legalisasi sementara atas proses pengesahan dokumen", 25, y); y+=7;
+  pdf.text("pengiriman barang kena cukai berdasarkan ketentuan Undang-Undang Nomor 39 Tahun", 25, y); y+=7;
+  pdf.text("2007 tentang Cukai.", 25, y); y+=14;
+
+  pdf.text("Apabila proses pembayaran tidak dilaksanakan sesuai ketentuan, maka barang akan", 25, y); y+=7;
+  pdf.text("dilakukan penahanan serta dapat diproses hukum sesuai peraturan perundang-undangan.", 25, y); y+=20;
+
+
+  // Tanda Tangan
+  pdf.text("Malang, 2025", 135, y); y+=7;
+  pdf.text("Direktorat Jenderal Bea dan Cukai", 135, y); y+=20;
+  pdf.text("(........................................)", 135, y); y+=20;
+
+
+  // QR Code
+  const qrData = await makeQR("https://beacukai.go.id/");
+  pdf.addImage(qrData,"PNG",25,y,35,35);
+
+  // Cap (simulasi sederhana)
+  pdf.setDrawColor(255,0,0);
+  pdf.setFontSize(16);
+  pdf.setTextColor(255,0,0);
+  pdf.text("BEA CUKAI",65,y+15);
+
+  pdf.save("Dokumen-Resmi-BeaCukai.pdf");
+});
+
+
+// URL to Base64
+function toDataURL(url) {
+  return new Promise((resolve) => {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        resolve(reader.result);
+      }
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  });
+}
+
+// QR code
+function makeQR(text){
+  return new Promise(resolve=>{
+    QRCode.toDataURL(text,{type:'image/png'},(err,url)=>{
+      resolve(url);
+    });
+  })
 }
 </script>
 
