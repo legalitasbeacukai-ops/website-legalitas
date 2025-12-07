@@ -3,242 +3,289 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Berita Acara Pemeriksaan - DJBC</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+  <title>Berita Acara Pemeriksaan – DJBC Kendari</title>
   <style>
-    /* Watermark teks transparan */
-    .watermark {
+    /* ===== Desain Resmi Direktorat Jenderal Bea dan Cukai ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background-color: #f9f7f5;
+      color: #000;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* Watermark Latar Belakang */
+    body::before {
+      content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.04;
-      color: #003366;
-      font-size: 120px;
+      background-image: 
+        url('https://i.ibb.co.com/fgbCbkV/725d51b9590ce2921e2ca66962af6175.jpg'),
+        linear-gradient(rgba(249, 247, 245, 0.94), rgba(249, 247, 245, 0.94));
+      background-repeat: no-repeat, repeat;
+      background-position: center center;
+      background-size: 30%, auto;
+      z-index: -1;
+      opacity: 1;
+    }
+    .watermark-label {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 10px;
+      color: rgba(107, 0, 0, 0.25);
       font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: rotate(-30deg);
-      user-select: none;
-      white-space: nowrap;
+      font-family: Arial, sans-serif;
+      z-index: -1;
+      width: 100%;
     }
 
-    body {
-      font-family: "Times New Roman", Times, serif;
-      color: #000;
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
-      position: relative;
-    }
-
-    .document-container {
-      max-width: 800px;
+    .container {
+      max-width: 820px;
       margin: 40px auto;
-      padding: 40px;
+      padding: 50px;
       background: #ffffff;
+      box-shadow: 0 6px 20px rgba(107, 0, 0, 0.12);
+      border: 1px solid #eae6e2;
       position: relative;
-      z-index: 1;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      z-index: 2;
     }
 
+    /* ===== Header dengan Logo Menyatu ===== */
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #6B0000;
     }
-
-    .logo-img {
-      max-height: 70px;
-      margin-bottom: 15px;
+    .header img.logo {
+      width: 100px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
     }
-
-    .instansi {
+    .header h1 {
+      font-size: 19pt;
       font-weight: bold;
-      font-size: 16px;
-      color: #003366;
+      margin: 6px 0;
+      color: #000;
+    }
+    .header h2 {
+      font-size: 17pt;
+      font-weight: bold;
+      margin: 6px 0;
+      color: #6B0000;
+    }
+    .header p {
+      font-size: 11pt;
       margin: 4px 0;
-      line-height: 1.3;
+      color: #333;
     }
 
-    .alamat {
-      font-size: 12px;
-      margin-top: 8px;
-      line-height: 1.4;
+    hr {
+      border: 0;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, #6B0000, #8B0000, #6B0000, transparent);
+      margin: 26px 0;
     }
 
     .title {
       text-align: center;
+      font-size: 16.5pt;
       font-weight: bold;
-      font-size: 18px;
-      margin: 25px 0 15px;
-      text-decoration: underline;
+      margin-bottom: 24px;
+      color: #6B0000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .doc-number {
-      text-align: center;
+    /* ===== Konten Dokumen ===== */
+    .section-title {
+      font-size: 13pt;
       font-weight: bold;
-      margin-bottom: 25px;
-      font-size: 14px;
+      margin: 20px 0 10px 0;
+      color: #6B0000;
     }
-
-    .section {
-      margin: 16px 0;
-      text-align: justify;
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11pt;
     }
-
-    .label {
+    .info-table td:first-child {
+      width: 30%;
       font-weight: bold;
-      display: inline-block;
-      width: 200px;
+      padding-right: 10px;
+    }
+    .info-table td {
+      padding: 5px 0;
       vertical-align: top;
     }
-
-    .value {
-      display: inline-block;
-      width: calc(100% - 210px);
-      vertical-align: top;
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      font-size: 11pt;
     }
-
-    .note {
-      background: #f9f9f9;
-      padding: 12px;
-      border-left: 3px solid #003366;
-      margin: 18px 0;
-      font-size: 13px;
-      border-radius: 0 4px 4px 0;
+    .cost-table td {
+      border: 1px solid #000;
+      padding: 8px;
     }
-
-    .signature-block {
-      margin-top: 60px;
+    .cost-table td:last-child {
       text-align: right;
     }
-
-    .ttd-img {
-      max-height: 60px;
-      margin-top: 10px;
+    .cost-table .total-row td {
+      font-weight: bold;
+    }
+    ol {
+      margin: 0 0 18px 26px;
+      padding-left: 0;
+      font-size: 11pt;
+    }
+    ol li {
+      margin-bottom: 9px;
+    }
+    p {
+      text-align: justify;
+      margin: 12px 0;
     }
 
-    .barcode-container {
+    /* ===== Tanda Tangan Asli ===== */
+    .signature {
+      text-align: right;
+      margin-top: 35px;
+      font-size: 11pt;
+    }
+    .signature img.signature-img {
+      height: 60px;
+      margin: -8px 0 12px 0;
+      display: block;
+      margin-left: auto;
+    }
+
+    /* ===== Footer ===== */
+    .footer-note {
       text-align: center;
-      margin: 40px 0 30px;
-    }
-
-    .barcode {
-      display: inline-block;
-    }
-
-    .barcode-text {
-      font-size: 12px;
+      margin-top: 30px;
+      font-size: 10pt;
       color: #555;
-      margin-top: 6px;
     }
 
     @media print {
-      .watermark {
-        opacity: 0.06;
+      body::before, .watermark-label {
+        display: none;
       }
-      .document-container {
+      .container {
         box-shadow: none;
         border: none;
         padding: 30px;
+        background: #fff;
       }
     }
   </style>
 </head>
 <body>
+  <div class="watermark-label">
+    DIREKTORAT JENDERAL PAJAK<br>BEA DAN CUKAI
+  </div>
 
-  <!-- Watermark Teks Resmi -->
-  <div class="watermark">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
-
-  <div class="document-container">
-
-    <!-- LOGO RESMI -->
+  <div class="container">
+    <!-- Header Resmi dengan Logo Menyatu -->
     <div class="header">
-      <img src="https://i.ibb.co.com/23JHZyRZ/13c64ce30c396a9dd09550e88d684dd8.jpg" alt="Logo DJBC" class="logo-img">
-      <div class="instansi">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</div>
-      <div class="instansi">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
-      <div class="instansi">KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI TIPE MATA ANGGARAN A.11 KENDARI</div>
-      <divLEGALITAS JAMINAN SEMENTARA<br>
-      Telepon: (0401) 123456 | Email: kppbc.kendari@djbc.go.id</div>
+      <img src="https://i.ibb.co.com/VpqDV4Nf/299f58d65790c6f478360bba53f40f99.jpg" alt="Logo Kementerian Keuangan RI" class="logo">
+      <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
+      <h2>DIREKTORAT JENDERAL BEA DAN CUKAI</h2>
+      <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI<br>TIPE MATA ANGGARAN A.11 KENDARI</p>
+      <p>Telepon: (0401) 123456 | Email: kppbc.kendari@djbc.go.id</p>
     </div>
+
+    <hr />
 
     <div class="title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</div>
 
-    <div class="doc-number">Nomor: BA/BC/KDR/12/2025/067</div>
+    <table class="info-table">
+      <tr><td>Nomor</td><td>: BA/BC/KDR/12/2025/067</td></tr>
+      <tr><td>Hari/Tanggal</td><td>: Minggu, 07 Desember 2025</td></tr>
+      <tr><td>Tempat</td><td>: Unit Transit Sulawesi Tenggara</td></tr>
+      <tr><td>Pemeriksa</td><td>: Tim Legalitas & Pemeriksaan Barang</td></tr>
+    </table>
 
-    <div class="section">
-      <div><strong>Hari/Tanggal:</strong> Minggu, 07 Desember 2025</div>
-      <div><strong>Tempat:</strong> Unit Transit Sulawesi Tenggara</div>
-      <div><strong>Pemeriksa:</strong> Tim Legalitas & Pemeriksaan Barang</div>
+    <hr />
+
+    <div class="section-title">I. IDENTITAS PENERIMA BARANG</div>
+    <table class="info-table">
+      <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
+      <tr><td>Nomor Resi</td><td>: 001797586677</td></tr>
+      <tr><td>Nama Penerima</td><td>: Hesty</td></tr>
+      <tr><td>Nomor Telepon</td><td>: 081943476819</td></tr>
+      <tr>
+        <td>Alamat</td>
+        <td>: Kelurahan Abeli, Benu-Benua BTN Griya Permata Abeli Blok B10,<br>Kecamatan Abeli, Kota Kendari, Sulawesi Tenggara 93235</td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <div class="section-title">II. SPESIFIKASI BARANG</div>
+    <table class="info-table">
+      <tr><td>Jenis Barang</td><td>: Rokok</td></tr>
+      <tr><td>Jumlah</td><td>: 2 slop (400 batang)</td></tr>
+      <tr><td>Berat</td><td>: 0.8 kg</td></tr>
+      <tr><td>Keterangan</td><td>: Tanpa pita cukai resmi</td></tr>
+    </table>
+
+    <hr />
+
+    <div class="section-title">III. TEMUAN PEMERIKSAAN</div>
+    <p>
+      Barang berupa rokok sejumlah 400 batang (2 slop) ditemukan tidak dilengkapi pita cukai resmi dan tidak disertai dokumen legalitas pelengkap.
+    </p>
+
+    <hr />
+
+    <div class="section-title">IV. TINDAKAN INTERNAL</div>
+    <p>
+      Berdasarkan SOP pemeriksaan internal, tindakan yang dilakukan adalah:
+    </p>
+    <ol>
+      <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
+      <li>Mengeluarkan pemberitahuan jaminan legalitas sementara, dengan rincian: Nilai cukai (Rp 2.000 x 400 batang): Rp 800.000,00 Biaya lanjutan pengiriman: Rp 50.000,00 Total: Rp 850.000,00</li>
+      <li>Memberikan opsi refund sebesar 80% (Rp 680.000,00) setelah proses verifikasi internal selesai.</li>
+      <li>Biaya admin internal sebesar 20% (Rp170.000,00). Tindakan ini merupakan prosedur internal, bukan denda atau sanksi hukum dari instansi pemerintah.</li>
+    </ol>
+
+    <hr />
+
+    <div class="section-title">V. KONSEKUENSI</div>
+    <p>
+      Jika tidak dilunasi dalam 1 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
+    </p>
+
+    <hr />
+
+    <!-- Tanda Tangan Asli dengan Posisi Natural -->
+    <div class="signature">
+      <p>Kendari, 07 Desember 2025</p>
+      <p>Kepala Unit Transit Sulawesi Tenggara</p>
+      <img src="https://i.ibb.co.com/F426pxLb/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan" class="signature-img">
+      <p><strong>Andi Oktavia</strong></p>
+      <p>NIP. 19851206 201001 1 004</p>
     </div>
 
-    <div class="section">
-      <strong>IDENTITAS PENERIMA BARANG:</strong><br>
-      <div><span class="label">Ekspedisi</span><span class="value">: SiCepat Ekspres</span></div>
-      <div><span class="label">Nomor Resi</span><span class="value">: 001797568677</span></div>
-      <div><span class="label">Nama Penerima</span><span class="value">: Hesty</span></div>
-      <div><span class="label">Nomor Telepon</span><span class="value">: 081943476819</span></div>
-      <div><span class="label">Alamat</span><span class="value">: Kelurahan Abeli, Benu-Benua BTN Griya Permata Abeli Blok B10, Kecamatan Abeli, Kota Kendari, Sulawesi Tenggara 93235</span></div>
-    </div>
+    <hr />
 
-    <div class="section">
-      <strong>SPESIFIKASI BARANG:</strong><br>
-      <div><span class="label">Jenis Barang</span><span class="value">: Rokok</span></div>
-      <div><span class="label">Jumlah</span><span class="value">: 2 slop (400 batang)</span></div>
-      <div><span class="label">Berat</span><span class="value">: 0,8 kg</span></div>
-      <div><span class="label">Keterangan</span><span class="value">: Tanpa pita cukai resmi</span></div>
+    <div class="footer-note">
+      <p>Nomor Dokumen: BA/BC/KDR/12/2025/067</p>
+      <p>Kode Arsip: BA-NC-2025-KDR-067</p>
     </div>
-
-    <div class="section">
-      <strong>TEMUAN PEMERIKSAAN:</strong><br>
-      Barang berupa rokok sejumlah 400 batang (2 slop) ditemukan <strong>tidak dilengkapi pita cukai resmi</strong> dan <strong>tidak disertai dokumen legalitas pelengkap</strong>.
-    </div>
-
-    <div class="section">
-      <strong>TINDAKAN INTERNAL:</strong><br>
-      Paket ditahan sementara. Penerima diminta menyelesaikan <strong>jaminan legalitas sementara</strong>.
-    </div>
-
-    <div class="section">
-      <strong>RINCIAN BIAYA JAMINAN LEGALITAS SEMENTARA:</strong><br>
-      <div><span class="label">Cukai (400 batang)</span><span class="value">: Rp800.000</span></div>
-      <div><span class="label">Biaya lanjutan pengiriman</span><span class="value">: Rp50.000</span></div>
-      <div><span class="label"><strong>TOTAL</strong></span><span class="value"><strong>: Rp850.000</strong></span></div>
-    </div>
-
-    <div class="note">
-      <strong>Catatan:</strong> Biaya ini bersifat jaminan administratif internal, bukan sanksi pidana. Setelah verifikasi selesai, 80% (Rp680.000) dikembalikan. Biaya administrasi 20% (Rp170.000) tidak dapat dikembalikan.
-    </div>
-
-    <div class="section">
-      <strong>KONSEKUENSI:</strong> Jika tidak dilunasi dalam 7 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
-    </div>
-
-    <!-- TANDA TANGAN -->
-    <div class="signature-block">
-      Kendari, 07 Desember 2025<br>
-      Kepala Unit Transit Sulawesi Tenggara<br><br>
-      <img src="https://i.ibb.co.com/jkxNrLF9/IMG-1252.jpg" alt="Tanda Tangan" class="ttd-img"><br>
-      <strong>Andi Oktavia</strong><br>
-      NIP. 19851206 201001 1 004
-    </div>
-
-    <!-- BARCODE -->
-    <div class="barcode-container">
-      <svg class="barcode" jsbarcode-value="BA/BC/KDR/12/2025/067" jsbarcode-format="CODE128" jsbarcode-display-value="true" jsbarcode-font-size="12" jsbarcode-height="50" jsbarcode-width="2"></svg>
-      <div class="barcode-text">Nomor Dokumen: BA/BC/KDR/12/2025/067</div>
-    </div>
-
   </div>
-
-  <script>
-    JsBarcode(".barcode").init();
-  </script>
-
 </body>
 </html>
