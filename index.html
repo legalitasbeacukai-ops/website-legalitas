@@ -1,290 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DIREKTORAT JENDERAL PAJAK — BEA DAN CUKAI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berita Acara Pemeriksaan - DJBC</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
   <style>
-    :root{
-      --main-blue:#0054a6;
-      --blue-light:#1c7bd9;
-      --bg:#f6f9ff;
-      --white:#ffffff;
-      --gold:#D4A017;
-      --text:#1f2b45;
-      --border:#d7dfef;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    header{background:linear-gradient(135deg,var(--main-blue),var(--blue-light));padding:18px 28px;color:#fff;border-bottom:4px solid rgba(0,0,0,0.06)}
-    header .wrap-head{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    header h1{font-size:18px;font-weight:700;letter-spacing:0.3px}
-    header .sub{font-size:13px;opacity:0.95}
-
-    main.container{max-width:1100px;margin:30px auto;padding:20px}
-    .card{background:#fff;border-radius:16px;padding:34px;border:1px solid var(--border);box-shadow:0 10px 30px rgba(15,43,77,0.06)}
-    .hero{text-align:center;padding:36px 10px}
-    .hero-logo{width:180px;height:180px;border-radius:50%;background:#fff;border:6px solid var(--main-blue);object-fit:cover;box-shadow:0 16px 40px rgba(0,0,0,0.12)}
-    .hero h2{font-size:36px;margin-top:18px;color:var(--main-blue);font-weight:700}
-    .hero p{font-size:17px;color:#4b5d7a;margin-top:8px}
-    .verified{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--main-blue);margin-top:14px;padding:8px 14px;border-radius:12px;background:#eaf4ff;border:1px solid #d7ecff}
-    .verified img{width:20px;height:20px}
-
-    .iso-box{display:flex;justify-content:center;margin-top:16px}
-    .iso-cert{display:inline-flex;align-items:center;gap:12px;padding:10px 18px;border-radius:14px;background:#fff;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    .iso-cert img{width:64px;height:64px;border-radius:50%;object-fit:cover}
-    .iso-cert span{font-weight:700;color:var(--main-blue);font-size:15px}
-
-    .digital-wrap{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start;justify-content:center;margin-top:22px}
-    .digital-box{width:360px;background:linear-gradient(180deg,#ffffff,#fbfdff);border-radius:14px;padding:18px;border:1px solid var(--border);box-shadow:0 8px 26px rgba(0,0,0,0.06);position:relative}
-    .digital-title{font-size:16px;font-weight:700;color:var(--main-blue);margin-bottom:10px;text-align:center}
-    .qr-wrap{text-align:center;padding-bottom:8px}
-    .qr {width:150px;height:150px;border-radius:12px;border:1px solid var(--border);padding:8px;background:#fff}
-    .hash-code{margin-top:10px;padding:8px 10px;background:#f6f9ff;border-radius:10px;border:1px dashed var(--border);font-family:monospace;font-size:13px;word-break:break-all;text-align:center;color:#36495f}
-    .cert-meta{display:flex;gap:10px;flex-direction:column;margin-top:12px}
-    .cert-meta .row{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:6px 8px;border-radius:8px;background:#ffffff;border:1px solid var(--border)}
-    .cert-id{font-weight:700;color:#12263a}
-
-    .holo{
-      position:absolute;right:18px;top:18px;width:86px;height:86px;border-radius:50%;
-      background:linear-gradient(135deg, rgba(212,160,23,0.18), rgba(28,123,217,0.12));
-      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08);
-      border:1px solid rgba(255,255,255,0.6);
-      transform:rotate(12deg);
-    }
-    .holo .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#fff,#ffd27a);box-shadow:0 2px 6px rgba(0,0,0,0.08)}
-    .holo small{font-size:9px;color:#123456;font-weight:700;letter-spacing:0.6px}
-
-    .stamp{margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:flex-start}
-    .signed{display:inline-flex;flex-direction:column;gap:6px}
-    .sig-vec{display:inline-block;width:140px;height:46px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="46"><path d="M5 30 C40 10, 80 40, 135 12" stroke="%231d9bf0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center/contain}
-    .seal{padding:6px 10px;border-radius:10px;background:linear-gradient(135deg,#fff8e6,#fff1d6);border:1px solid #f0d9a6;font-weight:700;color:#7a4f00;font-size:12px}
-
-    .info-section{margin-top:26px;padding:20px;border-radius:12px;background:#fff;border:1px solid var(--border)}
-    .info-table{width:100%;border-collapse:collapse}
-    .info-table th{background:var(--main-blue);color:#fff;padding:12px;text-align:left;font-weight:700;border-right:1px solid rgba(255,255,255,0.06)}
-    .info-table td{padding:12px;border-top:1px solid var(--border)}
-
-    .actions{display:flex;gap:12px;justify-content:center;margin-top:20px}
-    .btn{padding:12px 20px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--main-blue);color:#fff;box-shadow:0 8px 22px rgba(0,84,166,0.25)}
-    .btn-secondary{background:#fff;border:1px solid var(--border);color:var(--main-blue)}
-
-    .watermark{
-      position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);
-      font-size:72px;color:rgba(0,0,0,0.06);font-weight:800;pointer-events:none;z-index:9999;white-space:nowrap;
-      -webkit-user-select:none;user-select:none;
+    /* Watermark teks transparan */
+    .watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      color: #003366;
+      font-size: 120px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(-30deg);
+      user-select: none;
+      white-space: nowrap;
     }
 
-    footer{margin-top:26px;text-align:center;color:#6b7280;font-size:14px;padding:12px}
-    @media(max-width:880px){
-      .digital-wrap{flex-direction:column;align-items:center}
-      .digital-box{width:100%}
-      .holo{right:14px;top:14px}
-      .hero-logo{width:140px;height:140px}
-      .watermark{font-size:48px}
+    body {
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .document-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #ffffff;
+      position: relative;
+      z-index: 1;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo-img {
+      max-height: 70px;
+      margin-bottom: 15px;
+    }
+
+    .instansi {
+      font-weight: bold;
+      font-size: 16px;
+      color: #003366;
+      margin: 4px 0;
+      line-height: 1.3;
+    }
+
+    .alamat {
+      font-size: 12px;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    .title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 25px 0 15px;
+      text-decoration: underline;
+    }
+
+    .doc-number {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .section {
+      margin: 16px 0;
+      text-align: justify;
+    }
+
+    .label {
+      font-weight: bold;
+      display: inline-block;
+      width: 200px;
+      vertical-align: top;
+    }
+
+    .value {
+      display: inline-block;
+      width: calc(100% - 210px);
+      vertical-align: top;
+    }
+
+    .note {
+      background: #f9f9f9;
+      padding: 12px;
+      border-left: 3px solid #003366;
+      margin: 18px 0;
+      font-size: 13px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .signature-block {
+      margin-top: 60px;
+      text-align: right;
+    }
+
+    .ttd-img {
+      max-height: 60px;
+      margin-top: 10px;
+    }
+
+    .barcode-container {
+      text-align: center;
+      margin: 40px 0 30px;
+    }
+
+    .barcode {
+      display: inline-block;
+    }
+
+    .barcode-text {
+      font-size: 12px;
+      color: #555;
+      margin-top: 6px;
+    }
+
+    @media print {
+      .watermark {
+        opacity: 0.06;
+      }
+      .document-container {
+        box-shadow: none;
+        border: none;
+        padding: 30px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="wrap-head">
-      <h1>DIREKTORAT JENDERAL PAJAK </h1>
-      <div class="sub">Verifikasi & Legalisasi Cukai</div>
+  <!-- Watermark Teks Resmi -->
+  <div class="watermark">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
+
+  <div class="document-container">
+
+    <!-- LOGO RESMI -->
+    <div class="header">
+      <img src="https://i.ibb.co.com/23JHZyRZ/13c64ce30c396a9dd09550e88d684dd8.jpg" alt="Logo DJBC" class="logo-img">
+      <div class="instansi">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</div>
+      <div class="instansi">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
+      <div class="instansi">KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI TIPE MATA ANGGARAN A.11 KENDARI</div>
+      <divLEGALITAS JAMINAN SEMENTARA<br>
+      Telepon: (0401) 123456 | Email: kppbc.kendari@djbc.go.id</div>
     </div>
-  </header>
 
-  <main class="container">
-    <div class="card">
+    <div class="title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</div>
 
-      <!-- HERO -->
-      <section class="hero">
-        <img class="hero-logo" src="https://i.postimg.cc/vTH614wV/IMG-20251205-143226.jpg" alt="Logo Legalitas Swasta">
-        <h2>BEA DAN CUKAI</h2>
-        <p>Konsekuensi Hukum: Jika pembayaran tidak dilakukan sesuai ketentuan, barang akan ditahan, disita, dan diproses hukum oleh Bea Cukai sesuai ketentuan UU No. 39 Tahun 2007 tentang Cukai.</p>
+    <div class="doc-number">Nomor: BA/BC/KDR/12/2025/067</div>
 
-        <div class="verified" aria-hidden="true">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" alt="verified">
-          Terverikasi Legalitas
-        </div>
-
-        <div class="iso-box" aria-hidden="true">
-          <div class="iso-cert">
-            <img src="iso27001.png" alt="ISO 27001 Certified">
-            <span>WAJIB LEGALISASI<br>Bersertifikasi</span>
-          </div>
-        </div>
-
-        <div class="digital-wrap" role="region" aria-label="Sertifikat Digital">
-          <div class="digital-box">
-            <div class="holo" aria-hidden="true">
-              <div class="dot"></div>
-              <small>VERIFIED</small>
-            </div>
-
-            <div class="digital-title">QR LEGALITY</div>
-
-            <div class="qr-wrap">
-              <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://wa.me/6288214470730" alt="QR Verifikasi WhatsApp">
-            </div>
-
-            <div class="hash-code" id="hashCode">SHA256: -</div>
-
-            <div class="cert-meta">
-              <div class="row"><div><strong>ID Sertifikat</strong></div><div class="cert-id" id="certId">CERT-2025-001</div></div>
-              <div class="row"><div><strong>Dikeluarkan</strong></div><div id="issuedDate">05 Desember 2025</div></div>
-              <div class="row"><div><strong>Valid Sampai</strong></div><div id="validDate">05 Desember 2025</div></div>
-              <div class="row"><div><strong>Standar</strong></div><div>ISO/IEC 27001</div></div>
-            </div>
-
-            <div class="stamp" aria-hidden="true">
-              <div class="signed">
-                <div class="sig-vec" title="Signature"></div>
-                <div style="font-size:12px;color:#475569">verification</div>
-              </div>
-              <div class="seal">No. Resi — 001776523582</div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <section class="info-section" aria-label="Informasi">
-        <table class="info-table" role="table" aria-label="Identitas Penerima dan Info">
-          <tr><th>Nama</th><td>Agus Zatmiko</td></tr>
-          <tr><th>No. HP</th><td>(+62) 813-4640-1413</td></tr>
-          <tr><th>Alamat</th><td>Jl. Gajah Mada No. 51, RT 08, Kel. Nunukan Tengah, Kec. Nunukan, Kab. Nunukan, Prov. Kalimantan Utara, 77482.</td></tr>
-          <tr><th>Jumlah Barang</th><td>2 Slop / 400 Btg, Non Pita Cukai</td></tr>
-        </table>
-
-        <div class="actions" style="margin-top:18px">
-          <button class="btn btn-primary" id="downloadBtn" title="Download PDF">Download PDF</button>
-          <a class="btn btn-secondary" href="https://wa.me/6288214470730" target="_blank" rel="noopener">Hubungi via WhatsApp</a>
-        </div>
-
-      </section>
-
+    <div class="section">
+      <div><strong>Hari/Tanggal:</strong> Minggu, 07 Desember 2025</div>
+      <div><strong>Tempat:</strong> Unit Transit Sulawesi Tenggara</div>
+      <div><strong>Pemeriksa:</strong> Tim Legalitas & Pemeriksaan Barang</div>
     </div>
-    <footer>©2025 Bea Dan Cukai — Legalitas</footer>
-  </main>
 
-  <div class="watermark" aria-hidden="true">BEA DAN CUKAI</div>
+    <div class="section">
+      <strong>IDENTITAS PENERIMA BARANG:</strong><br>
+      <div><span class="label">Ekspedisi</span><span class="value">: SiCepat Ekspres</span></div>
+      <div><span class="label">Nomor Resi</span><span class="value">: 001797568677</span></div>
+      <div><span class="label">Nama Penerima</span><span class="value">: Hesty</span></div>
+      <div><span class="label">Nomor Telepon</span><span class="value">: 081943476819</span></div>
+      <div><span class="label">Alamat</span><span class="value">: Kelurahan Abeli, Benu-Benua BTN Griya Permata Abeli Blok B10, Kecamatan Abeli, Kota Kendari, Sulawesi Tenggara 93235</span></div>
+    </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <div class="section">
+      <strong>SPESIFIKASI BARANG:</strong><br>
+      <div><span class="label">Jenis Barang</span><span class="value">: Rokok</span></div>
+      <div><span class="label">Jumlah</span><span class="value">: 2 slop (400 batang)</span></div>
+      <div><span class="label">Berat</span><span class="value">: 0,8 kg</span></div>
+      <div><span class="label">Keterangan</span><span class="value">: Tanpa pita cukai resmi</span></div>
+    </div>
+
+    <div class="section">
+      <strong>TEMUAN PEMERIKSAAN:</strong><br>
+      Barang berupa rokok sejumlah 400 batang (2 slop) ditemukan <strong>tidak dilengkapi pita cukai resmi</strong> dan <strong>tidak disertai dokumen legalitas pelengkap</strong>.
+    </div>
+
+    <div class="section">
+      <strong>TINDAKAN INTERNAL:</strong><br>
+      Paket ditahan sementara. Penerima diminta menyelesaikan <strong>jaminan legalitas sementara</strong>.
+    </div>
+
+    <div class="section">
+      <strong>RINCIAN BIAYA JAMINAN LEGALITAS SEMENTARA:</strong><br>
+      <div><span class="label">Cukai (400 batang)</span><span class="value">: Rp800.000</span></div>
+      <div><span class="label">Biaya lanjutan pengiriman</span><span class="value">: Rp50.000</span></div>
+      <div><span class="label"><strong>TOTAL</strong></span><span class="value"><strong>: Rp850.000</strong></span></div>
+    </div>
+
+    <div class="note">
+      <strong>Catatan:</strong> Biaya ini bersifat jaminan administratif internal, bukan sanksi pidana. Setelah verifikasi selesai, 80% (Rp680.000) dikembalikan. Biaya administrasi 20% (Rp170.000) tidak dapat dikembalikan.
+    </div>
+
+    <div class="section">
+      <strong>KONSEKUENSI:</strong> Jika tidak dilunasi dalam 7 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
+    </div>
+
+    <!-- TANDA TANGAN -->
+    <div class="signature-block">
+      Kendari, 07 Desember 2025<br>
+      Kepala Unit Transit Sulawesi Tenggara<br><br>
+      <img src="https://i.ibb.co.com/jkxNrLF9/IMG-1252.jpg" alt="Tanda Tangan" class="ttd-img"><br>
+      <strong>Andi Oktavia</strong><br>
+      NIP. 19851206 201001 1 004
+    </div>
+
+    <!-- BARCODE -->
+    <div class="barcode-container">
+      <svg class="barcode" jsbarcode-value="BA/BC/KDR/12/2025/067" jsbarcode-format="CODE128" jsbarcode-display-value="true" jsbarcode-font-size="12" jsbarcode-height="50" jsbarcode-width="2"></svg>
+      <div class="barcode-text">Nomor Dokumen: BA/BC/KDR/12/2025/067</div>
+    </div>
+
+  </div>
+
   <script>
-    (function(){
-      function randomHex(len){
-        const chars = '0123456789ABCDEF';
-        let out='';
-        for(let i=0;i<len;i++) out+=chars[Math.floor(Math.random()*chars.length)];
-        return out;
-      }
-
-      function makePseudoHash(){
-        const seed = new Date().toISOString();
-        let h = '';
-        for(let i=0;i<48;i++){
-          const code = seed.charCodeAt(i % seed.length) + i + Math.floor(Math.random()*16);
-          h += ('0' + (code & 0xFF).toString(16)).slice(-2).toUpperCase();
-        }
-        return h.slice(0,48);
-      }
-
-      function genCertID(){
-        const rand = Math.floor(100 + Math.random()*900);
-        const tail = Math.random().toString(36).slice(2,6).toUpperCase();
-        return `SW-VRF-2025-${rand}${tail}`;
-      }
-
-      const certIdEl = document.getElementById('certId');
-      const hashEl = document.getElementById('hashCode');
-      const issuedEl = document.getElementById('issuedDate');
-      const validEl = document.getElementById('validDate');
-
-      const now = new Date();
-      const issued = now.toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
-      const nextYear = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
-      const valid = nextYear.toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
-
-      const certId = genCertID();
-      const pseudoHash = makePseudoHash();
-
-      certIdEl.textContent = certId;
-      hashEl.textContent = 'Hash (visual): ' + pseudoHash;
-      issuedEl.textContent = issued;
-      validEl.textContent = valid;
-
-      document.getElementById('downloadBtn').addEventListener('click', async function(){
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-          unit: 'pt',
-          format: 'a4',
-          compress: true
-        });
-
-        doc.setProperties({
-          title: 'Sertifikat Digital - ' + certId,
-          subject: 'Certificate Digital',
-          author: 'Sistem Legalitas Swasta',
-          keywords: 'Verification, Legalitas, Swasta, ' + certId,
-          creator: 'LEGALITAS SWASTA'
-        });
-
-        const clone = document.querySelector('.card').cloneNode(true);
-        const watermark = document.createElement('div');
-        watermark.style.position = 'absolute';
-        watermark.style.top = '50%';
-        watermark.style.left = '50%';
-        watermark.style.transform = 'translate(-50%,-50%) rotate(-30deg)';
-        watermark.style.fontSize = '72px';
-        watermark.style.color = 'rgba(0,0,0,0.06)';
-        watermark.style.fontWeight = '800';
-        watermark.style.whiteSpace = 'nowrap';
-        watermark.textContent = 'VERIFIED SYSTEM';
-        clone.style.position = 'relative';
-        clone.appendChild(watermark);
-
-        const cloneHash = clone.querySelector('#hashCode');
-        if(cloneHash) cloneHash.textContent = hashEl.textContent;
-        const cloneId = clone.querySelector('#certId');
-        if(cloneId) cloneId.textContent = certId;
-
-        const wrapper = document.createElement('div');
-        wrapper.style.width = '800px';
-        wrapper.style.padding = '20px';
-        wrapper.style.background = '#fff';
-        wrapper.appendChild(clone);
-
-        try {
-          await doc.html(wrapper, {
-            x: 20,
-            y: 20,
-            html2canvas: {
-              scale: 1.25,
-              useCORS: true,
-              allowTaint: false,
-              logging: false
-            },
-            callback: function (doc) {
-              doc.setFontSize(9);
-              doc.setTextColor(100);
-              doc.text('Sertifikat Digital — ID: ' + certId, 40, doc.internal.pageSize.getHeight() - 30);
-              doc.save('Sertifikat-' + certId + '.pdf');
-            }
-          });
-        } catch (err) {
-          console.error(err);
-          doc.text('Sertifikat Digital', 40, 80);
-          doc.text('ID: ' + certId, 40, 100);
-          doc.text(hashEl.textContent, 40, 120);
-          doc.save('Sertifikat-' + certId + '.pdf');
-        }
-      });
-
-    })();
+    JsBarcode(".barcode").init();
   </script>
+
 </body>
 </html>
