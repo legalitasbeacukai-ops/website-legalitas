@@ -16,55 +16,70 @@
             font-family: 'Times New Roman', Times, serif;
             line-height: 1.5;
             color: #000;
-            background-color: #fff;
-            position: relative;
+            background-color: #f9f9f9;
             padding: 20px;
         }
 
-        /* Watermark Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.ibb.co/JwnnWfMg/IMG-20251209-083323.jpg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 70%;
-            z-index: -1;
-            opacity: 0.06;
-        }
-
-        .container {
-            max-width: 210mm; /* A4 width */
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Tombol Download PDF */
-        .download-btn-container {
+        /* Tombol UI */
+        .ui-controls {
             text-align: center;
             margin: 15px 0;
+            z-index: 10;
+            position: relative;
         }
-        #downloadPdfBtn {
+        .download-btn {
             background: #003366;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 28px;
             font-size: 14pt;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.3s;
         }
-        #downloadPdfBtn:hover:not(:disabled) {
+        .download-btn:hover:not(:disabled) {
             background: #002244;
         }
-        #downloadPdfBtn:disabled {
+        .download-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+        }
+
+        /* ———— KONTEN SURAT ———— */
+        #pdfContent {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 210mm; /* A4 width */
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ✅ WATERMARK REAL — ELEMEN NYATA (akan ikut ke PDF) */
+        .watermark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none; /* agar tidak mengganggu klik */
+        }
+        .watermark img {
+            width: 70%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.07; /* cukup samar tapi terlihat di PDF */
+        }
+
+        /* Semua konten utama harus di atas watermark */
+        .content-layer {
+            position: relative;
+            z-index: 1;
         }
 
         /* Header Biru Premium */
@@ -76,11 +91,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             border-bottom: 2px solid white;
         }
 
-        .logo-left {
+        .logo-left, .logo-right {
             height: 70px;
             width: auto;
         }
@@ -103,40 +118,26 @@
             line-height: 1.4;
         }
 
-        .logo-right {
-            height: 70px;
-            width: auto;
-        }
-
         .doc-type {
             font-weight: bold;
             font-size: 16pt;
-            margin: 20px 0 10px;
+            margin: 25px 0 15px;
             text-align: center;
             text-decoration: underline;
             color: #003366;
         }
 
-        .doc-meta {
-            margin-bottom: 20px;
-        }
-
-        .doc-meta p {
-            margin: 4px 0;
+        .doc-meta p,
+        .recipient p,
+        .greeting p,
+        .section p {
+            margin: 5px 0;
             font-size: 12pt;
         }
 
-        .recipient {
-            margin-bottom: 20px;
-        }
-
-        .greeting {
-            margin-bottom: 16px;
+        .greeting p,
+        .section p {
             text-align: justify;
-        }
-
-        .section {
-            margin-bottom: 20px;
         }
 
         .section-title {
@@ -145,15 +146,16 @@
             text-decoration: underline;
         }
 
-        .info-table {
+        .info-table, .calculation-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12px 0;
+            margin: 15px 0;
             font-size: 12pt;
         }
 
-        .info-table td, .info-table th {
-            padding: 6px 8px;
+        .info-table td, .info-table th,
+        .calculation-table td, .calculation-table th {
+            padding: 6px 10px;
             vertical-align: top;
             border: 1px solid #000;
         }
@@ -161,19 +163,6 @@
         .info-table th {
             font-weight: bold;
             background-color: #f0f0f0;
-        }
-
-        .calculation-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 12pt;
-            text-align: right;
-        }
-
-        .calculation-table td, .calculation-table th {
-            padding: 8px;
-            border: 1px solid #000;
         }
 
         .calculation-table .label {
@@ -185,8 +174,8 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 20px;
-            margin: 15px 0;
+            gap: 30px;
+            margin: 20px 0;
         }
 
         .legalization-badge {
@@ -196,10 +185,10 @@
         }
 
         .footer-signature {
-            margin-top: 40px;
+            margin-top: 50px;
             display: flex;
             justify-content: space-between;
-            gap: 40px;
+            gap: 50px;
         }
 
         .signature-box {
@@ -210,11 +199,11 @@
         .stamp {
             width: 150px;
             height: auto;
-            margin: 10px auto 0;
+            margin: 15px auto 10px;
         }
 
         .qr-box {
-            margin: 15px auto;
+            margin: 25px auto;
             text-align: center;
             font-size: 11pt;
             font-style: italic;
@@ -223,7 +212,7 @@
         .qr-box img {
             width: 120px;
             height: auto;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .checkmark {
@@ -239,256 +228,241 @@
             margin-left: 5px;
         }
 
-        .footer-contact {
-            margin-top: 25px;
-            padding-top: 10px;
-            border-top: 1px solid #000;
-            font-size: 11pt;
-        }
-
         .footer-logo {
-            margin: 20px 0;
+            margin: 25px 0;
             text-align: center;
         }
 
         .footer-logo img {
             height: 50px;
             width: auto;
-            opacity: 0.95;
         }
 
         .copyright {
             font-size: 10pt;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
             color: #000;
             padding-top: 15px;
             border-top: 1px solid #ccc;
         }
 
-        /* Responsive */
+        /* ———— GAYA CETAK/PDF ———— */
         @media print {
             body {
+                background: white;
                 padding: 0;
             }
-            .container {
-                padding: 0 15mm;
-            }
-            body::before {
-                opacity: 0.04 !important;
-            }
-            .download-btn-container {
+            .ui-controls {
                 display: none;
+            }
+            #pdfContent {
+                padding: 25mm 20mm;
+                box-shadow: none;
+                max-width: none;
+                width: 210mm;
+                height: 297mm;
+            }
+
+            /* Force desktop layout */
+            .header,
+            .footer-signature,
+            .content-with-badge {
+                flex-direction: row !important;
+            }
+            .signature-box {
+                width: 45% !important;
+            }
+            .content-with-badge > div:first-child {
+                flex: 1;
+            }
+
+            /* Pastikan watermark tetap muncul */
+            .watermark img {
+                opacity: 0.07 !important;
             }
         }
 
+        /* Layout mobile hanya untuk preview layar */
         @media (max-width: 600px) {
-            .container {
-                padding: 0 10px;
-            }
-            .header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .header-center {
-                order: -1;
-                padding: 12px 0;
-            }
-            .logo-left, .logo-right {
-                height: 60px;
-            }
-            .footer-signature {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .signature-box {
-                width: 100%;
-            }
+            .header,
+            .footer-signature,
             .content-with-badge {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: column !important;
             }
-            .legalization-badge {
-                margin: 10px auto;
+            .signature-box,
+            .content-with-badge > div:first-child {
+                width: 100% !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Tombol Download PDF (atas) -->
-    <div class="download-btn-container">
-        <button id="downloadPdfBtn">📥 Download PDF</button>
+    <!-- UI Controls -->
+    <div class="ui-controls">
+        <button id="downloadPdfBtn" class="download-btn">📥 Download PDF (Watermark Aktif)</button>
     </div>
 
-    <div class="container" id="pdfContent">
-        <!-- HEADER BIRU PREMIUM -->
-        <div class="header">
-            <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
-            <div class="header-center">
-                <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
-                <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
-                <p>KANTOR PELAYANAN DAN PENGAWASAN BEA DAN CUKAI</p>
-                <p>TIPE MADYA PABEAN A MAKASSAR</p>
-                <p>Jl. Hatta No. 2, Butung, Kec. Wajo, Kota Makassar, Sulawesi Selatan 90173</p>
-                <p>Telepon: (0411) 3615447 / 314602 | Email: bcmakassar@customs.go.id</p>
+    <!-- Konten Surat -->
+    <div id="pdfContent">
+        <!-- ✅ WATERMARK NYATA — ELEMEN <img> -->
+        <div class="watermark">
+            <img src="https://i.ibb.co/JwnnWfMg/IMG-20251209-083323.jpg" alt="Watermark Bea Cukai" />
+        </div>
+
+        <!-- Semua konten utama dibungkus agar di atas watermark -->
+        <div class="content-layer">
+            <div class="header">
+                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
+                <div class="header-center">
+                    <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
+                    <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
+                    <p>KANTOR PELAYANAN DAN PENGAWASAN BEA DAN CUKAI</p>
+                    <p>TIPE MADYA PABEAN A MAKASSAR</p>
+                    <p>Jl. Hatta No. 2, Butung, Kec. Wajo, Kota Makassar, Sulawesi Selatan 90173</p>
+                    <p>Telepon: (0411) 3615447 / 314602 | Email: bcmakassar@customs.go.id</p>
+                </div>
+                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
-            <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
-        </div>
 
-        <!-- JUDUL SURAT -->
-        <div class="doc-type">SURAT PEMBERITAHUAN JAMINAN LEGALITAS SEMENTARA</div>
+            <div class="doc-type">SURAT PEMBERITAHUAN JAMINAN LEGALITAS SEMENTARA</div>
 
-        <!-- NOMOR & TANGGAL -->
-        <div class="doc-meta">
-            <p>Nomor : BC.MKS/SL-011/2025</p>
-            <p>Tanggal : 08 Desember 2025</p>
-        </div>
+            <div class="doc-meta">
+                <p>Nomor : BC.MKS/SL-011/2025</p>
+                <p>Tanggal : 08 Desember 2025</p>
+            </div>
 
-        <!-- KEPADA YTH -->
-        <div class="recipient">
-            <p>Kepada Yth.,</p>
-            <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Aswar</p>
-            <p>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. R.A Kartini No.19, Baru, (Dpn Bank Mandiri), Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan 90111</p>
-            <p>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: (+62) 823-1190-7387</p>
-        </div>
+            <div class="recipient">
+                <p>Kepada Yth.,</p>
+                <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Aswar</p>
+                <p>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. R.A Kartini No.19, Baru, (Dpn Bank Mandiri), Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan 90111</p>
+                <p>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: (+62) 823-1190-7387</p>
+            </div>
 
-        <!-- PEMBUKA -->
-        <div class="greeting">
-            <p>Dengan hormat,</p>
-            <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat Pelabuhan Soekarno-Hatta Makassar, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal, bersama ini kami sampaikan informasi sebagai berikut:</p>
-        </div>
+            <div class="greeting">
+                <p>Dengan hormat,</p>
+                <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat Pelabuhan Soekarno-Hatta Makassar, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal, bersama ini kami sampaikan informasi sebagai berikut:</p>
+            </div>
 
-        <!-- I. DATA BARANG -->
-        <div class="section">
-            <div class="section-title">I. DATA BARANG KIRIMAN</div>
-            <table class="info-table">
-                <tr><td>Jenis Barang</td><td>: Rokok Tanpa Pita Cukai</td></tr>
-                <tr><td>Jumlah Kemasan</td><td>: 2 (dua) slop</td></tr>
-                <tr><td>Jumlah Batang</td><td>: 400 (empat ratus) batang</td></tr>
-                <tr><td>Status Kepabeanan</td><td>: Ditemukan indikasi pelanggaran ketentuan cukai berupa rokok tanpa pita cukai resmi.</td></tr>
-            </table>
-        </div>
-
-        <!-- II. TINDAKAN INTERNAL -->
-        <div class="section">
-            <div class="section-title">II. TINDAKAN INTERNAL</div>
-            <p>Adapun tindakan yang dilakukan untuk memastikan kejelasan legalitas barang adalah:</p>
-            <ol style="margin: 10px 0 10px 25px;">
-                <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
-                <li>Mengeluarkan pemberitahuan jaminan legalitas sementara dengan perhitungan sebagai berikut:</li>
-            </ol>
-        </div>
-
-        <!-- III. PERHITUNGAN -->
-        <div class="section">
-            <div class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
-            <table class="calculation-table">
-                <tr>
-                    <td class="label">Nilai Cukai (Rp 2.000 × 400 batang)</td>
-                    <td>Rp 800.000,00</td>
-                </tr>
-                <tr>
-                    <td class="label">Biaya Lanjutan Pengiriman</td>
-                    <td>Rp 50.000,00</td>
-                </tr>
-                <tr>
-                    <td class="label"><strong>Total Jaminan Sementara</strong></td>
-                    <td><strong>Rp 850.000,00</strong></td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- IV. OPSI REFUND -->
-        <div class="section">
-            <div class="section-title">IV. OPSI REFUND</div>
-            <p>Setelah proses verifikasi internal selesai, pemilik barang diberikan opsi restitusi sebagai berikut:</p>
-            <ul style="margin: 10px 0 10px 25px;">
-                <li>Refund 80% dari total nilai jaminan: 80% × Rp 850.000,00 = <strong>Rp 680.000,00</strong></li>
-                <li>Biaya Administrasi Internal 20%: 20% × Rp 850.000,00 = <strong>Rp 170.000,00</strong></li>
-            </ul>
-            <p><em>Keterangan: Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal sesuai prosedur penanganan barang temuan legalitas.</em></p>
-        </div>
-
-        <!-- V. PENJELASAN -->
-        <div class="section">
-            <div class="section-title">V. PENJELASAN</div>
-            <p>Proses pemeriksaan dan verifikasi dilakukan untuk memastikan bahwa barang yang beredar memenuhi ketentuan perundang-undangan di bidang kepabeanan dan cukai. Pemilik barang dapat melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi pada kantor yang tertera.</p>
-        </div>
-
-        <!-- VI. KONTAK LAYANAN -->
-        <div class="section">
-            <div class="section-title">VI. KONTAK LAYANAN</div>
-            <p>Untuk informasi lebih lanjut, dapat menghubungi:</p>
-            <p><strong>Kantor Pelayanan dan Pengawasan Bea dan Cukai Makassar</strong><br>
-            Jl. Hatta No. 2, Butung, Kec. Wajo, Kota Makassar 90173<br>
-            Telepon: (0411) 3615447 / 314602<br>
-            Email: bcmakassar@customs.go.id</p>
-        </div>
-
-        <!-- IDENTITAS PENERIMA DENGAN LOGO WAJIB LEGALISASI -->
-        <div class="content-with-badge">
-            <div class="content-main">
-                <div class="section-title">IDENTITAS PENERIMA BARANG</div>
+            <div class="section">
+                <div class="section-title">I. DATA BARANG KIRIMAN</div>
                 <table class="info-table">
-                    <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
-                    <tr><td>Nomor Resi</td><td>: 001797568863</td></tr>
-                    <tr><td>Nama Penerima</td><td>: Aswar</td></tr>
-                    <tr><td>Nomor Telepon</td><td>: (+62) 823-1190-7387</td></tr>
+                    <tr><td>Jenis Barang</td><td>: Rokok Tanpa Pita Cukai</td></tr>
+                    <tr><td>Jumlah Kemasan</td><td>: 2 (dua) slop</td></tr>
+                    <tr><td>Jumlah Batang</td><td>: 400 (empat ratus) batang</td></tr>
+                    <tr><td>Status Kepabeanan</td><td>: Ditemukan indikasi pelanggaran ketentuan cukai berupa rokok tanpa pita cukai resmi.</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-title">II. TINDAKAN INTERNAL</div>
+                <p>Adapun tindakan yang dilakukan untuk memastikan kejelasan legalitas barang adalah:</p>
+                <ol style="margin: 10px 0 10px 25px;">
+                    <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
+                    <li>Mengeluarkan pemberitahuan jaminan legalitas sementara dengan perhitungan sebagai berikut:</li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <div class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
+                <table class="calculation-table">
                     <tr>
-                        <td>Alamat</td>
-                        <td>: Jl. R.A Kartini No.19, Baru, (Dpn Bank Mandiri),<br>Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan 90111</td>
+                        <td class="label">Nilai Cukai (Rp 2.000 × 400 batang)</td>
+                        <td>Rp 800.000,00</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Biaya Lanjutan Pengiriman</td>
+                        <td>Rp 50.000,00</td>
+                    </tr>
+                    <tr>
+                        <td class="label"><strong>Total Jaminan Sementara</strong></td>
+                        <td><strong>Rp 850.000,00</strong></td>
                     </tr>
                 </table>
             </div>
-            <img src="https://i.ibb.co/Y4BPNTjM/IMG-20251209-084239.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
-        </div>
 
-        <!-- QR VERIFIKASI + CENTANG BIRU -->
-        <div class="qr-box">
-            <p>SILAHKAN DI SCAN QRIS LEGALITAS<br>UNTUK PENGINPUTAN DATA LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
-            <img src="https://i.ibb.co/5JZmyRC/IMG-20251207-094853.jpg" alt="QR Code Verifikasi" />
-        </div>
-
-        <!-- KONSEKUENSI -->
-        <div class="section">
-            <div class="section-title">VII. KONSEKUENSI</div>
-            <p>Jika tidak dilunasi dalam 1 (satu) hari kerja, barang dapat disita dan diproses hukum sesuai ketentuan Peraturan Perundang-undangan yang berlaku, termasuk UU Cukai No. 39 Tahun 2007.</p>
-        </div>
-
-        <!-- TANDA TANGAN + STEMPEL SATU KOLOM -->
-        <div class="footer-signature">
-            <div class="signature-box">
-                <p>Makassar, 08 Desember 2025</p>
-                <p>Pejabat Pemeriksa</p>
-                <p>Kantor Pelayanan dan Pengawasan</p>
-                <p>Bea dan Cukai Makassar</p>
-                <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan Arif Kurniawan" style="max-width: 160px; height: auto; margin: 10px auto;" />
-                <p>(Arif Kurniawan)</p>
-                <p>NIP. 19870311 201102 1 006</p>
+            <div class="section">
+                <div class="section-title">IV. OPSI REFUND</div>
+                <p>Setelah proses verifikasi internal selesai, pemilik barang diberikan opsi restitusi sebagai berikut:</p>
+                <ul style="margin: 10px 0 10px 25px;">
+                    <li>Refund 80% dari total nilai jaminan: 80% × Rp 850.000,00 = <strong>Rp 680.000,00</strong></li>
+                    <li>Biaya Administrasi Internal 20%: 20% × Rp 850.000,00 = <strong>Rp 170.000,00</strong></li>
+                </ul>
+                <p><em>Keterangan: Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal sesuai prosedur penanganan barang temuan legalitas.</em></p>
             </div>
-            <div class="signature-box">
-                <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
-                <p>Kepala Kantor</p>
-                <p>Andi Oktavia</p>
-                <p>NIP. 19851206 201001 1 004</p>
+
+            <div class="section">
+                <div class="section-title">V. PENJELASAN</div>
+                <p>Proses pemeriksaan dan verifikasi dilakukan untuk memastikan bahwa barang yang beredar memenuhi ketentuan perundang-undangan di bidang kepabeanan dan cukai. Pemilik barang dapat melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi pada kantor yang tertera.</p>
             </div>
-        </div>
 
-        <!-- FOOTER LOGO -->
-        <div class="footer-logo">
-            <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Logo DJBC" />
-        </div>
+            <div class="section">
+                <div class="section-title">VI. KONTAK LAYANAN</div>
+                <p>Untuk informasi lebih lanjut, dapat menghubungi:</p>
+                <p><strong>Kantor Pelayanan dan Pengawasan Bea dan Cukai Makassar</strong><br>
+                Jl. Hatta No. 2, Butung, Kec. Wajo, Kota Makassar 90173<br>
+                Telepon: (0411) 3615447 / 314602<br>
+                Email: bcmakassar@customs.go.id</p>
+            </div>
 
-        <!-- COPYRIGHT DIPERBAIKI -->
-        <div class="copyright">
-            <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
-            <p>Kode Naskah Dinas: BC.MKS/SL-011/2025 | Kode Arsip: SL-2025-MKS-011</p>
-        </div>
-    </div>
+            <div class="content-with-badge">
+                <div class="content-main">
+                    <div class="section-title">IDENTITAS PENERIMA BARANG</div>
+                    <table class="info-table">
+                        <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
+                        <tr><td>Nomor Resi</td><td>: 001797568863</td></tr>
+                        <tr><td>Nama Penerima</td><td>: Aswar</td></tr>
+                        <tr><td>Nomor Telepon</td><td>: (+62) 823-1190-7387</td></tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>: Jl. R.A Kartini No.19, Baru, (Dpn Bank Mandiri),<br>Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan 90111</td>
+                        </tr>
+                    </table>
+                </div>
+                <img src="https://i.ibb.co/Y4BPNTjM/IMG-20251209-084239.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
+            </div>
 
-    <!-- Tombol Download PDF (bawah) -->
-    <div class="download-btn-container">
-        <button id="downloadPdfBtnBottom">📥 Unduh PDF</button>
+            <div class="qr-box">
+                <p>SILAHKAN DI SCAN QRIS LEGALITAS<br>UNTUK PENGINPUTAN DATA LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
+                <img src="https://i.ibb.co/5JZmyRC/IMG-20251207-094853.jpg" alt="QR Code Verifikasi" />
+            </div>
+
+            <div class="section">
+                <div class="section-title">VII. KONSEKUENSI</div>
+                <p>Jika tidak dilunasi dalam 1 (satu) hari kerja, barang dapat disita dan diproses hukum sesuai ketentuan Peraturan Perundang-undangan yang berlaku, termasuk UU Cukai No. 39 Tahun 2007.</p>
+            </div>
+
+            <div class="footer-signature">
+                <div class="signature-box">
+                    <p>Makassar, 08 Desember 2025</p>
+                    <p>Pejabat Pemeriksa</p>
+                    <p>Kantor Pelayanan dan Pengawasan</p>
+                    <p>Bea dan Cukai Makassar</p>
+                    <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan Arif Kurniawan" style="max-width: 160px; height: auto; margin: 15px auto;" />
+                    <p>(Arif Kurniawan)</p>
+                    <p>NIP. 19870311 201102 1 006</p>
+                </div>
+                <div class="signature-box">
+                    <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
+                    <p>Kepala Kantor</p>
+                    <p>Andi Oktavia</p>
+                    <p>NIP. 19851206 201001 1 004</p>
+                </div>
+            </div>
+
+            <div class="footer-logo">
+                <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Logo DJBC" />
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Kode Naskah Dinas: BC.MKS/SL-011/2025 | Kode Arsip: SL-2025-MKS-011</p>
+            </div>
+        </div> <!-- .content-layer -->
+    </div> <!-- #pdfContent -->
+
+    <div class="ui-controls">
+        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Sekarang</button>
     </div>
 
     <script>
@@ -498,29 +472,45 @@
             const element = document.getElementById('pdfContent');
 
             function generatePDF() {
-                // Disable buttons
                 btnTop.disabled = true;
                 btnBottom.disabled = true;
-                btnTop.textContent = '⏳ Sedang memproses...';
-                btnBottom.textContent = '⏳ Sedang memproses...';
+                btnTop.textContent = '⏳ Memproses...';
+                btnBottom.textContent = '⏳ Memproses...';
 
-                // Opsi html2pdf
-                const options = {
-                    margin: 10,
+                const opt = {
+                    margin: [15, 12, 15, 12], // [top, left, bottom, right] in mm
                     filename: 'Surat_Jaminan_Legalitas_Sementara_BC_Makassar.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    html2canvas: {
+                        scale: 2.5,
+                        useCORS: true,
+                        logging: false,
+                        letterRendering: true,
+                        allowTaint: false,
+                        backgroundColor: null // transparan → biar watermark terlihat
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
                 };
 
-                // Generate PDF
-                html2pdf().set(options).from(element).save().then(() => {
-                    // Re-enable buttons
-                    btnTop.disabled = false;
-                    btnBottom.disabled = false;
-                    btnTop.textContent = '📥 Download PDF';
-                    btnBottom.textContent = '📥 Unduh PDF';
-                });
+                html2pdf().set(opt).from(element).save()
+                    .then(() => {
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '📥 Download PDF (Watermark Aktif)';
+                        btnBottom.textContent = '📥 Unduh PDF Sekarang';
+                    })
+                    .catch(err => {
+                        console.error('PDF Error:', err);
+                        alert('Gagal membuat PDF. Silakan coba lagi di Chrome/Edge terbaru.');
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '⚠️ Coba Lagi';
+                        btnBottom.textContent = '⚠️ Coba Lagi';
+                    });
             }
 
             btnTop.addEventListener('click', generatePDF);
