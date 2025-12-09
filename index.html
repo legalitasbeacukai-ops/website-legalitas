@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                @media print {
+    body::before {
+        opacity: 0.06 !important;
+    }
+}
+
+
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
@@ -17,10 +38,9 @@
             color: #000;
             background-color: #fff;
             position: relative;
-            padding-bottom: 20px;
         }
 
-        /* Watermark Background */
+        /* Watermark Background - MUNCUL DI SELURUH ISI TEKS */
         body::before {
             content: "";
             position: fixed;
@@ -31,9 +51,9 @@
             background-image: url('https://i.ibb.co/JwnnWfMg/IMG-20251209-083323.jpg');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 65%;
+            background-size: 70%;
             z-index: -1;
-            opacity: 0.07;
+            opacity: 0.08; /* Transparan tapi tetap terlihat di balik teks */
         }
 
         .container {
@@ -42,58 +62,64 @@
             padding: 0 15px;
         }
 
-        /* Header */
+        /* Header Premium & Formal */
         .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 12px;
             background: #003366;
             color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
             border-bottom: 2px solid white;
         }
 
-        .logo-garuda {
-            height: 78px;
+        .garuda-top {
+            height: 80px;
+            width: auto;
+            margin: 0 auto 16px;
+            display: block;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .logo-left {
+            height: 80px;
             width: auto;
         }
 
-        .header-center {
+        .header-text {
             flex: 1;
             text-align: center;
             padding: 0 10px;
         }
 
-        .header-center h1 {
+        .header-text h1 {
             font-size: 14pt;
             font-weight: bold;
             margin: 4px 0;
             letter-spacing: 0.5px;
         }
 
-        .header-center p {
-            font-size: 9.5pt;
+        .header-text p {
+            font-size: 10pt;
             margin: 2px 0;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        .logo-group {
-            display: flex;
-            gap: 14px;
-            align-items: center;
-        }
-
-        .logo-group img {
-            height: 70px;
+        .logo-right {
+            height: 80px;
             width: auto;
         }
 
         /* Slogan */
         .slogan {
             text-align: center;
-            margin: 14px 0;
+            margin: 12px 0;
             font-style: italic;
             color: #003366;
             font-size: 11pt;
@@ -184,7 +210,6 @@
             max-width: 160px;
             height: auto;
             margin-top: 10px;
-            border-bottom: 1px solid transparent;
         }
 
         .stamp {
@@ -241,16 +266,16 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            .header {
+            .header-content {
                 flex-direction: column;
-                text-align: center;
+                gap: 12px;
             }
-            .header-center {
-                order: -1;
-                padding: 12px 0;
+            .logo-left,
+            .logo-right {
+                height: 65px;
             }
-            .logo-group {
-                justify-content: center;
+            .header-text {
+                padding: 0;
             }
             .signature-section {
                 flex-direction: column;
@@ -287,19 +312,22 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header Resmi -->
+        <!-- Header Premium & Formal -->
         <div class="header">
-            <img src="https://i.ibb.co/jjZMSt8/1765242445842.jpg" alt="Garuda Pancasila" class="logo-garuda" />
-            <div class="header-center">
-                <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
-                <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
-                <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
-                <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
-                <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
-            </div>
-            <div class="logo-group">
-                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" />
-                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" />
+            <img src="https://i.ibb.co/jjZMSt8/1765242445842.jpg" alt="Garuda Pancasila" class="garuda-top" />
+
+            <div class="header-content">
+                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
+                
+                <div class="header-text">
+                    <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
+                    <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
+                    <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
+                    <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
+                    <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
+                </div>
+
+                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
         </div>
 
@@ -422,3 +450,12 @@
     </div>
 </body>
 </html>
+
+
+
+              <script>
+                              
+              </script>
+                        </body>
+                        </html>
+                    
