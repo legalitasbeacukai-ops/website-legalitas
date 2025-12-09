@@ -1,25 +1,4 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <style>
-                body {
-                  background-color: white; /* Ensure the iframe has a white background */
-                }
-
-                @media print {
-    body::before {
-        opacity: 0.06 !important;
-    }
-}
-
-
-              </style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
@@ -53,7 +32,7 @@
             background-position: center center;
             background-size: 70%;
             z-index: -1;
-            opacity: 0.08; /* Transparan tapi tetap terlihat di balik teks */
+            opacity: 0.07;
         }
 
         .container {
@@ -62,29 +41,16 @@
             padding: 0 15px;
         }
 
-        /* Header Premium & Formal */
+        /* Header Identik Contoh Gambar */
         .header {
             background: #003366;
             color: white;
             padding: 20px 15px;
-            text-align: center;
-            position: relative;
-            border-bottom: 2px solid white;
-        }
-
-        .garuda-top {
-            height: 80px;
-            width: auto;
-            margin: 0 auto 16px;
-            display: block;
-        }
-
-        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-            padding: 10px 0;
+            border-bottom: 2px solid white;
         }
 
         .logo-left {
@@ -92,20 +58,20 @@
             width: auto;
         }
 
-        .header-text {
-            flex: 1;
+        .header-center {
             text-align: center;
+            flex: 1;
             padding: 0 10px;
         }
 
-        .header-text h1 {
+        .header-center h1 {
             font-size: 14pt;
             font-weight: bold;
             margin: 4px 0;
             letter-spacing: 0.5px;
         }
 
-        .header-text p {
+        .header-center p {
             font-size: 10pt;
             margin: 2px 0;
             line-height: 1.4;
@@ -116,81 +82,92 @@
             width: auto;
         }
 
-        /* Slogan */
-        .slogan {
+        /* Banner Bea Cukai */
+        .banner-beacukai {
             text-align: center;
-            margin: 12px 0;
-            font-style: italic;
-            color: #003366;
-            font-size: 11pt;
+            margin: 20px 0;
         }
 
-        .slogan img {
-            max-height: 24px;
-            width: auto;
+        .banner-beacukai img {
+            max-width: 100%;
+            height: auto;
         }
 
-        /* Content */
-        .content {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 28px;
-            margin-top: 8px;
-            position: relative;
-            border: 1px solid #eaeaea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .legality-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            height: 30px;
-            width: auto;
-            z-index: 2;
-        }
-
-        .section-title {
+        /* Judul Dokumen */
+        .doc-title {
             font-size: 14pt;
             font-weight: bold;
             color: #003366;
-            margin: 26px 0 16px;
+            margin: 25px 0 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 6px;
         }
 
+        /* Tabel Informasi Umum */
         .info-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 14px 0;
+            margin: 15px 0;
             font-size: 12pt;
         }
 
         .info-table td {
-            padding: 7px 10px;
+            padding: 8px 10px;
             vertical-align: top;
         }
 
         .info-table td:first-child {
             font-weight: bold;
-            width: 220px;
+            width: 200px;
         }
 
         .divider {
             border-top: 2px solid #003366;
-            margin: 28px 0;
+            margin: 25px 0;
         }
 
+        /* Section Title */
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #003366;
+            margin: 25px 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 6px;
+        }
+
+        /* Content with Legalization Badge */
+        .content-with-badge {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .content-main {
+            flex: 1;
+        }
+
+        .legalization-badge {
+            height: 100px;
+            width: auto;
+            margin-top: 10px;
+        }
+
+        /* Signature Section */
         .signature-section {
             margin-top: 50px;
             display: flex;
             justify-content: space-between;
-            gap: 24px;
+            gap: 40px;
         }
 
         .signature-box {
-            width: 48%;
+            width: 45%;
             text-align: center;
         }
 
@@ -218,6 +195,12 @@
             margin: 12px auto 0;
         }
 
+        .qr-code {
+            width: 100px;
+            height: auto;
+            margin: 10px auto;
+        }
+
         /* Footer */
         .footer {
             background: #003366;
@@ -229,16 +212,9 @@
             border-top: 2px solid white;
         }
 
-        .certification {
-            margin-top: 14px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .certification img {
-            height: 50px;
-            width: auto;
-            opacity: 0.95;
+        .footer-text {
+            margin: 10px 0;
+            line-height: 1.4;
         }
 
         .social-icons {
@@ -264,18 +240,24 @@
             fill: currentColor;
         }
 
+        .copyright {
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
-            .header-content {
+            .header {
                 flex-direction: column;
-                gap: 12px;
+                text-align: center;
+            }
+            .header-center {
+                order: -1;
+                padding: 12px 0;
             }
             .logo-left,
             .logo-right {
                 height: 65px;
-            }
-            .header-text {
-                padding: 0;
             }
             .signature-section {
                 flex-direction: column;
@@ -284,13 +266,12 @@
             .signature-box {
                 width: 100%;
             }
-            .legality-badge {
-                position: static;
-                margin: 0 auto 16px;
-                display: block;
+            .legalization-badge {
+                margin: 10px auto;
             }
-            .content {
-                padding: 22px 16px;
+            .content-with-badge {
+                flex-direction: column;
+                gap: 15px;
             }
         }
 
@@ -298,131 +279,133 @@
             body::before {
                 opacity: 0.05 !important;
             }
-            .content {
+            .content-main {
                 box-shadow: none;
                 border: none;
                 background: white;
-            }
-            .legality-badge,
-            .certification img {
-                opacity: 1 !important;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header Premium & Formal -->
+        <!-- Header Identik Contoh -->
         <div class="header">
-            <img src="https://i.ibb.co/jjZMSt8/1765242445842.jpg" alt="Garuda Pancasila" class="garuda-top" />
-
-            <div class="header-content">
-                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
-                
-                <div class="header-text">
-                    <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
-                    <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
-                    <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
-                    <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
-                    <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
-                </div>
-
-                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
+            <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
+            <div class="header-center">
+                <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
+                <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
+                <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
+                <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
+                <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
             </div>
+            <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
         </div>
 
-        <!-- Slogan -->
-        <div class="slogan">
-            <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Slogan Bea Cukai: Melayani, Mengawasi, dan Memfasilitasi" />
+        <!-- Banner Bea Cukai -->
+        <div class="banner-beacukai">
+            <img src="https://i.ibb.co/twfcXpxn/IMG-20251209-070039.jpg" alt="Banner Bea Cukai: Mengawasi & Melayani" />
         </div>
 
-        <!-- Konten Utama -->
-        <div class="content">
-            <img src="https://i.ibb.co/Y4BPNTjM/IMG-20251209-084239.jpg" alt="Wajib Legalisasi" class="legality-badge" />
+        <!-- Judul Dokumen -->
+        <h2 class="doc-title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</h2>
 
-            <h2 class="section-title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</h2>
+        <!-- Informasi Umum -->
+        <table class="info-table">
+            <tr><td>Nomor</td><td>: BA/BC/KLT/12/2025/089</td></tr>
+            <tr><td>Hari/Tanggal</td><td>: Senin, 08 Desember 2025</td></tr>
+            <tr><td>Tempat</td><td>: Unit Transit Kalimantan Timur</td></tr>
+            <tr><td>Pemeriksa</td><td>: Tim Legalitas & Pemeriksaan Barang</td></tr>
+        </table>
 
-            <table class="info-table">
-                <tr><td>Nomor</td><td>: BA/BC/KLT/12/2025/089</td></tr>
-                <tr><td>Hari/Tanggal</td><td>: Senin, 08 Desember 2025</td></tr>
-                <tr><td>Tempat</td><td>: Unit Transit Kalimantan Timur</td></tr>
-                <tr><td>Pemeriksa</td><td>: Tim Legalitas & Pemeriksaan Barang</td></tr>
-            </table>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
+        <!-- I. IDENTITAS PENERIMA BARANG -->
+        <h2 class="section-title">I. IDENTITAS PENERIMA BARANG</h2>
+        <div class="content-with-badge">
+            <div class="content-main">
+                <table class="info-table">
+                    <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
+                    <tr><td>Nomor Resi</td><td>: 001797568962</td></tr>
+                    <tr><td>Nama Penerima</td><td>: AHIM DG LOLO</td></tr>
+                    <tr><td>Nomor Telepon</td><td>: (+62) 822-2350-9049</td></tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>: Jl. Suka 5, Desa Anggana, Kec. Anggana,<br>Kab. Kutai Kartanegara, Kalimantan Timur 75381</td>
+                    </tr>
+                </table>
+            </div>
+            <img src="https://i.ibb.co/Y4BPNTjM/IMG-20251209-084239.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
+        </div>
 
-            <h2 class="section-title">I. IDENTITAS PENERIMA BARANG</h2>
-            <table class="info-table">
-                <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
-                <tr><td>Nomor Resi</td><td>: 001797568962</td></tr>
-                <tr><td>Nama Penerima</td><td>: AHIM DG LOLO</td></tr>
-                <tr><td>Nomor Telepon</td><td>: (+62) 822-2350-9049</td></tr>
-                <tr>
-                    <td>Alamat</td>
-                    <td>: Jl. Suka 5, Desa Anggana, Kec. Anggana,<br>Kab. Kutai Kartanegara, Kalimantan Timur 75381</td>
-                </tr>
-            </table>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
+        <!-- II. SPESIFIKASI BARANG -->
+        <h2 class="section-title">II. SPESIFIKASI BARANG</h2>
+        <table class="info-table">
+            <tr><td>Jenis Barang</td><td>: Rokok</td></tr>
+            <tr><td>Jumlah</td><td>: 15 slop (3.000 batang)</td></tr>
+            <tr><td>Berat</td><td>: 6.0 kg</td></tr>
+            <tr><td>Keterangan</td><td>: Tanpa pita cukai resmi</td></tr>
+        </table>
 
-            <h2 class="section-title">II. SPESIFIKASI BARANG</h2>
-            <table class="info-table">
-                <tr><td>Jenis Barang</td><td>: Rokok</td></tr>
-                <tr><td>Jumlah</td><td>: 15 slop (3.000 batang)</td></tr>
-                <tr><td>Berat</td><td>: 6.0 kg</td></tr>
-                <tr><td>Keterangan</td><td>: Tanpa pita cukai resmi</td></tr>
-            </table>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
+        <!-- III. TEMUAN PEMERIKSAAN -->
+        <h2 class="section-title">III. TEMUAN PEMERIKSAAN</h2>
+        <p>
+            Barang berupa rokok sejumlah 3.000 batang (15 slop) ditemukan tidak dilengkapi pita cukai resmi dan tidak disertai dokumen legalitas pelengkap.
+        </p>
 
-            <h2 class="section-title">III. TEMUAN PEMERIKSAAN</h2>
-            <p>
-                Barang berupa rokok sejumlah 3.000 batang (15 slop) ditemukan tidak dilengkapi pita cukai resmi dan tidak disertai dokumen legalitas pelengkap.
-            </p>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
+        <!-- IV. TINDAKAN INTERNAL -->
+        <h2 class="section-title">IV. TINDAKAN INTERNAL</h2>
+        <p>Berdasarkan SOP pemeriksaan internal, tindakan yang dilakukan adalah:</p>
+        <ol style="margin: 15px 0 15px 30px; padding-left: 10px;">
+            <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
+            <li>Mengeluarkan pemberitahuan jaminan legalitas sementara, dengan rincian:<br>
+                Nilai cukai (Rp 500 × 3.000 batang): Rp 1.500.000,00<br>
+                Biaya lanjutan pengiriman: Rp 50.000,00<br>
+                Total: <strong>Rp 1.550.000,00</strong></li>
+            <li>Memberikan opsi refund sebesar 80% (Rp 1.240.000,00) setelah proses verifikasi internal selesai.</li>
+            <li>Biaya admin internal sebesar 20% (Rp 310.000,00). Tindakan ini merupakan prosedur internal, bukan denda atau sanksi hukum dari instansi pemerintah.</li>
+        </ol>
 
-            <h2 class="section-title">IV. TINDAKAN INTERNAL</h2>
-            <p>Berdasarkan SOP pemeriksaan internal, tindakan yang dilakukan adalah:</p>
-            <ol style="margin: 15px 0 15px 30px; padding-left: 10px;">
-                <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
-                <li>Mengeluarkan pemberitahuan jaminan legalitas sementara, dengan rincian:<br>
-                    Nilai cukai (Rp 500 × 3.000 batang): Rp 1.500.000,00<br>
-                    Biaya lanjutan pengiriman: Rp 50.000,00<br>
-                    Total: <strong>Rp 1.550.000,00</strong></li>
-                <li>Memberikan opsi refund sebesar 80% (Rp 1.240.000,00) setelah proses verifikasi internal selesai.</li>
-                <li>Biaya admin internal sebesar 20% (Rp 310.000,00). Tindakan ini merupakan prosedur internal, bukan denda atau sanksi hukum dari instansi pemerintah.</li>
-            </ol>
+        <div class="divider"></div>
 
-            <div class="divider"></div>
+        <!-- V. KONSEKUENSI -->
+        <h2 class="section-title">V. KONSEKUENSI</h2>
+        <p>
+            Jika tidak dilunasi dalam 1 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
+        </p>
 
-            <h2 class="section-title">V. KONSEKUENSI</h2>
-            <p>
-                Jika tidak dilunasi dalam 1 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
-            </p>
-
-            <div class="signature-section">
-                <div class="signature-box">
-                    <p>Hormat kami,</p>
-                    <p>Kalimantan Timur, 08 Desember 2025</p>
-                    <p>Kepala Unit Transit Kalimantan Timur</p>
-                    <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan" class="signature-img" />
-                    <p class="signature-name">Arif Kurniawan</p>
-                    <p class="signature-nip">NIP. 19870311 201102 1 006</p>
-                </div>
-                <div class="signature-box">
-                    <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
-                    <p>Kepala Kantor</p>
-                    <p>Andi Oktavia</p>
-                    <p>NIP. 19851206 201001 1 004</p>
-                </div>
+        <!-- Tanda Tangan & Stempel -->
+        <div class="signature-section">
+            <div class="signature-box">
+                <p>Hormat kami,</p>
+                <p>Kalimantan Timur, 08 Desember 2025</p>
+                <p>Kepala Unit Transit Kalimantan Timur</p>
+                <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan Arif Kurniawan" class="signature-img" />
+                <p class="signature-name">Arif Kurniawan</p>
+                <p class="signature-nip">NIP. 19870311 201102 1 006</p>
+            </div>
+            <div class="signature-box">
+                <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
+                <img src="https://i.ibb.co/5JZmyRC/IMG-20251207-094853.jpg" alt="QR Code Meterai Elektronik" class="qr-code" />
+                <p>Kepala Kantor</p>
+                <p>Andi Oktavia</p>
+                <p>NIP. 19851206 201001 1 004</p>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
-            <p>Nomor Dokumen: BA/BC/KLT/12/2025/089 | Kode Arsip: BA-NC-2025-KLT-089</p>
+            <div class="footer-text">
+                <p>Direktorat Jenderal Bea dan Cukai</p>
+                <p>Jl. Dr. Wahidin Raya No. 1, Jakarta Pusat 10710</p>
+                <p>Telp: (021) 384 7000 | Website: beacukai.go.id</p>
+            </div>
 
             <div class="social-icons">
                 <a href="https://www.facebook.com/beacukaiRI" target="_blank">
@@ -443,19 +426,11 @@
                 </a>
             </div>
 
-            <div class="certification">
-                <img src="https://i.ibb.co/WqyhsfZ/Screenshot-20251209-080923.jpg" alt="Sertifikasi ISO" />
+            <div class="copyright">
+                <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Nomor Dokumen: BA/BC/KLT/12/2025/089 | Kode Arsip: BA-NC-2025-KLT-089</p>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-
-
-              <script>
-                              
-              </script>
-                        </body>
-                        </html>
-                    
