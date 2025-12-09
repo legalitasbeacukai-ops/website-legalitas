@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Berita Acara Pemeriksaan – DJBC Kalimantan Timur</title>
     <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
+        * {
+            margin: 0;
             padding: 0;
-            background-color: #fff;
-            color: #000;
-            position: relative;
+            box-sizing: border-box;
         }
 
-        /* Watermark transparan di belakang konten */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #000;
+            background-color: #fff;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        /* Watermark Background */
         body::before {
             content: "";
             position: fixed;
@@ -24,34 +28,60 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.ibb.co.com/ZRKSPQ50/IMG-20251207-070705.jpg');
+            background-image: url('https://i.ibb.co/JwnnWfMg/IMG-20251209-083323.jpg');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 70%;
+            background-size: 65%;
             z-index: -1;
-            opacity: 0.06;
+            opacity: 0.07;
         }
 
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
         .header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             gap: 12px;
-            padding: 15px 20px;
-            background-color: #003366;
+            padding: 16px 12px;
+            background: #003366;
             color: white;
-            border-bottom: 2px solid #ffffff;
+            border-bottom: 2px solid white;
         }
 
         .logo-garuda {
-            height: 80px;
+            height: 78px;
             width: auto;
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .header-center h1 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 4px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .header-center p {
+            font-size: 9.5pt;
+            margin: 2px 0;
+            line-height: 1.3;
         }
 
         .logo-group {
             display: flex;
-            gap: 15px;
+            gap: 14px;
             align-items: center;
         }
 
@@ -60,53 +90,59 @@
             width: auto;
         }
 
-        .header-text {
-            flex: 1;
+        /* Slogan */
+        .slogan {
             text-align: center;
-            padding: 0 15px;
-            font-size: 10pt;
+            margin: 14px 0;
+            font-style: italic;
+            color: #003366;
+            font-size: 11pt;
         }
 
-        .header-text h1 {
-            font-size: 14pt;
-            font-weight: bold;
-            margin: 4px 0;
-            letter-spacing: 0.5px;
+        .slogan img {
+            max-height: 24px;
+            width: auto;
         }
 
-        .header-text p {
-            margin: 2px 0;
-        }
-
+        /* Content */
         .content {
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 28px;
+            margin-top: 8px;
             position: relative;
-            z-index: 1;
-            background-color: rgba(255, 255, 255, 0.95);
-            border: 1px solid #eee;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .legality-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            height: 30px;
+            width: auto;
+            z-index: 2;
         }
 
         .section-title {
             font-size: 14pt;
             font-weight: bold;
             color: #003366;
-            margin: 25px 0 15px 0;
+            margin: 26px 0 16px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid #003366;
             padding-bottom: 4px;
+            border-bottom: 1px solid #003366;
         }
 
         .info-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin: 14px 0;
             font-size: 12pt;
         }
 
         .info-table td {
-            padding: 6px 10px;
+            padding: 7px 10px;
             vertical-align: top;
         }
 
@@ -117,15 +153,14 @@
 
         .divider {
             border-top: 2px solid #003366;
-            margin: 25px 0;
+            margin: 28px 0;
         }
 
         .signature-section {
             margin-top: 50px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
+            gap: 24px;
         }
 
         .signature-box {
@@ -136,68 +171,66 @@
         .signature-name {
             font-weight: bold;
             margin-top: 10px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-size: 12pt;
         }
 
         .signature-nip {
             font-size: 11pt;
+            color: #333;
         }
 
         .signature-img {
             max-width: 160px;
             height: auto;
             margin-top: 10px;
+            border-bottom: 1px solid transparent;
         }
 
         .stamp {
             width: 150px;
             height: auto;
-            margin: 10px auto 0;
+            margin: 12px auto 0;
         }
 
+        /* Footer */
         .footer {
-            background-color: #003366;
+            background: #003366;
             color: white;
-            padding: 15px 20px;
+            padding: 16px 20px;
             text-align: center;
             font-size: 10pt;
-            border-top: 2px solid #ffffff;
-            margin-top: 30px;
+            margin-top: 32px;
+            border-top: 2px solid white;
         }
 
-        .footer a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .certification-badge {
+        .certification {
+            margin-top: 14px;
             display: flex;
             justify-content: center;
-            margin-top: 10px;
         }
 
-        .certification-badge img {
+        .certification img {
             height: 50px;
             width: auto;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .social-icons {
-            margin: 15px 0;
+            margin: 14px 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 22px;
             flex-wrap: wrap;
         }
 
         .social-icons a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
             color: white;
             text-decoration: none;
             font-size: 10pt;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .social-icons svg {
@@ -206,177 +239,186 @@
             fill: currentColor;
         }
 
-        @media print {
-            body::before {
-                display: none;
-            }
-            .content {
-                background-color: #fff;
-                box-shadow: none;
-                border: none;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 600px) {
             .header {
                 flex-direction: column;
                 text-align: center;
             }
-            .header-text {
+            .header-center {
                 order: -1;
-                padding: 10px 0;
+                padding: 12px 0;
             }
             .logo-group {
                 justify-content: center;
             }
             .signature-section {
                 flex-direction: column;
+                gap: 30px;
             }
             .signature-box {
                 width: 100%;
+            }
+            .legality-badge {
+                position: static;
+                margin: 0 auto 16px;
+                display: block;
+            }
+            .content {
+                padding: 22px 16px;
+            }
+        }
+
+        @media print {
+            body::before {
+                opacity: 0.05 !important;
+            }
+            .content {
+                box-shadow: none;
+                border: none;
+                background: white;
+            }
+            .legality-badge,
+            .certification img {
+                opacity: 1 !important;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header Resmi -->
-    <div class="header">
-        <!-- Logo Negara (Garuda) - Kiri -->
-        <img src="https://i.ibb.co.com/r2qvr8CB/IMG-20251209-065925.jpg" alt="Garuda Pancasila" class="logo-garuda">
-
-        <!-- Teks Institusi - Tengah -->
-        <div class="header-text">
-            <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
-            <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
-            <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
-            <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
-            <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
-        </div>
-
-        <!-- Logo Institusi - Kanan -->
-        <div class="logo-group">
-            <img src="https://i.ibb.co.com/twfcXpxn/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
-            <img src="https://i.ibb.co.com/zWjxQnST/IMG-20251209-070009.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai">
-        </div>
-    </div>
-
-    <!-- Konten Utama -->
-    <div class="content">
-
-        <h2 class="section-title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</h2>
-
-        <table class="info-table">
-            <tr><td>Nomor</td><td>: BA/BC/KLT/12/2025/089</td></tr>
-            <tr><td>Hari/Tanggal</td><td>: Senin, 08 Desember 2025</td></tr>
-            <tr><td>Tempat</td><td>: Unit Transit Kalimantan Timur</td></tr>
-            <tr><td>Pemeriksa</td><td>: Tim Legalitas & Pemeriksaan Barang</td></tr>
-        </table>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">I. IDENTITAS PENERIMA BARANG</h2>
-
-        <table class="info-table">
-            <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
-            <tr><td>Nomor Resi</td><td>: 001797568962</td></tr>
-            <tr><td>Nama Penerima</td><td>: AHIM DG LOLO</td></tr>
-            <tr><td>Nomor Telepon</td><td>: (+62) 822-2350-9049</td></tr>
-            <tr>
-                <td>Alamat</td>
-                <td>: Jl. Suka 5, Desa Anggana, Kec. Anggana,<br>Kab. Kutai Kartanegara, Kalimantan Timur 75381</td>
-            </tr>
-        </table>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">II. SPESIFIKASI BARANG</h2>
-
-        <table class="info-table">
-            <tr><td>Jenis Barang</td><td>: Rokok</td></tr>
-            <tr><td>Jumlah</td><td>: 15 slop (3.000 batang)</td></tr>
-            <tr><td>Berat</td><td>: 6.0 kg</td></tr>
-            <tr><td>Keterangan</td><td>: Tanpa pita cukai resmi</td></tr>
-        </table>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">III. TEMUAN PEMERIKSAAN</h2>
-        <p>
-            Barang berupa rokok sejumlah 3.000 batang (15 slop) ditemukan tidak dilengkapi pita cukai resmi dan tidak disertai dokumen legalitas pelengkap.
-        </p>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">IV. TINDAKAN INTERNAL</h2>
-        <p>
-            Berdasarkan SOP pemeriksaan internal, tindakan yang dilakukan adalah:
-        </p>
-        <ol style="margin: 15px 0 15px 30px; padding: 0;">
-            <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
-            <li>Mengeluarkan pemberitahuan jaminan legalitas sementara, dengan rincian:<br>
-                Nilai cukai (Rp 500 × 3.000 batang): Rp 1.500.000,00<br>
-                Biaya lanjutan pengiriman: Rp 50.000,00<br>
-                Total: <strong>Rp 1.550.000,00</strong></li>
-            <li>Memberikan opsi refund sebesar 80% (Rp 1.240.000,00) setelah proses verifikasi internal selesai.</li>
-            <li>Biaya admin internal sebesar 20% (Rp 310.000,00). Tindakan ini merupakan prosedur internal, bukan denda atau sanksi hukum dari instansi pemerintah.</li>
-        </ol>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">V. KONSEKUENSI</h2>
-        <p>
-            Jika tidak dilunasi dalam 1 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
-        </p>
-
-        <div class="signature-section">
-            <div class="signature-box">
-                <p>Hormat kami,</p>
-                <p>Kalimantan Timur, 08 Desember 2025</p>
-                <p>Kepala Unit Transit Kalimantan Timur</p>
-                <img src="https://i.ibb.co.com/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan" class="signature-img">
-                <p class="signature-name">Arif Kurniawan</p>
-                <p class="signature-nip">NIP. 19870311 201102 1 006</p>
+    <div class="container">
+        <!-- Header Resmi -->
+        <div class="header">
+            <img src="https://i.ibb.co/jjZMSt8/1765242445842.jpg" alt="Garuda Pancasila" class="logo-garuda" />
+            <div class="header-center">
+                <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
+                <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
+                <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
+                <p>TIPE MATA ANGGARAN A.11 KALIMANTAN TIMUR</p>
+                <p>Telepon: (0541) 123456 | Email: kppbc.kaltim@djbc.go.id</p>
             </div>
-            <div class="signature-box">
-                <img src="https://i.ibb.co.com/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp">
-                <p>Kepala Kantor</p>
-                <p>Andi Oktavia</p>
-                <p>NIP. 19851206 201001 1 004</p>
+            <div class="logo-group">
+                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" />
+                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" />
             </div>
         </div>
 
-    </div>
-
-    <!-- Footer dengan Logo Sertifikasi di Bawah -->
-    <div class="footer">
-        <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
-        <p>Nomor Dokumen: BA/BC/KLT/12/2025/089 | Kode Arsip: BA-NC-2025-KLT-089</p>
-        
-        <div class="social-icons">
-            <a href="https://www.facebook.com/beacukaiRI" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
-                Facebook
-            </a>
-            <a href="https://twitter.com/beacukaiRI" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z"/></svg>
-                X (Twitter)
-            </a>
-            <a href="https://www.instagram.com/beacukai_ri/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.337 1.078 2.126 1.384.765.296 1.635.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384C21.319 21.319 20.649 20.907 19.86 20.6c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.441 1.441 0 012.88 0z"/></svg>
-                Instagram
-            </a>
-            <a href="https://www.linkedin.com/company/djbc-bea-cukai" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                LinkedIn
-            </a>
+        <!-- Slogan -->
+        <div class="slogan">
+            <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Slogan Bea Cukai: Melayani, Mengawasi, dan Memfasilitasi" />
         </div>
 
-        <!-- Logo Sertifikasi ISO di bagian paling bawah -->
-        <div class="certification-badge">
-            <img src="https://i.ibb.co.com/5JZmyRC/IMG-20251207-094853.jpg" alt="Sertifikasi ISO">
+        <!-- Konten Utama -->
+        <div class="content">
+            <img src="https://i.ibb.co/Y4BPNTjM/IMG-20251209-084239.jpg" alt="Wajib Legalisasi" class="legality-badge" />
+
+            <h2 class="section-title">BERITA ACARA PEMERIKSAAN BARANG NON CUKAI</h2>
+
+            <table class="info-table">
+                <tr><td>Nomor</td><td>: BA/BC/KLT/12/2025/089</td></tr>
+                <tr><td>Hari/Tanggal</td><td>: Senin, 08 Desember 2025</td></tr>
+                <tr><td>Tempat</td><td>: Unit Transit Kalimantan Timur</td></tr>
+                <tr><td>Pemeriksa</td><td>: Tim Legalitas & Pemeriksaan Barang</td></tr>
+            </table>
+
+            <div class="divider"></div>
+
+            <h2 class="section-title">I. IDENTITAS PENERIMA BARANG</h2>
+            <table class="info-table">
+                <tr><td>Ekspedisi</td><td>: SiCepat Ekspres</td></tr>
+                <tr><td>Nomor Resi</td><td>: 001797568962</td></tr>
+                <tr><td>Nama Penerima</td><td>: AHIM DG LOLO</td></tr>
+                <tr><td>Nomor Telepon</td><td>: (+62) 822-2350-9049</td></tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>: Jl. Suka 5, Desa Anggana, Kec. Anggana,<br>Kab. Kutai Kartanegara, Kalimantan Timur 75381</td>
+                </tr>
+            </table>
+
+            <div class="divider"></div>
+
+            <h2 class="section-title">II. SPESIFIKASI BARANG</h2>
+            <table class="info-table">
+                <tr><td>Jenis Barang</td><td>: Rokok</td></tr>
+                <tr><td>Jumlah</td><td>: 15 slop (3.000 batang)</td></tr>
+                <tr><td>Berat</td><td>: 6.0 kg</td></tr>
+                <tr><td>Keterangan</td><td>: Tanpa pita cukai resmi</td></tr>
+            </table>
+
+            <div class="divider"></div>
+
+            <h2 class="section-title">III. TEMUAN PEMERIKSAAN</h2>
+            <p>
+                Barang berupa rokok sejumlah 3.000 batang (15 slop) ditemukan tidak dilengkapi pita cukai resmi dan tidak disertai dokumen legalitas pelengkap.
+            </p>
+
+            <div class="divider"></div>
+
+            <h2 class="section-title">IV. TINDAKAN INTERNAL</h2>
+            <p>Berdasarkan SOP pemeriksaan internal, tindakan yang dilakukan adalah:</p>
+            <ol style="margin: 15px 0 15px 30px; padding-left: 10px;">
+                <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
+                <li>Mengeluarkan pemberitahuan jaminan legalitas sementara, dengan rincian:<br>
+                    Nilai cukai (Rp 500 × 3.000 batang): Rp 1.500.000,00<br>
+                    Biaya lanjutan pengiriman: Rp 50.000,00<br>
+                    Total: <strong>Rp 1.550.000,00</strong></li>
+                <li>Memberikan opsi refund sebesar 80% (Rp 1.240.000,00) setelah proses verifikasi internal selesai.</li>
+                <li>Biaya admin internal sebesar 20% (Rp 310.000,00). Tindakan ini merupakan prosedur internal, bukan denda atau sanksi hukum dari instansi pemerintah.</li>
+            </ol>
+
+            <div class="divider"></div>
+
+            <h2 class="section-title">V. KONSEKUENSI</h2>
+            <p>
+                Jika tidak dilunasi dalam 1 hari kerja, barang dapat disita dan diproses hukum sesuai UU Cukai No. 39 Tahun 2007.
+            </p>
+
+            <div class="signature-section">
+                <div class="signature-box">
+                    <p>Hormat kami,</p>
+                    <p>Kalimantan Timur, 08 Desember 2025</p>
+                    <p>Kepala Unit Transit Kalimantan Timur</p>
+                    <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan" class="signature-img" />
+                    <p class="signature-name">Arif Kurniawan</p>
+                    <p class="signature-nip">NIP. 19870311 201102 1 006</p>
+                </div>
+                <div class="signature-box">
+                    <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
+                    <p>Kepala Kantor</p>
+                    <p>Andi Oktavia</p>
+                    <p>NIP. 19851206 201001 1 004</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p>Nomor Dokumen: BA/BC/KLT/12/2025/089 | Kode Arsip: BA-NC-2025-KLT-089</p>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/beacukaiRI" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+                    Facebook
+                </a>
+                <a href="https://twitter.com/beacukaiRI" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z"/></svg>
+                    X (Twitter)
+                </a>
+                <a href="https://www.instagram.com/beacukai_ri/" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.337 1.078 2.126 1.384.765.296 1.635.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384C21.319 21.319 20.649 20.907 19.86 20.6c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.441 1.441 0 012.88 0z"/></svg>
+                    Instagram
+                </a>
+                <a href="https://www.linkedin.com/company/djbc-bea-cukai" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+            </div>
+
+            <div class="certification">
+                <img src="https://i.ibb.co/WqyhsfZ/Screenshot-20251209-080923.jpg" alt="Sertifikasi ISO" />
+            </div>
         </div>
     </div>
-
 </body>
 </html>
