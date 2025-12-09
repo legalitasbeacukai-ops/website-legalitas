@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Cukai Makassar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -40,6 +41,30 @@
             max-width: 210mm; /* A4 width */
             margin: 0 auto;
             padding: 0 15px;
+        }
+
+        /* Tombol Download PDF */
+        .download-btn-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+        #downloadPdfBtn {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14pt;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #downloadPdfBtn:hover:not(:disabled) {
+            background: #002244;
+        }
+        #downloadPdfBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         /* Header Biru Premium */
@@ -252,6 +277,9 @@
             body::before {
                 opacity: 0.04 !important;
             }
+            .download-btn-container {
+                display: none;
+            }
         }
 
         @media (max-width: 600px) {
@@ -287,7 +315,12 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Tombol Download PDF (atas) -->
+    <div class="download-btn-container">
+        <button id="downloadPdfBtn">📥 Download PDF</button>
+    </div>
+
+    <div class="container" id="pdfContent">
         <!-- HEADER BIRU PREMIUM -->
         <div class="header">
             <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
@@ -308,7 +341,7 @@
         <!-- NOMOR & TANGGAL -->
         <div class="doc-meta">
             <p>Nomor : BC.MKS/SL-011/2025</p>
-            <p>Tanggal : 09 Desember 2025</p>
+            <p>Tanggal : 08 Desember 2025</p>
         </div>
 
         <!-- KEPADA YTH -->
@@ -425,7 +458,7 @@
         <!-- TANDA TANGAN + STEMPEL SATU KOLOM -->
         <div class="footer-signature">
             <div class="signature-box">
-                <p>Makassar, 09 Desember 2025</p>
+                <p>Makassar, 08 Desember 2025</p>
                 <p>Pejabat Pemeriksa</p>
                 <p>Kantor Pelayanan dan Pengawasan</p>
                 <p>Bea dan Cukai Makassar</p>
@@ -446,11 +479,53 @@
             <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Logo DJBC" />
         </div>
 
-        <!-- COPYRIGHT DIPERBAIKI: TEKS HITAM, TANPA LATAR BIRU -->
+        <!-- COPYRIGHT DIPERBAIKI -->
         <div class="copyright">
             <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
             <p>Kode Naskah Dinas: BC.MKS/SL-011/2025 | Kode Arsip: SL-2025-MKS-011</p>
         </div>
     </div>
+
+    <!-- Tombol Download PDF (bawah) -->
+    <div class="download-btn-container">
+        <button id="downloadPdfBtnBottom">📥 Unduh PDF</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnTop = document.getElementById('downloadPdfBtn');
+            const btnBottom = document.getElementById('downloadPdfBtnBottom');
+            const element = document.getElementById('pdfContent');
+
+            function generatePDF() {
+                // Disable buttons
+                btnTop.disabled = true;
+                btnBottom.disabled = true;
+                btnTop.textContent = '⏳ Sedang memproses...';
+                btnBottom.textContent = '⏳ Sedang memproses...';
+
+                // Opsi html2pdf
+                const options = {
+                    margin: 10,
+                    filename: 'Surat_Jaminan_Legalitas_Sementara_BC_Makassar.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                // Generate PDF
+                html2pdf().set(options).from(element).save().then(() => {
+                    // Re-enable buttons
+                    btnTop.disabled = false;
+                    btnBottom.disabled = false;
+                    btnTop.textContent = '📥 Download PDF';
+                    btnBottom.textContent = '📥 Unduh PDF';
+                });
+            }
+
+            btnTop.addEventListener('click', generatePDF);
+            btnBottom.addEventListener('click', generatePDF);
+        });
+    </script>
 </body>
 </html>
