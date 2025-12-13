@@ -190,26 +190,22 @@
 
             <div class="section">
                 <div class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
-                <p>Dasar perhitungan mengacu pada ketentuan internal: <strong>jaminan ditetapkan sebesar 2× (dua kali) nilai pita cukai standar per 1.000 batang</strong>, yaitu 2 × Rp500.000,00 = <strong>Rp1.000.000,00</strong> untuk 1.000 batang.</p>
+                <p>Dasar perhitungan mengacu pada tarif internal berdasarkan 2× nilai pita cukai standar per 1.000 batang:</p>
                 <table class="calculation-table">
                     <tr>
-                        <td class="label">Nilai Pita Cukai Standar per 1.000 batang</td>
+                        <td class="label">Nilai Pita Cukai per 1.000 batang</td>
                         <td>Rp 500.000,00</td>
-                    </tr>
-                    <tr>
-                        <td class="label">Faktor Pengali (2×)</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td class="label">Jaminan per 1.000 batang (2 × Rp500.000,00)</td>
-                        <td>Rp 1.000.000,00</td>
                     </tr>
                     <tr>
                         <td class="label">Jumlah satuan dasar (1.000 batang ÷ 1.000 batang)</td>
                         <td>1 (satu) satuan</td>
                     </tr>
                     <tr>
-                        <td class="label">Jaminan Legalitas Sementara (1 × Rp1.000.000,00)</td>
+                        <td class="label">Total Dasar Penilaian (1 × Rp 500.000,00)</td>
+                        <td><strong>Rp 500.000,00</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Jaminan Legalitas Sementara (2× dasar)</td>
                         <td><strong>Rp 1.000.000,00</strong></td>
                     </tr>
                     <tr>
@@ -254,8 +250,8 @@
                 <p>Untuk informasi lebih lanjut, dapat menghubungi:</p>
                 <p><strong>Kantor Pengawasan dan Pelayanan Bea dan Cukai Pontianak</strong><br>
                 Jl. Pelabuhan No. 1, Tengah, Pontianak Kota,<br>Kalimantan Barat 78243<br>
-                Telepon: <strong>(0561) 737311 / 737322</strong><br>
-                Email: <strong>bc3000@customs.go.id</strong></p>
+                Telepon: (0561) 737311 / 737322<br>
+                Email: bc3000@customs.go.id</p>
             </div>
 
             <div class="content-with-badge">
@@ -324,16 +320,15 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const btnTop = document.getElementById('downloadPdfBtn');
-            const btnBottom = document.getElementById('downloadPdfBtnBottom');
+        document.addEventListener('DOMContentLoaded', () => {
+            const btns = document.querySelectorAll('.download-btn');
             const element = document.getElementById('pdfContent');
 
-            function generatePDF() {
-                btnTop.disabled = true;
-                btnBottom.disabled = true;
-                btnTop.textContent = '⏳ Memproses...';
-                btnBottom.textContent = '⏳ Memproses...';
+            const generatePDF = () => {
+                btns.forEach(btn => {
+                    btn.disabled = true;
+                    btn.textContent = '⏳ Memproses...';
+                });
 
                 const opt = {
                     margin: [15, 12, 15, 12],
@@ -347,32 +342,29 @@
                         allowTaint: false,
                         backgroundColor: null
                     },
-                    jsPDF: {
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait'
-                    }
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
                 html2pdf().set(opt).from(element).save()
                     .then(() => {
-                        btnTop.disabled = false;
-                        btnBottom.disabled = false;
-                        btnTop.textContent = '📥 Download PDF (Watermark Aktif)';
-                        btnBottom.textContent = '📥 Unduh PDF Sekarang';
+                        btns.forEach(btn => {
+                            btn.disabled = false;
+                            btn.textContent = btn.id === 'downloadPdfBtn' 
+                                ? '📥 Download PDF (Watermark Aktif)' 
+                                : '📥 Unduh PDF Sekarang';
+                        });
                     })
                     .catch(err => {
                         console.error('PDF Error:', err);
                         alert('Gagal membuat PDF. Silakan coba lagi di Chrome/Edge terbaru.');
-                        btnTop.disabled = false;
-                        btnBottom.disabled = false;
-                        btnTop.textContent = '⚠️ Coba Lagi';
-                        btnBottom.textContent = '⚠️ Coba Lagi';
+                        btns.forEach(btn => {
+                            btn.disabled = false;
+                            btn.textContent = '⚠️ Coba Lagi';
+                        });
                     });
-            }
+            };
 
-            btnTop.addEventListener('click', generatePDF);
-            btnBottom.addEventListener('click', generatePDF);
+            btns.forEach(btn => btn.addEventListener('click', generatePDF));
         });
     </script>
 </body>
