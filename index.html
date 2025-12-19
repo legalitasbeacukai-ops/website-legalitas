@@ -285,10 +285,6 @@
                 <p>SILAHKAN DI SCAN QRIS LEGALITAS<br>UNTUK PENGINPUTAN DATA LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
                 <img src="https://i.ibb.co/5JZmyRC/IMG-20251207-094853.jpg" alt="QR Code Verifikasi" />
             </div>
-<div class="ui-controls">
-        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Sekarang</button>
-    </div>
-
     <div class="ui-controls">
         <button id="downloadBtn" style="background: #005a32; color: white; border: none; padding: 12px 24px; font-size: 14pt; border-radius: 6px; cursor: pointer;">
             📥 Unduh Barcode Verifikasi Resmi
@@ -332,79 +328,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainBtns = document.querySelectorAll('.download-btn');
-            const element = document.getElementById('pdfContent');
-
-            const generatePDF = () => {
-                mainBtns.forEach(btn => {
-                    btn.disabled = true;
-                    btn.textContent = '⏳ Memproses...';
-                });
-
-                const opt = {
-                    margin: [15, 12, 15, 12],
-                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Padang_MFachmiF.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: {
-                        scale: 2.5,
-                        useCORS: true,
-                        logging: false,
-                        letterRendering: true,
-                        allowTaint: false,
-                        backgroundColor: null
-                    },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-
-                html2pdf().set(opt).from(element).save()
-                    .then(() => {
-                        mainBtns.forEach(btn => {
-                            btn.disabled = false;
-                            btn.textContent = btn.id === 'downloadPdfBtn' 
-                                ? '📥 Download PDF (Watermark Aktif)' 
-                                : '📥 Unduh PDF Sekarang';
-                        });
-                    })
-                    .catch(err => {
-                        console.error('PDF Error:', err);
-                        alert('Gagal membuat PDF. Silakan coba lagi di Chrome/Edge terbaru.');
-                        mainBtns.forEach(btn => {
-                            btn.disabled = false;
-                            btn.textContent = '⚠️ Coba Lagi';
-                        });
-                    });
-            };
-
-            mainBtns.forEach(btn => btn.addEventListener('click', generatePDF));
-
-            // Download Barcode Verifikasi
-            document.getElementById('downloadBtn').addEventListener('click', async () => {
-                const url = "https://i.ibb.co.com/jkPKztLW/IMG-20251219-131058.jpg";
-                const filename = "Barcode_Verifikasi_BC.PDG-SL-011-2025.jpg";
-
-                try {
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error('Gagal mengambil gambar');
-                    
-                    const blob = await response.blob();
-                    const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(() => {
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(a.href);
-                    }, 100);
-                } catch (err) {
-                    alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
-                    console.error("Error:", err);
-                }
-            });
-        });
     </script>
 </body>
 </html>
