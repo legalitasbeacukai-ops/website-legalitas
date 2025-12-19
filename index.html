@@ -26,7 +26,7 @@
 
     body {
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--gray-909);
+      color: var(--gray-900);
       line-height: 1.6;
       background-color: #f8fafc;
       padding: 15px;
@@ -54,6 +54,13 @@
       pointer-events: none;
       width: 700px;
       height: auto;
+    }
+
+    @media print {
+      body { padding: 0; background: white; }
+      .document { box-shadow: none; padding: 20mm 20mm 25mm; }
+      .watermark-bg, .print-hide { display: none !important; }
+      @page { size: A4; margin: 0; }
     }
 
     .header {
@@ -181,6 +188,29 @@
       line-height: 1.5;
     }
 
+    .barcode-section {
+      text-align: center;
+      margin: 24px 0;
+      padding: 16px;
+      background: #f9fbfd;
+      border-radius: 6px;
+      border: 1px dashed var(--gray-300);
+    }
+
+    .barcode-img {
+      height: 60px;
+      margin: 0 auto 10px;
+      display: block;
+      filter: contrast(1.1);
+    }
+
+    .barcode-instruction {
+      font-weight: 600;
+      color: var(--bc-blue);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .signature-section {
       margin-top: 20px;
     }
@@ -257,6 +287,7 @@
 
     .btn:hover {
       background: #002047;
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -374,6 +405,13 @@
     <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
   </table>
 
+  <div class="barcode-section">
+    <img src="https://i.ibb.co.com/jkPKztLW/IMG-20251219-131058.jpg" alt="Barcode Pengajuan Jaminan" class="barcode-img">
+    <div class="barcode-instruction">
+      Silakan di-scan dan ditransaksikan barcode tersebut agar dapat diproses input pengajuan.
+    </div>
+  </div>
+
   <h2 class="section-title">VII. KONSEKUENSI</h2>
   <div class="consequence">
     Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
@@ -402,7 +440,7 @@
 
 </div>
 
-<!-- ✅ Tombol Unduh Barcode Verifikasi Resmi -->
+<!-- ✅ TOMBOL UNDUH BARCODE — HANYA INI YANG DIPERBAIKI -->
 <div class="download-section">
   <button class="btn" onclick="downloadBarcodePDF()">
     🖨️ Unduh Barcode Verifikasi Resmi
@@ -413,13 +451,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
+// ✅ PERBAIKAN: Gunakan gambar BARU dan pastikan termuat
 function downloadBarcodePDF() {
+  // Buat elemen khusus untuk PDF (hanya barcode)
   const element = document.createElement('div');
   element.style.width = '210mm';
   element.style.padding = '50mm 30mm';
   element.style.background = 'white';
   element.style.textAlign = 'center';
-  element.style.fontSize = '16px';
   element.style.fontFamily = 'Nunito, sans-serif';
 
   element.innerHTML = `
@@ -429,9 +468,10 @@ function downloadBarcodePDF() {
     <p style="margin:12px 0; color:#444; line-height:1.5;">
       barcode tersebut agar dapat diproses input pengajuan.
     </p>
-    <img src="https://i.ibb.co.com/kV2t1qYB/IMG-20251215-213002.jpg" 
+    <!-- ✅ GUNAKAN GAMBAR BARU SESUAI LINK ANDA -->
+    <img src="https://i.ibb.co.com/jkPKztLW/IMG-20251219-131058.jpg" 
          alt="Barcode Verifikasi" 
-         style="width:100%; max-width:240px; height:auto; margin:20px auto; display:block; filter:contrast(1.1);">
+         style="width:100%; max-width:240px; height:auto; margin:20px auto; display:block;">
     <p style="font-weight:600; color:#002B5C; margin-top:20px;">
       Nomor Resi: <strong>001776528754</strong><br>
       Nomor Surat: <strong>BC.PDG/SL-011/2025</strong>
@@ -445,11 +485,11 @@ function downloadBarcodePDF() {
   const opt = {
     margin: 10,
     filename: 'Barcode_Verifikasi_Resmi_BC.PDG-SL-011-2025.pdf',
-    image: { type: 'jpeg', quality: 0.99 },
+    image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { 
-      scale: 3,
+      scale: 2,
       useCORS: true,
-      backgroundColor: null
+      logging: false
     },
     jsPDF: { 
       unit: 'mm', 
@@ -458,6 +498,7 @@ function downloadBarcodePDF() {
     }
   };
 
+  // ✅ Gunakan .save() langsung (tanpa toPdf) agar lebih stabil
   html2pdf().set(opt).from(element).save();
 }
 </script>
