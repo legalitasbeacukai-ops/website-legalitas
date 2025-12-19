@@ -1,25 +1,9 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <style>
-                body {
-                  background-color: white; /* Ensure the iframe has a white background */
-                }
-
-                
-              </style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Cukai Padang</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -32,13 +16,6 @@
         .ui-controls {
             text-align: center; margin: 15px 0; z-index: 10; position: relative;
         }
-        .download-btn {
-            background: #003366; color: white; border: none; padding: 12px 28px;
-            font-size: 14pt; font-weight: bold; border-radius: 6px; cursor: pointer;
-            transition: background 0.3s;
-        }
-        .download-btn:hover:not(:disabled) { background: #002244; }
-        .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         #pdfContent {
             background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 30px;
@@ -163,8 +140,11 @@
     </style>
 </head>
 <body>
+    <!-- Hanya tombol Unduh Barcode Verifikasi yang dipertahankan -->
     <div class="ui-controls">
-        <button id="downloadPdfBtn" class="download-btn">📥 Download PDF (Watermark Aktif)</button>
+        <button id="downloadBtn" style="background: #005a32; color: white; border: none; padding: 12px 24px; font-size: 14pt; border-radius: 6px; cursor: pointer;">
+            📥 Unduh Barcode Verifikasi Resmi
+        </button>
     </div>
 
     <div id="pdfContent">
@@ -338,86 +318,34 @@
     </div>
 
     <div class="ui-controls">
-        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Sekarang</button>
-    </div>
-
-    <div class="ui-controls">
         <button id="downloadBtn" style="background: #005a32; color: white; border: none; padding: 12px 24px; font-size: 14pt; border-radius: 6px; cursor: pointer;">
             📥 Unduh Barcode Verifikasi Resmi
         </button>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainBtns = document.querySelectorAll('.download-btn');
-            const element = document.getElementById('pdfContent');
+        document.getElementById('downloadBtn').addEventListener('click', async () => {
+            const url = "https://i.ibb.co.com/5hBks1cn/IMG-20251219-172223.jpg";
+            const filename = "Barcode_Verifikasi_BC.PDG-SL-011-2025.jpg";
 
-            const generatePDF = () => {
-                mainBtns.forEach(btn => {
-                    btn.disabled = true;
-                    btn.textContent = '⏳ Memproses...';
-                });
-
-                const opt = {
-                    margin: [15, 12, 15, 12],
-                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Padang_MFachmiF.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: {
-                        scale: 2.5,
-                        useCORS: true,
-                        logging: false,
-                        letterRendering: true,
-                        allowTaint: false,
-                        backgroundColor: null
-                    },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-
-                html2pdf().set(opt).from(element).save()
-                    .then(() => {
-                        mainBtns.forEach(btn => {
-                            btn.disabled = false;
-                            btn.textContent = btn.id === 'downloadPdfBtn' 
-                                ? '📥 Download PDF (Watermark Aktif)' 
-                                : '📥 Unduh PDF Sekarang';
-                        });
-                    })
-                    .catch(err => {
-                        console.error('PDF Error:', err);
-                        alert('Gagal membuat PDF. Silakan coba lagi di Chrome/Edge terbaru.');
-                        mainBtns.forEach(btn => {
-                            btn.disabled = false;
-                            btn.textContent = '⚠️ Coba Lagi';
-                        });
-                    });
-            };
-
-            mainBtns.forEach(btn => btn.addEventListener('click', generatePDF));
-
-            // ✅ UPDATE: Ganti URL gambar barcode verifikasi
-            document.getElementById('downloadBtn').addEventListener('click', async () => {
-                const url = "https://i.ibb.co.com/5hBks1cn/IMG-20251219-172223.jpg";
-                const filename = "Barcode_Verifikasi_BC.PDG-SL-011-2025.jpg";
-
-                try {
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error('Gagal mengambil gambar');
-                    
-                    const blob = await response.blob();
-                    const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(() => {
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(a.href);
-                    }, 100);
-                } catch (err) {
-                    alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
-                    console.error("Error:", err);
-                }
-            });
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Gagal mengambil gambar');
+                
+                const blob = await response.blob();
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(a.href);
+                }, 100);
+            } catch (err) {
+                alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
+                console.error("Error:", err);
+            }
         });
     </script>
 </body>
