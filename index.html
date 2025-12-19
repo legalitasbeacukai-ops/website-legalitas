@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <!-- ✅ VIEWPORT STANDAR UNTUK MOBILE -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SURAT PEMBERITAHUAN - BEA CUKAI PADANG</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
@@ -23,55 +22,41 @@
       box-sizing: border-box;
     }
 
-    /* ✅ BACKGROUND PUTIH BERSIH — SEPERTI KERTAS */
     body {
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: var(--gray-900);
       line-height: 1.6;
       background-color: white;
-      padding: 8px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
-    /* ✅ CONTAINER DOKUMEN: UKURAN A4, SCROLL HORIZONTAL JIKA PERLU */
-    .document-container {
-      width: 210mm;
-      min-height: 297mm;
+    .document {
+      width: 100%;
+      max-width: 95vw;
       background: white;
       position: relative;
-      padding: 20mm;
+      padding: 20px;
       font-size: 14px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-      overflow-wrap: break-word;
+      border: 1px solid var(--gray-300);
     }
 
-    /* ✅ WATERMARK LOGO: TEGAK LURUS, TRANSPARAN, JELAS */
-    .watermark-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 320px;
-      height: auto;
-      opacity: 0.04;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      pointer-events: none;
-      filter: grayscale(100%) brightness(110%);
-    }
-
+    /* ✅ HEADER: LOGO KEMENKEU & DJBC SIMETRIS KIRI-KANAN */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
-      gap: 24px;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .logo {
-      width: 72px;
+      width: 60px;
       flex-shrink: 0;
     }
 
@@ -86,7 +71,7 @@
       font-size: 13px;
       line-height: 1.4;
       flex: 1;
-      min-height: 82px;
+      min-height: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -105,15 +90,15 @@
 
     .title-section {
       text-align: center;
-      margin: 20px 0 22px;
+      margin: 20px 0 20px;
     }
 
     .title-main {
       font-family: 'Merriweather', serif;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--bc-blue);
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .doc-meta {
@@ -124,11 +109,13 @@
       margin-bottom: 20px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--bc-gold);
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .recipient-block {
-      margin: 22px 0;
-      padding: 18px;
+      margin: 20px 0;
+      padding: 16px;
       border-left: 4px solid var(--bc-blue);
       background-color: #fbfcff;
       border-radius: 0 4px 4px 0;
@@ -138,7 +125,7 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--bc-blue);
-      margin: 28px 0 16px;
+      margin: 24px 0 14px;
       padding-bottom: 4px;
       border-bottom: 2px solid var(--bc-gold);
     }
@@ -146,11 +133,11 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
     th, td {
-      padding: 11px 14px;
+      padding: 10px 12px;
       text-align: left;
       border: 1px solid var(--gray-300);
       vertical-align: top;
@@ -175,13 +162,13 @@
     }
 
     .legalisasi-cell {
-      width: 56px;
+      width: 50px;
       text-align: center;
       padding: 6px 8px !important;
     }
 
     .legalisasi-cell img {
-      height: 44px;
+      height: 40px;
       width: auto;
       object-fit: contain;
     }
@@ -189,8 +176,8 @@
     .consequence {
       background: #fff8f8;
       border-left: 4px solid var(--red);
-      padding: 18px;
-      margin: 24px 0;
+      padding: 16px;
+      margin: 20px 0;
       font-weight: 600;
       color: var(--red);
       border-radius: 0 4px 4px 0;
@@ -199,7 +186,7 @@
 
     .note-box {
       background: #f9fbfd;
-      padding: 14px;
+      padding: 12px;
       margin: 20px 0;
       border-left: 4px solid var(--bc-blue);
       border-radius: 0 4px 4px 0;
@@ -212,7 +199,7 @@
     }
 
     .signature-section {
-      margin-top: 32px;
+      margin-top: 30px;
       text-align: right;
     }
 
@@ -230,16 +217,16 @@
 
     .signature-realistic img {
       display: block;
-      height: 80px;
-      max-width: 260px;
+      height: 60px;
+      max-width: 200px;
       object-fit: contain;
-      margin: 0 0 6px 0;
+      margin: 0 0 4px 0;
       background: white;
     }
 
     .signature-realistic .signature-name {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       color: #000;
       margin: 0;
       line-height: 1.3;
@@ -247,7 +234,7 @@
     }
 
     .signature-realistic .signature-nip {
-      font-size: 14px;
+      font-size: 13px;
       color: #333;
       margin: 2px 0 0 0;
       line-height: 1.3;
@@ -256,16 +243,18 @@
 
     .footer {
       margin-top: 30px;
-      padding-top: 18px;
+      padding-top: 16px;
       border-top: 1px solid var(--gray-300);
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .iso-logo {
-      width: 100px;
-      height: 30px;
+      width: 80px;
+      height: 24px;
     }
 
     .iso-logo img {
@@ -279,12 +268,12 @@
       font-size: 11px;
       color: var(--gray-500);
       flex: 1;
-      padding: 0 20px;
+      padding: 0 10px;
       line-height: 1.4;
     }
 
     ol {
-      padding-left: 24px;
+      padding-left: 20px;
       margin: 14px 0;
     }
 
@@ -296,15 +285,15 @@
       width: 100%;
       max-width: 380px;
       text-align: center;
-      margin: 24px auto 0;
+      margin: 20px auto 0;
     }
 
     .btn {
       background: var(--bc-blue);
       color: white;
       border: none;
-      padding: 12px 28px;
-      font-size: 15px;
+      padding: 12px 24px;
+      font-size: 14px;
       font-weight: 600;
       border-radius: 6px;
       cursor: pointer;
@@ -326,155 +315,149 @@
       .download-section {
         display: none;
       }
-      .watermark-logo {
-        opacity: 0.06;
-      }
-      .document-container {
+      .document {
         box-shadow: none;
+        border: none;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- ✅ WRAPPER UNTUK SCROLL HORIZONTAL DI HP -->
-<div style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
-  <div class="document-container">
-    <!-- ✅ WATERMARK: TEGAK LURUS, TRANSPARAN -->
-    <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="" class="watermark-logo">
+<div class="document">
 
-    <div class="header">
-      <div class="logo">
-        <img src="https://i.ibb.co.com/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
-      </div>
-      <div class="kop-surat">
-        <div class="kop-line kop-bold">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</div>
-        <div class="kop-line kop-bold">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
-        <div class="kop-line kop-bold">KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</div>
-        <div class="kop-line kop-bold">TIPE A PADANG</div>
-        <div class="kop-line">Jalan Tanjung Priok Nomor 44, Kelurahan Teluk Bayur, Kecamatan Padang Selatan</div>
-        <div class="kop-line">Kota Padang, Provinsi Sumatera Barat 25253</div>
-        <div class="kop-line">Telepon: (0751) 31460 / 31461 | Email: kppbc.tipea.padang@customs.go.id</div>
-      </div>
-      <div class="logo">
-        <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai">
-      </div>
+  <!-- ✅ HEADER: LOGO KEMENKEU & DJBC SIMETRIS -->
+  <div class="header">
+    <div class="logo">
+      <img src="https://i.ibb.co.com/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
     </div>
-
-    <div class="title-section">
-      <div class="title-main">SURAT PEMBERITAHUAN<br>JAMINAN LEGALITAS SEMENTARA</div>
+    <div class="kop-surat">
+      <div class="kop-line kop-bold">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</div>
+      <div class="kop-line kop-bold">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
+      <div class="kop-line kop-bold">KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</div>
+      <div class="kop-line kop-bold">TIPE A PADANG</div>
+      <div class="kop-line">Jalan Tanjung Priok Nomor 44, Kelurahan Teluk Bayur, Kecamatan Padang Selatan</div>
+      <div class="kop-line">Kota Padang, Provinsi Sumatera Barat 25253</div>
+      <div class="kop-line">Telepon: (0751) 31460 / 31461 | Email: kppbc.tipea.padang@customs.go.id</div>
     </div>
-
-    <div class="doc-meta">
-      <span>Nomor: BC.PDG/SL-011/2025</span>
-      <span>Tanggal: Jumat, 19 Desember 2025</span>
+    <div class="logo">
+      <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai">
     </div>
+  </div>
 
-    <div class="recipient-block">
-      <p><strong>Kepada Yth.,</strong></p>
-      <p><strong>Nama</strong> &nbsp;: M. Fachmi F</p>
-      <p><strong>Alamat</strong> : Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</p>
-      <p><strong>Telepon</strong> : (+62) 822-8333-1163</p>
-      <p><em>Dengan hormat,</em></p>
-      <p>Berdasarkan hasil pemeriksaan fisik dan administrasi terhadap barang kiriman pada fasilitas bongkar muat Kantor Pengawasan dan Pelayanan Bea dan Cukai (KPPBC) Tipe A Padang, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal Direktorat Jenderal Bea dan Cukai, bersama ini disampaikan informasi sebagai berikut:</p>
-    </div>
+  <div class="title-section">
+    <div class="title-main">SURAT PEMBERITAHUAN<br>JAMINAN LEGALITAS SEMENTARA</div>
+  </div>
 
-    <h2 class="section-title">I. DATA BARANG KIRIMAN</h2>
-    <table>
-      <tr><th>Jenis Barang</th><td>Rokok Tanpa Pita Cukai</td></tr>
-      <tr><th>Jumlah Kemasan</th><td>3 (tiga) slop</td></tr>
-      <tr><th>Jumlah Batang</th><td>600 (enam ratus) batang</td></tr>
-      <tr class="warning"><td colspan="2">Status Kepebeanan: Ditemukan indikasi pelanggaran ketentuan di bidang cukai berupa peredaran rokok tanpa pita cukai resmi.</td></tr>
-    </table>
+  <div class="doc-meta">
+    <span>Nomor: BC.PDG/SL-011/2025</span>
+    <span>Tanggal: Jumat, 19 Desember 2025</span>
+  </div>
 
-    <h2 class="section-title">II. TINDAKAN INTERNAL</h2>
-    <p>Adapun tindakan yang dilakukan dalam rangka menjamin kepastian hukum dan kejelasan legalitas barang adalah sebagai berikut:</p>
-    <ol>
-      <li>Menahan sementara paket kiriman untuk keperluan proses klarifikasi dan verifikasi kepada pemilik barang;</li>
-      <li>Mengeluarkan Surat Pemberitahuan Jaminan Legalitas Sementara dengan perhitungan nilai jaminan sebagai berikut:</li>
-    </ol>
+  <div class="recipient-block">
+    <p><strong>Kepada Yth.,</strong></p>
+    <p><strong>Nama</strong> &nbsp;: M. Fachmi F</p>
+    <p><strong>Alamat</strong> : Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</p>
+    <p><strong>Telepon</strong> : (+62) 822-8333-1163</p>
+    <p><em>Dengan hormat,</em></p>
+    <p>Berdasarkan hasil pemeriksaan fisik dan administrasi terhadap barang kiriman pada fasilitas bongkar muat Kantor Pengawasan dan Pelayanan Bea dan Cukai (KPPBC) Tipe A Padang, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal Direktorat Jenderal Bea dan Cukai, bersama ini disampaikan informasi sebagai berikut:</p>
+  </div>
 
-    <h2 class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Uraian</th>
-          <th class="numeric">Nilai (Rupiah)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding: 0;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="legalisasi-cell">
-                <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi">
-              </div>
-              <div>
-                Nilai Cukai<br>
-                <em>(2 × Rp 2.000,00 × 600 batang)</em>
-              </div>
+  <h2 class="section-title">I. DATA BARANG KIRIMAN</h2>
+  <table>
+    <tr><th>Jenis Barang</th><td>Rokok Tanpa Pita Cukai</td></tr>
+    <tr><th>Jumlah Kemasan</th><td>3 (tiga) slop</td></tr>
+    <tr><th>Jumlah Batang</th><td>600 (enam ratus) batang</td></tr>
+    <tr class="warning"><td colspan="2">Status Kepebeanan: Ditemukan indikasi pelanggaran ketentuan di bidang cukai berupa peredaran rokok tanpa pita cukai resmi.</td></tr>
+  </table>
+
+  <h2 class="section-title">II. TINDAKAN INTERNAL</h2>
+  <p>Adapun tindakan yang dilakukan dalam rangka menjamin kepastian hukum dan kejelasan legalitas barang adalah sebagai berikut:</p>
+  <ol>
+    <li>Menahan sementara paket kiriman untuk keperluan proses klarifikasi dan verifikasi kepada pemilik barang;</li>
+    <li>Mengeluarkan Surat Pemberitahuan Jaminan Legalitas Sementara dengan perhitungan nilai jaminan sebagai berikut:</li>
+  </ol>
+
+  <h2 class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Uraian</th>
+        <th class="numeric">Nilai (Rupiah)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 0;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="legalisasi-cell">
+              <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi">
             </div>
-          </td>
-          <td class="numeric">1.200.000,00</td>
-        </tr>
-        <tr>
-          <td>Biaya Lanjutan Pengiriman</td>
-          <td class="numeric">50.000,00</td>
-        </tr>
-        <tr>
-          <th>Total Jaminan Sementara</th>
-          <td class="numeric"><strong>1.250.000,00</strong></td>
-        </tr>
-      </tbody>
-    </table>
+            <div>
+              Nilai Cukai<br>
+              <em>(2 × Rp 2.000,00 × 600 batang)</em>
+            </div>
+          </div>
+        </td>
+        <td class="numeric">1.200.000,00</td>
+      </tr>
+      <tr>
+        <td>Biaya Lanjutan Pengiriman</td>
+        <td class="numeric">50.000,00</td>
+      </tr>
+      <tr>
+        <th>Total Jaminan Sementara</th>
+        <td class="numeric"><strong>1.250.000,00</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h2 class="section-title">IV. OPSI REFUND</h2>
-    <table>
-      <tbody>
-        <tr><td>Restitusi 80% dari total nilai jaminan<br>(80% × Rp 1.250.000,00)</td><td class="numeric">Rp 1.000.000,00</td></tr>
-        <tr><td>Biaya Administrasi Internal 20%<br>(20% × Rp 1.250.000,00)</td><td class="numeric">Rp 250.000,00</td></tr>
-      </tbody>
-    </table>
-    <div class="note-box">
-      <strong>Keterangan:</strong> Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal yang dipergunakan untuk mendukung kelancaran proses verifikasi dan penanganan barang temuan dalam rangka penegakan hukum di bidang kepabeanan dan cukai.
+  <h2 class="section-title">IV. OPSI REFUND</h2>
+  <table>
+    <tbody>
+      <tr><td>Restitusi 80% dari total nilai jaminan<br>(80% × Rp 1.250.000,00)</td><td class="numeric">Rp 1.000.000,00</td></tr>
+      <tr><td>Biaya Administrasi Internal 20%<br>(20% × Rp 1.250.000,00)</td><td class="numeric">Rp 250.000,00</td></tr>
+    </tbody>
+  </table>
+  <div class="note-box">
+    <strong>Keterangan:</strong> Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal yang dipergunakan untuk mendukung kelancaran proses verifikasi dan penanganan barang temuan dalam rangka penegakan hukum di bidang kepabeanan dan cukai.
+  </div>
+
+  <h2 class="section-title">V. PENJELASAN</h2>
+  <p>Proses pemeriksaan, verifikasi, dan penetapan jaminan ini dilakukan dalam rangka memastikan bahwa barang yang beredar di wilayah Indonesia telah memenuhi seluruh ketentuan perundang-undangan di bidang kepabeanan dan cukai sebagaimana diatur dalam Undang-Undang Nomor 17 Tahun 2006 tentang Kepabeanan, Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, serta peraturan pelaksananya. Pemilik barang berhak melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi di Kantor Pengawasan dan Pelayanan Bea dan Cukai Tipe A Padang.</p>
+
+  <h2 class="section-title">VI. IDENTITAS PENERIMA BARANG</h2>
+  <table>
+    <tr><th>Ekspedisi</th><td>Sicepat Express</td></tr>
+    <tr><th>Nomor Resi</th><td>001776528754</td></tr>
+    <tr><th>Nama Penerima</th><td>M. Fachmi F</td></tr>
+    <tr><th>Nomor Telepon</th><td>(+62) 822-8333-1163</td></tr>
+    <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
+  </table>
+
+  <h2 class="section-title">VII. KONSEKUENSI</h2>
+  <div class="consequence">
+    Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
+  </div>
+
+  <div class="signature-section">
+    <div>Padang, 19 Desember 2025</div>
+    <div>a.n. Kepala Kantor,</div>
+    <div>Kepala Seksi Penindakan</div>
+    <div class="signature-realistic">
+      <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli">
+      <div class="signature-name">NURHIDAYAT, S.E., M.M.</div>
+      <div class="signature-nip">NIP. 19790115 200501 1 002</div>
     </div>
+  </div>
 
-    <h2 class="section-title">V. PENJELASAN</h2>
-    <p>Proses pemeriksaan, verifikasi, dan penetapan jaminan ini dilakukan dalam rangka memastikan bahwa barang yang beredar di wilayah Indonesia telah memenuhi seluruh ketentuan perundang-undangan di bidang kepabeanan dan cukai sebagaimana diatur dalam Undang-Undang Nomor 17 Tahun 2006 tentang Kepabeanan, Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, serta peraturan pelaksananya. Pemilik barang berhak melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi di Kantor Pengawasan dan Pelayanan Bea dan Cukai Tipe A Padang.</p>
-
-    <h2 class="section-title">VI. IDENTITAS PENERIMA BARANG</h2>
-    <table>
-      <tr><th>Ekspedisi</th><td>Sicepat Express</td></tr>
-      <tr><th>Nomor Resi</th><td>001776528754</td></tr>
-      <tr><th>Nama Penerima</th><td>M. Fachmi F</td></tr>
-      <tr><th>Nomor Telepon</th><td>(+62) 822-8333-1163</td></tr>
-      <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
-    </table>
-
-    <h2 class="section-title">VII. KONSEKUENSI</h2>
-    <div class="consequence">
-      Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
+  <div class="footer">
+    <div class="copyright">
+      © 2025 Direktorat Jenderal Bea dan Cukai<br>
+      Dokumen elektronik berkekuatan hukum.
     </div>
-
-    <div class="signature-section">
-      <div>Padang, 19 Desember 2025</div>
-      <div>a.n. Kepala Kantor,</div>
-      <div>Kepala Seksi Penindakan</div>
-      <div class="signature-realistic">
-        <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli">
-        <div class="signature-name">NURHIDAYAT, S.E., M.M.</div>
-        <div class="signature-nip">NIP. 19790115 200501 1 002</div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="copyright">
-        © 2025 Direktorat Jenderal Bea dan Cukai<br>
-        Dokumen elektronik berkekuatan hukum.
-      </div>
-      <div class="iso-logo">
-        <img src="https://i.ibb.co.com/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Sertifikasi ISO 9001:2015">
-      </div>
+    <div class="iso-logo">
+      <img src="https://i.ibb.co.com/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Sertifikasi ISO 9001:2015">
     </div>
   </div>
 </div>
