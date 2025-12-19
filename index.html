@@ -2,8 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <!-- 🎯 Fokus: tampilan selalu seperti desktop (A4 penuh) -->
-  <meta name="viewport" content="width=210mm, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>SURAT PEMBERITAHUAN - BEA CUKAI PADANG</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -23,49 +22,43 @@
       box-sizing: border-box;
     }
 
+    /* ✅ BACKGROUND PUTIH BERSIH — SEPERTI KERTAS NYATA */
     body {
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: var(--gray-900);
       line-height: 1.6;
-      background-color: #f0f4f8;
-      padding: 15px;
+      background-color: white;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
-    /* === KONTAINER: A4 TANPA RESPONSIF COLLAPSE === */
     .document-container {
-      width: 210mm;
-      overflow: auto;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .document {
       width: 210mm;
       min-height: 297mm;
       background: white;
       position: relative;
       padding: 20mm;
       font-size: 14px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* === WATERMARK: SIMETRIS, TENGAH, TRANSPARAN, TIDAK ERROR === */
+    /* ✅ WATERMARK LOGO: TEGAK LURUS, TRANSPARAN, JELAS, TIDAK MENGANGGU */
     .watermark-logo {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 280px;
+      width: 320px;
       height: auto;
-      opacity: 0.02;
-      transform: translate(-50%, -50%) rotate(-12deg);
+      opacity: 0.04; /* Lebih jelas, tapi tetap halus */
+      transform: translate(-50%, -50%); /* ✅ TEGAK LURUS — TANPA ROTASI */
       z-index: 0;
       pointer-events: none;
-      filter: grayscale(100%) brightness(120%);
+      filter: grayscale(100%) brightness(110%);
     }
 
-    /* === HEADER: LOGO KIRI & KANAN SIMETRIS SEMPURNA === */
     .header {
       display: flex;
       align-items: center;
@@ -118,7 +111,6 @@
       font-weight: 700;
       color: var(--bc-blue);
       line-height: 1.25;
-      letter-spacing: -0.02em;
     }
 
     .doc-meta {
@@ -218,28 +210,45 @@
 
     .signature-section {
       margin-top: 32px;
-    }
-
-    .signature-area {
       text-align: right;
     }
 
-    .signature-img {
-      height: 130px;
-      object-fit: contain;
-      margin: 10px 0;
+    .signature-section > div {
+      margin-bottom: 4px;
+      font-size: 14px;
     }
 
-    .signature-name {
+    .signature-realistic {
+      display: inline-block;
+      background: white;
+      margin-top: 6px;
+      padding: 0;
+    }
+
+    .signature-realistic img {
+      display: block;
+      height: 80px;
+      max-width: 260px;
+      object-fit: contain;
+      margin: 0 0 6px 0;
+      background: white;
+    }
+
+    .signature-realistic .signature-name {
       font-weight: 700;
       font-size: 16px;
-      margin-top: 10px;
-      color: var(--gray-900);
+      color: #000;
+      margin: 0;
+      line-height: 1.3;
+      text-align: center;
     }
 
-    .signature-nip {
+    .signature-realistic .signature-nip {
       font-size: 14px;
-      color: var(--gray-700);
+      color: #333;
+      margin: 2px 0 0 0;
+      line-height: 1.3;
+      text-align: center;
     }
 
     .footer {
@@ -280,7 +289,6 @@
       margin-bottom: 6px;
     }
 
-    /* === TOMBOL UNDUH: DI LUAR DOKUMEN RESMI === */
     .download-section {
       width: 100%;
       max-width: 380px;
@@ -301,7 +309,6 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 3px 10px rgba(0, 43, 92, 0.25);
-      transition: background 0.2s;
     }
 
     .btn:hover {
@@ -313,27 +320,25 @@
         background: white;
         padding: 0;
       }
-      .document-container {
-        box-shadow: none;
-      }
       .download-section {
         display: none;
       }
       .watermark-logo {
-        opacity: 0.03;
+        opacity: 0.06;
+      }
+      .document-container {
+        box-shadow: none;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- DOKUMEN RESMI -->
-<div class="document-container">
-  <div class="document">
-    <!-- WATERMARK: DI TENGAH, SIMETRIS, TIDAK MENGGANGGU -->
+<div style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
+  <div class="document-container">
+    <!-- ✅ WATERMARK AKHIR: TEGAK LURUS, TRANSPARAN, PROFESIONAL -->
     <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="" class="watermark-logo">
 
-    <!-- HEADER DENGAN LOGO SIMETRIS -->
     <div class="header">
       <div class="logo">
         <img src="https://i.ibb.co.com/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
@@ -352,18 +357,15 @@
       </div>
     </div>
 
-    <!-- JUDUL -->
     <div class="title-section">
       <div class="title-main">SURAT PEMBERITAHUAN<br>JAMINAN LEGALITAS SEMENTARA</div>
     </div>
 
-    <!-- NOMOR & TANGGAL -->
     <div class="doc-meta">
       <span>Nomor: BC.PDG/SL-011/2025</span>
       <span>Tanggal: Jumat, 19 Desember 2025</span>
     </div>
 
-    <!-- PENERIMA -->
     <div class="recipient-block">
       <p><strong>Kepada Yth.,</strong></p>
       <p><strong>Nama</strong> &nbsp;: M. Fachmi F</p>
@@ -373,7 +375,6 @@
       <p>Berdasarkan hasil pemeriksaan fisik dan administrasi terhadap barang kiriman pada fasilitas bongkar muat Kantor Pengawasan dan Pelayanan Bea dan Cukai (KPPBC) Tipe A Padang, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal Direktorat Jenderal Bea dan Cukai, bersama ini disampaikan informasi sebagai berikut:</p>
     </div>
 
-    <!-- BAGIAN I -->
     <h2 class="section-title">I. DATA BARANG KIRIMAN</h2>
     <table>
       <tr><th>Jenis Barang</th><td>Rokok Tanpa Pita Cukai</td></tr>
@@ -382,7 +383,6 @@
       <tr class="warning"><td colspan="2">Status Kepebeanan: Ditemukan indikasi pelanggaran ketentuan di bidang cukai berupa peredaran rokok tanpa pita cukai resmi.</td></tr>
     </table>
 
-    <!-- BAGIAN II -->
     <h2 class="section-title">II. TINDAKAN INTERNAL</h2>
     <p>Adapun tindakan yang dilakukan dalam rangka menjamin kepastian hukum dan kejelasan legalitas barang adalah sebagai berikut:</p>
     <ol>
@@ -390,7 +390,6 @@
       <li>Mengeluarkan Surat Pemberitahuan Jaminan Legalitas Sementara dengan perhitungan nilai jaminan sebagai berikut:</li>
     </ol>
 
-    <!-- BAGIAN III -->
     <h2 class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</h2>
     <table>
       <thead>
@@ -425,7 +424,6 @@
       </tbody>
     </table>
 
-    <!-- BAGIAN IV -->
     <h2 class="section-title">IV. OPSI REFUND</h2>
     <table>
       <tbody>
@@ -437,11 +435,9 @@
       <strong>Keterangan:</strong> Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal yang dipergunakan untuk mendukung kelancaran proses verifikasi dan penanganan barang temuan dalam rangka penegakan hukum di bidang kepabeanan dan cukai.
     </div>
 
-    <!-- BAGIAN V -->
     <h2 class="section-title">V. PENJELASAN</h2>
     <p>Proses pemeriksaan, verifikasi, dan penetapan jaminan ini dilakukan dalam rangka memastikan bahwa barang yang beredar di wilayah Indonesia telah memenuhi seluruh ketentuan perundang-undangan di bidang kepabeanan dan cukai sebagaimana diatur dalam Undang-Undang Nomor 17 Tahun 2006 tentang Kepabeanan, Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, serta peraturan pelaksananya. Pemilik barang berhak melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi di Kantor Pengawasan dan Pelayanan Bea dan Cukai Tipe A Padang.</p>
 
-    <!-- BAGIAN VI -->
     <h2 class="section-title">VI. IDENTITAS PENERIMA BARANG</h2>
     <table>
       <tr><th>Ekspedisi</th><td>Sicepat Express</td></tr>
@@ -451,25 +447,22 @@
       <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
     </table>
 
-    <!-- BAGIAN VII -->
     <h2 class="section-title">VII. KONSEKUENSI</h2>
     <div class="consequence">
       Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
     </div>
 
-    <!-- TANDA TANGAN -->
     <div class="signature-section">
-      <div class="signature-area">
-        <div>Padang, 19 Desember 2025</div>
-        <div>a.n. Kepala Kantor,</div>
-        <div>Kepala Seksi Penindakan</div>
-        <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli" class="signature-img">
+      <div>Padang, 19 Desember 2025</div>
+      <div>a.n. Kepala Kantor,</div>
+      <div>Kepala Seksi Penindakan</div>
+      <div class="signature-realistic">
+        <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli">
         <div class="signature-name">NURHIDAYAT, S.E., M.M.</div>
         <div class="signature-nip">NIP. 19790115 200501 1 002</div>
       </div>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
       <div class="copyright">
         © 2025 Direktorat Jenderal Bea dan Cukai<br>
@@ -482,7 +475,6 @@
   </div>
 </div>
 
-<!-- TOMBOL UNDUH (TIDAK MASUK DALAM DOKUMEN RESMI) -->
 <div class="download-section">
   <button class="btn" id="downloadBtn">
     📥 Unduh Barcode Verifikasi Resmi
@@ -490,7 +482,6 @@
 </div>
 
 <script>
-// ✅ Pastikan URL TANPA SPASI (diperbaiki)
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   const url = "https://i.ibb.co.com/jkPKztLW/IMG-20251219-131058.jpg";
   const filename = "Barcode_Verifikasi_BC.PDG-SL-011-2025.jpg";
