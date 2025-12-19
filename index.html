@@ -43,7 +43,7 @@
       box-shadow: 0 3px 12px rgba(0,0,0,0.07);
     }
 
-    /* Watermark hidup — logo DJBC */
+    /* Watermark hidup */
     .watermark-bg {
       position: absolute;
       top: 50%;
@@ -188,29 +188,6 @@
       line-height: 1.5;
     }
 
-    .barcode-section {
-      text-align: center;
-      margin: 24px 0;
-      padding: 16px;
-      background: #f9fbfd;
-      border-radius: 6px;
-      border: 1px dashed var(--gray-300);
-    }
-
-    .barcode-img {
-      height: 60px;
-      margin: 0 auto 10px;
-      display: block;
-      filter: contrast(1.1);
-    }
-
-    .barcode-instruction {
-      font-weight: 600;
-      color: var(--bc-blue);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
     .signature-section {
       margin-top: 20px;
     }
@@ -266,28 +243,82 @@
       line-height: 1.5;
     }
 
-    .print-btn {
-      display: block;
-      margin: 24px auto;
-      padding: 11px 28px;
-      background: var(--bc-blue);
-      color: white;
+    /* QR Only Page */
+    .qr-only {
+      width: 210mm;
+      height: 297mm;
+      padding: 40mm 30mm;
+      background: white;
+      text-align: center;
+      display: none;
+    }
+
+    .qr-only h1 {
+      font-family: 'Merriweather', serif;
+      color: var(--bc-blue);
+      font-size: 22px;
+      margin-bottom: 4mm;
+    }
+
+    .qr-only p {
+      font-size: 15px;
+      margin: 12px 0 20px;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .qr-only #qrcode {
+      margin: 0 auto 20px;
+      width: 180px;
+      height: 180px;
+      background: white;
+    }
+
+    .qr-only .footer-note {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 25mm;
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-300);
+    }
+
+    /* Tombol */
+    .btn-group {
+      text-align: center;
+      margin: 20px auto;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 24px;
       border: none;
       border-radius: 4px;
       font-weight: 600;
       cursor: pointer;
       font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-full { background: var(--bc-blue); color: white; }
+    .btn-qr { background: var(--bc-gold); color: var(--bc-blue); }
+
+    @media print {
+      .btn-group, .document { display: none; }
+      .qr-only { display: block !important; }
     }
   </style>
 </head>
 <body>
 
-<div class="document">
-
-  <!-- Watermark: Logo DJBC dari ibb.co -->
+<!-- Surat Lengkap -->
+<div class="document" id="full-letter">
   <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="Watermark Bea Cukai" class="watermark-bg">
 
-  <!-- Header: Logo DJP + Kop + Logo Bea Cukai -->
   <div class="header">
     <div class="logo">
       <img src="https://i.ibb.co.com/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
@@ -352,7 +383,6 @@
         <td style="padding: 0;">
           <div style="display: flex; align-items: center; gap: 10px;">
             <div class="legalisasi-cell">
-              <!-- Logo Wajib Legalisasi dari ibb.co -->
               <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi">
             </div>
             <div>
@@ -397,14 +427,6 @@
     <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
   </table>
 
-  <div class="barcode-section">
-    <!-- Barcode dari ibb.co -->
-    <img src="https://i.ibb.co.com/kV2t1qYB/IMG-20251215-213002.jpg" alt="Barcode Pengajuan Jaminan" class="barcode-img">
-    <div class="barcode-instruction">
-      Silakan di-scan dan ditransaksikan barcode tersebut agar dapat diproses input pengajuan.
-    </div>
-  </div>
-
   <h2 class="section-title">VII. KONSEKUENSI</h2>
   <div class="consequence">
     Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
@@ -415,7 +437,7 @@
       <div>Padang, 19 Desember 2025</div>
       <div>a.n. Kepala Kantor,</div>
       <div>Kepala Seksi Penindakan</div>
-      <!-- ✅ TTD dari link: https://ibb.co.com/93fXcPqJ -->
+      <!-- ✅ TTD dari https://ibb.co.com/93fXcPqJ -->
       <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli" class="signature-img">
       <div class="signature-name">NURHIDAYAT, S.E., M.M.</div>
       <div class="signature-nip">NIP. 19790115 200501 1 002</div>
@@ -428,33 +450,81 @@
       Dokumen elektronik ini memiliki kekuatan hukum sebagaimana diatur dalam Peraturan Menteri Keuangan Nomor 194/PMK.04/2022 tentang Tata Cara Penyampaian Dokumen Elektronik di Lingkungan Direktorat Jenderal Bea dan Cukai.
     </div>
     <div class="iso-logo">
-      <!-- ISO dari ibb.co -->
       <img src="https://i.ibb.co.com/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Sertifikasi ISO 9001:2015">
     </div>
   </div>
-
 </div>
 
-<!-- ✅ Ekspor PDF Otomatis -->
+<!-- ✅ HALAMAN QR VERIFIKASI DINAMIS -->
+<div class="qr-only" id="qr-page">
+  <h1>SILAKAN DI-SCAN UNTUK VERIFIKASI PENYELESAIAN</h1>
+  <p>Gunakan QR Code berikut untuk verifikasi dan input data penyelesaian jaminan legalitas pada sistem Bea Cukai.</p>
+  
+  <!-- QR Code Dinamis -->
+  <div id="qrcode"></div>
+
+  <p style="font-weight:600; color:var(--bc-blue); font-size:16px; margin-top:10px;">
+    Nomor Resi: <strong>001776528754</strong><br>
+    Nomor Surat: <strong>BC.PDG/SL-011/2025</strong>
+  </p>
+
+  <div class="footer-note">
+    © 2025 Direktorat Jenderal Bea dan Cukai | Dokumen Elektronik Berkekuatan Hukum Tetap
+  </div>
+</div>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
-function generatePDF() {
-  const element = document.querySelector('.document');
+// ✅ QR Code Dinamis
+const verificationUrl = new URL('https://verifikasi.beacukai.go.id/cek');
+verificationUrl.searchParams.set('no_surat', 'BC.PDG/SL-011/2025');
+verificationUrl.searchParams.set('no_resi', '001776528754');
+verificationUrl.searchParams.set('nama_penerima', 'M. Fachmi F');
+verificationUrl.searchParams.set('jenis', 'jaminan_legalitas');
+
+new QRCode(document.getElementById("qrcode"), {
+  text: verificationUrl.toString(),
+  width: 180,
+  height: 180,
+  colorDark: "#002B5C",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H
+});
+
+// Ekspor PDF
+function downloadPDF(elementId, filename) {
+  const element = document.getElementById(elementId);
   const opt = {
-    margin: 10,
-    filename: 'Surat_Pemberitahuan_Jaminan_Legalitas_BC.PDG-SL-011-2025.pdf',
+    margin: 8,
+    filename: filename,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, scrollY: -window.scrollY },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
+    html2canvas: { scale: 3, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: ['avoid-all'] }
   };
   html2pdf().set(opt).from(element).save();
 }
+
+function downloadFullLetter() {
+  downloadPDF('full-letter', 'Surat_Jaminan_Legalitas_BC.PDG-SL-011-2025.pdf');
+}
+
+function downloadQRVerification() {
+  downloadPDF('qr-page', 'QR_Verifikasi_BC.PDG-SL-011-2025.pdf');
+}
 </script>
 
-<button class="print-btn print-hide" onclick="generatePDF()">
-  📥 Unduh PDF Resmi (1 Halaman A4)
-</button>
+<div class="btn-group">
+  <button class="btn btn-full" onclick="downloadFullLetter()">
+    📄 Unduh Surat Lengkap
+  </button>
+  <button class="btn btn-qr" onclick="downloadQRVerification()">
+    🖨️ Unduh QR Verifikasi (1 Halaman)
+  </button>
+</div>
 
 </body>
 </html>
