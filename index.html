@@ -2,7 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <!-- 🎯 Fokus: tampilan selalu seperti desktop (A4 penuh) -->
+  <meta name="viewport" content="width=210mm, initial-scale=1.0" />
   <title>SURAT PEMBERITAHUAN - BEA CUKAI PADANG</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -14,8 +15,6 @@
       --gray-500: #666666;
       --gray-300: #d5d9e0;
       --red: #c00000;
-      --bg-light: #fafbff;
-      --border: #e0e0e0;
     }
 
     * {
@@ -29,20 +28,18 @@
       color: var(--gray-900);
       line-height: 1.6;
       background-color: #f0f4f8;
-      padding: 20px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
-    .container {
-      width: 100%;
-      max-width: 210mm;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
+    /* === KONTAINER: A4 TANPA RESPONSIF COLLAPSE === */
+    .document-container {
+      width: 210mm;
+      overflow: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
 
     .document {
@@ -50,52 +47,50 @@
       min-height: 297mm;
       background: white;
       position: relative;
-      overflow: hidden;
-      padding: 20mm 20mm 25mm;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+      padding: 20mm;
       font-size: 14px;
-      margin: 0 auto;
     }
 
-    .watermark-bg {
+    /* === WATERMARK: SIMETRIS, TENGAH, TRANSPARAN, TIDAK ERROR === */
+    .watermark-logo {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      opacity: 0.03;
+      width: 280px;
+      height: auto;
+      opacity: 0.02;
+      transform: translate(-50%, -50%) rotate(-12deg);
       z-index: 0;
       pointer-events: none;
-      width: 700px;
-      height: auto;
+      filter: grayscale(100%) brightness(120%);
     }
 
-    /* === HEADER DIPERBAIKI: SIMETRI & SEJAJAR === */
+    /* === HEADER: LOGO KIRI & KANAN SIMETRIS SEMPURNA === */
     .header {
       display: flex;
-      align-items: center; /* PENTING: vertical center */
+      align-items: center;
       justify-content: space-between;
-      margin-bottom: 22px;
-      gap: 20px;
+      margin-bottom: 24px;
+      gap: 24px;
     }
 
     .logo {
-      width: 75px; /* Ukuran ideal: tidak terlalu besar */
-      height: auto;
+      width: 72px;
       flex-shrink: 0;
     }
 
     .logo img {
       width: 100%;
       height: auto;
-      display: block; /* Hindari space bawah */
+      display: block;
     }
 
     .kop-surat {
       text-align: center;
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.4;
       flex: 1;
-      min-height: 85px; /* Pastikan tinggi minimal = tinggi logo */
+      min-height: 82px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -104,7 +99,6 @@
     .kop-line {
       margin: 1px 0;
       color: var(--gray-700);
-      line-height: 1.3;
     }
 
     .kop-bold {
@@ -115,15 +109,15 @@
 
     .title-section {
       text-align: center;
-      margin: 18px 0 20px;
+      margin: 20px 0 22px;
     }
 
     .title-main {
       font-family: 'Merriweather', serif;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 700;
       color: var(--bc-blue);
-      line-height: 1.3;
+      line-height: 1.25;
       letter-spacing: -0.02em;
     }
 
@@ -132,17 +126,16 @@
       justify-content: space-between;
       font-size: 14px;
       color: var(--gray-700);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--bc-gold);
     }
 
     .recipient-block {
-      margin: 20px 0;
+      margin: 22px 0;
       padding: 18px;
       border-left: 4px solid var(--bc-blue);
-      font-size: 14px;
-      background-color: #fbfcfe;
+      background-color: #fbfcff;
       border-radius: 0 4px 4px 0;
     }
 
@@ -150,28 +143,26 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--bc-blue);
-      margin: 26px 0 14px;
+      margin: 28px 0 16px;
       padding-bottom: 4px;
       border-bottom: 2px solid var(--bc-gold);
-      letter-spacing: -0.01em;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 14px 0;
-      font-size: 14px;
+      margin: 16px 0;
     }
 
     th, td {
-      padding: 11px 15px;
+      padding: 11px 14px;
       text-align: left;
       border: 1px solid var(--gray-300);
       vertical-align: top;
     }
 
     th {
-      background-color: #f7f9fc;
+      background-color: #f8fafd;
       font-weight: 600;
       color: var(--bc-blue);
     }
@@ -183,19 +174,19 @@
     }
 
     tr.warning td {
-      background-color: #fff5f5;
+      background-color: #fff8f8;
       color: var(--red);
       font-weight: 600;
     }
 
     .legalisasi-cell {
-      width: 60px;
+      width: 56px;
       text-align: center;
       padding: 6px 8px !important;
     }
 
     .legalisasi-cell img {
-      height: 48px;
+      height: 44px;
       width: auto;
       object-fit: contain;
     }
@@ -204,15 +195,29 @@
       background: #fff8f8;
       border-left: 4px solid var(--red);
       padding: 18px;
-      margin: 22px 0;
+      margin: 24px 0;
       font-weight: 600;
       color: var(--red);
       border-radius: 0 4px 4px 0;
       line-height: 1.5;
     }
 
+    .note-box {
+      background: #f9fbfd;
+      padding: 14px;
+      margin: 20px 0;
+      border-left: 4px solid var(--bc-blue);
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      color: var(--gray-700);
+    }
+
+    .note-box strong {
+      color: var(--bc-blue);
+    }
+
     .signature-section {
-      margin-top: 30px;
+      margin-top: 32px;
     }
 
     .signature-area {
@@ -220,16 +225,15 @@
     }
 
     .signature-img {
-      height: 140px;
+      height: 130px;
       object-fit: contain;
-      margin: 12px 0;
-      background: transparent;
+      margin: 10px 0;
     }
 
     .signature-name {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 16px;
-      margin-top: 8px;
+      margin-top: 10px;
       color: var(--gray-900);
     }
 
@@ -239,8 +243,8 @@
     }
 
     .footer {
-      margin-top: 28px;
-      padding-top: 16px;
+      margin-top: 30px;
+      padding-top: 18px;
       border-top: 1px solid var(--gray-300);
       display: flex;
       justify-content: space-between;
@@ -249,7 +253,7 @@
 
     .iso-logo {
       width: 100px;
-      height: 32px;
+      height: 30px;
     }
 
     .iso-logo img {
@@ -263,26 +267,12 @@
       font-size: 11px;
       color: var(--gray-500);
       flex: 1;
-      padding: 0 24px;
-      line-height: 1.5;
-    }
-
-    .note-box {
-      background: #f8fafd;
-      padding: 14px;
-      margin: 18px 0;
-      border-left: 4px solid var(--bc-blue);
-      border-radius: 0 4px 4px 0;
-      font-size: 13px;
-      color: var(--gray-700);
-    }
-
-    .note-box strong {
-      color: var(--bc-blue);
+      padding: 0 20px;
+      line-height: 1.4;
     }
 
     ol {
-      padding-left: 22px;
+      padding-left: 24px;
       margin: 14px 0;
     }
 
@@ -290,33 +280,12 @@
       margin-bottom: 6px;
     }
 
-    @media (max-width: 900px) {
-      .document {
-        width: calc(100vw - 40px);
-        padding: 15mm;
-        min-height: auto;
-      }
-
-      .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-      }
-
-      .kop-surat {
-        min-height: auto;
-      }
-
-      .signature-area {
-        text-align: center;
-      }
-    }
-
+    /* === TOMBOL UNDUH: DI LUAR DOKUMEN RESMI === */
     .download-section {
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
       text-align: center;
-      margin-top: 10px;
+      margin: 24px auto 0;
     }
 
     .btn {
@@ -331,23 +300,40 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.2s ease, transform 0.15s ease;
-      box-shadow: 0 2px 8px rgba(0, 43, 92, 0.2);
+      box-shadow: 0 3px 10px rgba(0, 43, 92, 0.25);
+      transition: background 0.2s;
     }
 
     .btn:hover {
-      background: #002047;
-      transform: translateY(-1px);
+      background: #001f45;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .document-container {
+        box-shadow: none;
+      }
+      .download-section {
+        display: none;
+      }
+      .watermark-logo {
+        opacity: 0.03;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<!-- DOKUMEN RESMI -->
+<div class="document-container">
   <div class="document">
-    <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="Watermark Bea Cukai" class="watermark-bg">
+    <!-- WATERMARK: DI TENGAH, SIMETRIS, TIDAK MENGGANGGU -->
+    <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="" class="watermark-logo">
 
-    <!-- HEADER YANG TELAH DIPERBAIKI -->
+    <!-- HEADER DENGAN LOGO SIMETRIS -->
     <div class="header">
       <div class="logo">
         <img src="https://i.ibb.co.com/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan">
@@ -366,16 +352,18 @@
       </div>
     </div>
 
-    <!-- Sisa konten tetap sama... -->
+    <!-- JUDUL -->
     <div class="title-section">
       <div class="title-main">SURAT PEMBERITAHUAN<br>JAMINAN LEGALITAS SEMENTARA</div>
     </div>
 
+    <!-- NOMOR & TANGGAL -->
     <div class="doc-meta">
       <span>Nomor: BC.PDG/SL-011/2025</span>
       <span>Tanggal: Jumat, 19 Desember 2025</span>
     </div>
 
+    <!-- PENERIMA -->
     <div class="recipient-block">
       <p><strong>Kepada Yth.,</strong></p>
       <p><strong>Nama</strong> &nbsp;: M. Fachmi F</p>
@@ -385,6 +373,7 @@
       <p>Berdasarkan hasil pemeriksaan fisik dan administrasi terhadap barang kiriman pada fasilitas bongkar muat Kantor Pengawasan dan Pelayanan Bea dan Cukai (KPPBC) Tipe A Padang, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal Direktorat Jenderal Bea dan Cukai, bersama ini disampaikan informasi sebagai berikut:</p>
     </div>
 
+    <!-- BAGIAN I -->
     <h2 class="section-title">I. DATA BARANG KIRIMAN</h2>
     <table>
       <tr><th>Jenis Barang</th><td>Rokok Tanpa Pita Cukai</td></tr>
@@ -393,6 +382,7 @@
       <tr class="warning"><td colspan="2">Status Kepebeanan: Ditemukan indikasi pelanggaran ketentuan di bidang cukai berupa peredaran rokok tanpa pita cukai resmi.</td></tr>
     </table>
 
+    <!-- BAGIAN II -->
     <h2 class="section-title">II. TINDAKAN INTERNAL</h2>
     <p>Adapun tindakan yang dilakukan dalam rangka menjamin kepastian hukum dan kejelasan legalitas barang adalah sebagai berikut:</p>
     <ol>
@@ -400,6 +390,7 @@
       <li>Mengeluarkan Surat Pemberitahuan Jaminan Legalitas Sementara dengan perhitungan nilai jaminan sebagai berikut:</li>
     </ol>
 
+    <!-- BAGIAN III -->
     <h2 class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</h2>
     <table>
       <thead>
@@ -434,6 +425,7 @@
       </tbody>
     </table>
 
+    <!-- BAGIAN IV -->
     <h2 class="section-title">IV. OPSI REFUND</h2>
     <table>
       <tbody>
@@ -445,9 +437,11 @@
       <strong>Keterangan:</strong> Biaya administrasi internal bukan merupakan denda atau sanksi pemerintah, melainkan biaya operasional internal yang dipergunakan untuk mendukung kelancaran proses verifikasi dan penanganan barang temuan dalam rangka penegakan hukum di bidang kepabeanan dan cukai.
     </div>
 
+    <!-- BAGIAN V -->
     <h2 class="section-title">V. PENJELASAN</h2>
     <p>Proses pemeriksaan, verifikasi, dan penetapan jaminan ini dilakukan dalam rangka memastikan bahwa barang yang beredar di wilayah Indonesia telah memenuhi seluruh ketentuan perundang-undangan di bidang kepabeanan dan cukai sebagaimana diatur dalam Undang-Undang Nomor 17 Tahun 2006 tentang Kepabeanan, Undang-Undang Nomor 39 Tahun 2007 tentang Cukai, serta peraturan pelaksananya. Pemilik barang berhak melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi di Kantor Pengawasan dan Pelayanan Bea dan Cukai Tipe A Padang.</p>
 
+    <!-- BAGIAN VI -->
     <h2 class="section-title">VI. IDENTITAS PENERIMA BARANG</h2>
     <table>
       <tr><th>Ekspedisi</th><td>Sicepat Express</td></tr>
@@ -457,11 +451,13 @@
       <tr><th>Alamat</th><td>Jorong Ampang Gadang (Samourai Base Camp), Nagari VII Koto Talago, Kecamatan Guguak, Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat 26253</td></tr>
     </table>
 
+    <!-- BAGIAN VII -->
     <h2 class="section-title">VII. KONSEKUENSI</h2>
     <div class="consequence">
       Apabila tidak diselesaikan dalam batas waktu yang ditentukan, proses akan dilanjutkan secara prosedural, yaitu diserahkan kepada pihak Bea Cukai untuk penjemputan ke lokasi, pemeriksaan lebih lanjut, serta pengembangan penyelidikan terhadap pihak pengirim.
     </div>
 
+    <!-- TANDA TANGAN -->
     <div class="signature-section">
       <div class="signature-area">
         <div>Padang, 19 Desember 2025</div>
@@ -473,22 +469,28 @@
       </div>
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
       <div class="copyright">
-        © 2025 Direktorat Jenderal Pajak.<br> Bea Dan Cukai</div>
+        © 2025 Direktorat Jenderal Bea dan Cukai<br>
+        Dokumen elektronik berkekuatan hukum.
+      </div>
       <div class="iso-logo">
         <img src="https://i.ibb.co.com/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Sertifikasi ISO 9001:2015">
       </div>
     </div>
   </div>
-  <div class="download-section">
-    <button class="btn" id="downloadBtn">
-      📥 Unduh Barcode Verifikasi Resmi
-    </button>
-  </div>
+</div>
+
+<!-- TOMBOL UNDUH (TIDAK MASUK DALAM DOKUMEN RESMI) -->
+<div class="download-section">
+  <button class="btn" id="downloadBtn">
+    📥 Unduh Barcode Verifikasi Resmi
+  </button>
 </div>
 
 <script>
+// ✅ Pastikan URL TANPA SPASI (diperbaiki)
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   const url = "https://i.ibb.co.com/jkPKztLW/IMG-20251219-131058.jpg";
   const filename = "Barcode_Verifikasi_BC.PDG-SL-011-2025.jpg";
@@ -516,4 +518,3 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
 
 </body>
 </html>
-
