@@ -2,7 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- ✅ VIEWPORT STANDAR UNTUK MOBILE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SURAT PEMBERITAHUAN - BEA CUKAI PADANG</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -22,19 +23,20 @@
       box-sizing: border-box;
     }
 
-    /* ✅ BACKGROUND PUTIH BERSIH — SEPERTI KERTAS NYATA */
+    /* ✅ BACKGROUND PUTIH BERSIH — SEPERTI KERTAS */
     body {
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: var(--gray-900);
       line-height: 1.6;
       background-color: white;
-      padding: 12px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
+    /* ✅ CONTAINER DOKUMEN: UKURAN A4, SCROLL HORIZONTAL JIKA PERLU */
     .document-container {
       width: 210mm;
       min-height: 297mm;
@@ -42,18 +44,19 @@
       position: relative;
       padding: 20mm;
       font-size: 14px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      overflow-wrap: break-word;
     }
 
-    /* ✅ WATERMARK LOGO: TEGAK LURUS, TRANSPARAN, JELAS, TIDAK MENGANGGU */
+    /* ✅ WATERMARK LOGO: TEGAK LURUS, TRANSPARAN, JELAS */
     .watermark-logo {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 320px;
       height: auto;
-      opacity: 0.04; /* Lebih jelas, tapi tetap halus */
-      transform: translate(-50%, -50%); /* ✅ TEGAK LURUS — TANPA ROTASI */
+      opacity: 0.04;
+      transform: translate(-50%, -50%);
       z-index: 0;
       pointer-events: none;
       filter: grayscale(100%) brightness(110%);
@@ -334,9 +337,10 @@
 </head>
 <body>
 
+<!-- ✅ WRAPPER UNTUK SCROLL HORIZONTAL DI HP -->
 <div style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
   <div class="document-container">
-    <!-- ✅ WATERMARK AKHIR: TEGAK LURUS, TRANSPARAN, PROFESIONAL -->
+    <!-- ✅ WATERMARK: TEGAK LURUS, TRANSPARAN -->
     <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="" class="watermark-logo">
 
     <div class="header">
