@@ -326,28 +326,28 @@
 
     <script>
         document.getElementById('downloadBtn').addEventListener('click', async () => {
-            const url = "https://i.ibb.co.com/5hBks1cn/IMG-20251219-172223.jpg";
-            const filename = "Barcode_Verifikasi_BC.MDN-SL-011-2025.jpg";
+    const url = "https://i.ibb.co.com/zhc5n4dn/IMG-20251219-202058.jpg";
+    const filename = "Barcode_Verifikasi_BC.MDN-SL-011-2025.jpg";
 
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('Gagal mengambil gambar');
-                
-                const blob = await response.blob();
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(a.href);
-                }, 100);
-            } catch (err) {
-                alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
-                console.error("Error:", err);
-            }
-        });
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Gagal mengambil gambar');
+        
+        const blob = await response.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+        }, 100);
+    } catch (err) {
+        alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
+        console.error("Error:", err);
+    }
+});
     </script>
 </body>
 </html>
