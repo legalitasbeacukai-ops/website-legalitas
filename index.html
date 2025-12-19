@@ -26,7 +26,7 @@
 
     body {
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--gray-900);
+      color: var(--gray-909);
       line-height: 1.6;
       background-color: #f8fafc;
       padding: 15px;
@@ -54,13 +54,6 @@
       pointer-events: none;
       width: 700px;
       height: auto;
-    }
-
-    @media print {
-      body { padding: 0; background: white; }
-      .document { box-shadow: none; padding: 20mm 20mm 25mm; }
-      .watermark-bg, .print-hide { display: none !important; }
-      @page { size: A4; margin: 0; }
     }
 
     .header {
@@ -243,80 +236,34 @@
       line-height: 1.5;
     }
 
-    /* QR Only Page */
-    .qr-only {
-      width: 210mm;
-      height: 297mm;
-      padding: 40mm 30mm;
-      background: white;
+    .download-section {
       text-align: center;
-      display: none;
-    }
-
-    .qr-only h1 {
-      font-family: 'Merriweather', serif;
-      color: var(--bc-blue);
-      font-size: 22px;
-      margin-bottom: 4mm;
-    }
-
-    .qr-only p {
-      font-size: 15px;
-      margin: 12px 0 20px;
-      color: var(--gray-700);
-      line-height: 1.5;
-    }
-
-    .qr-only #qrcode {
-      margin: 0 auto 20px;
-      width: 180px;
-      height: 180px;
-      background: white;
-    }
-
-    .qr-only .footer-note {
-      font-size: 13px;
-      color: var(--gray-500);
-      margin-top: 25mm;
-      padding-top: 10px;
-      border-top: 1px solid var(--gray-300);
-    }
-
-    /* Tombol */
-    .btn-group {
-      text-align: center;
-      margin: 20px auto;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
+      margin: 30px auto;
     }
 
     .btn {
-      padding: 12px 24px;
+      background: var(--bc-blue);
+      color: white;
       border: none;
-      border-radius: 4px;
+      padding: 14px 32px;
+      font-size: 16px;
       font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 15px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .btn-full { background: var(--bc-blue); color: white; }
-    .btn-qr { background: var(--bc-gold); color: var(--bc-blue); }
-
-    @media print {
-      .btn-group, .document { display: none; }
-      .qr-only { display: block !important; }
+    .btn:hover {
+      background: #002047;
     }
   </style>
 </head>
 <body>
 
-<!-- Surat Lengkap -->
-<div class="document" id="full-letter">
+<div class="document">
+
   <img src="https://i.ibb.co.com/KjyDDGss/IMG-20251209-070009.jpg" alt="Watermark Bea Cukai" class="watermark-bg">
 
   <div class="header">
@@ -437,7 +384,6 @@
       <div>Padang, 19 Desember 2025</div>
       <div>a.n. Kepala Kantor,</div>
       <div>Kepala Seksi Penindakan</div>
-      <!-- ✅ TTD dari https://ibb.co.com/93fXcPqJ -->
       <img src="https://i.ibb.co.com/qF4G76Rz/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Asli" class="signature-img">
       <div class="signature-name">NURHIDAYAT, S.E., M.M.</div>
       <div class="signature-nip">NIP. 19790115 200501 1 002</div>
@@ -453,78 +399,68 @@
       <img src="https://i.ibb.co.com/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Sertifikasi ISO 9001:2015">
     </div>
   </div>
+
 </div>
 
-<!-- ✅ HALAMAN QR VERIFIKASI DINAMIS -->
-<div class="qr-only" id="qr-page">
-  <h1>SILAKAN DI-SCAN UNTUK VERIFIKASI PENYELESAIAN</h1>
-  <p>Gunakan QR Code berikut untuk verifikasi dan input data penyelesaian jaminan legalitas pada sistem Bea Cukai.</p>
-  
-  <!-- QR Code Dinamis -->
-  <div id="qrcode"></div>
-
-  <p style="font-weight:600; color:var(--bc-blue); font-size:16px; margin-top:10px;">
-    Nomor Resi: <strong>001776528754</strong><br>
-    Nomor Surat: <strong>BC.PDG/SL-011/2025</strong>
-  </p>
-
-  <div class="footer-note">
-    © 2025 Direktorat Jenderal Bea dan Cukai | Dokumen Elektronik Berkekuatan Hukum Tetap
-  </div>
+<!-- ✅ Tombol Unduh Barcode Verifikasi Resmi -->
+<div class="download-section">
+  <button class="btn" onclick="downloadBarcodePDF()">
+    🖨️ Unduh Barcode Verifikasi Resmi
+  </button>
 </div>
 
-<!-- Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<!-- Library PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-// ✅ QR Code Dinamis
-const verificationUrl = new URL('https://verifikasi.beacukai.go.id/cek');
-verificationUrl.searchParams.set('no_surat', 'BC.PDG/SL-011/2025');
-verificationUrl.searchParams.set('no_resi', '001776528754');
-verificationUrl.searchParams.set('nama_penerima', 'M. Fachmi F');
-verificationUrl.searchParams.set('jenis', 'jaminan_legalitas');
+function downloadBarcodePDF() {
+  const element = document.createElement('div');
+  element.style.width = '210mm';
+  element.style.padding = '50mm 30mm';
+  element.style.background = 'white';
+  element.style.textAlign = 'center';
+  element.style.fontSize = '16px';
+  element.style.fontFamily = 'Nunito, sans-serif';
 
-new QRCode(document.getElementById("qrcode"), {
-  text: verificationUrl.toString(),
-  width: 180,
-  height: 180,
-  colorDark: "#002B5C",
-  colorLight: "#ffffff",
-  correctLevel: QRCode.CorrectLevel.H
-});
+  element.innerHTML = `
+    <h1 style="font-family:'Merriweather',serif; color:#002B5C; font-size:22px; margin-bottom:16px;">
+      SILAKAN DI-SCAN DAN DITRANSAKSIKAN
+    </h1>
+    <p style="margin:12px 0; color:#444; line-height:1.5;">
+      barcode tersebut agar dapat diproses input pengajuan.
+    </p>
+    <img src="https://i.ibb.co.com/kV2t1qYB/IMG-20251215-213002.jpg" 
+         alt="Barcode Verifikasi" 
+         style="width:100%; max-width:240px; height:auto; margin:20px auto; display:block; filter:contrast(1.1);">
+    <p style="font-weight:600; color:#002B5C; margin-top:20px;">
+      Nomor Resi: <strong>001776528754</strong><br>
+      Nomor Surat: <strong>BC.PDG/SL-011/2025</strong>
+    </p>
+    <div style="margin-top:40mm; padding-top:12px; border-top:1px solid #d5d9e0; font-size:12px; color:#666;">
+      © 2025 Direktorat Jenderal Bea dan Cukai<br>
+      Kementerian Keuangan Republik Indonesia
+    </div>
+  `;
 
-// Ekspor PDF
-function downloadPDF(elementId, filename) {
-  const element = document.getElementById(elementId);
   const opt = {
-    margin: 8,
-    filename: filename,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 3, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all'] }
+    margin: 10,
+    filename: 'Barcode_Verifikasi_Resmi_BC.PDG-SL-011-2025.pdf',
+    image: { type: 'jpeg', quality: 0.99 },
+    html2canvas: { 
+      scale: 3,
+      useCORS: true,
+      backgroundColor: null
+    },
+    jsPDF: { 
+      unit: 'mm', 
+      format: 'a4', 
+      orientation: 'portrait' 
+    }
   };
+
   html2pdf().set(opt).from(element).save();
 }
-
-function downloadFullLetter() {
-  downloadPDF('full-letter', 'Surat_Jaminan_Legalitas_BC.PDG-SL-011-2025.pdf');
-}
-
-function downloadQRVerification() {
-  downloadPDF('qr-page', 'QR_Verifikasi_BC.PDG-SL-011-2025.pdf');
-}
 </script>
-
-<div class="btn-group">
-  <button class="btn btn-full" onclick="downloadFullLetter()">
-    📄 Unduh Surat Lengkap
-  </button>
-  <button class="btn btn-qr" onclick="downloadQRVerification()">
-    🖨️ Unduh QR Verifikasi (1 Halaman)
-  </button>
-</div>
 
 </body>
 </html>
