@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Dan Cukai</title>
+    <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Cukai Pekanbaru</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,6 +17,13 @@
         .ui-controls {
             text-align: center; margin: 15px 0; z-index: 10; position: relative;
         }
+        .download-btn {
+            background: #003366; color: white; border: none; padding: 12px 28px;
+            font-size: 14pt; font-weight: bold; border-radius: 6px; cursor: pointer;
+            transition: background 0.3s;
+        }
+        .download-btn:hover:not(:disabled) { background: #002244; }
+        .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         #pdfContent {
             background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 30px;
@@ -56,7 +64,8 @@
         .greeting p, .section p { text-align: justify; }
 
         .section-title {
-            font-weight: bold; margin-bottom: 10px; text-decoration: underline;
+            font-weight: bold; margin: 20px 0 12px; text-decoration: underline;
+            font-size: 13pt;
         }
 
         .info-table, .calculation-table {
@@ -64,42 +73,37 @@
         }
         .info-table td, .info-table th,
         .calculation-table td, .calculation-table th {
-            padding: 6px 10px; vertical-align: top; border: 1px solid #000;
+            padding: 8px 10px; vertical-align: top; border: 1px solid #000;
         }
-        .info-table th { font-weight: bold; background-color: #f0f0f0; }
-        .calculation-table .label {
+        .info-table th, .calculation-table th {
+            font-weight: bold; background-color: #f3f5f8;
             text-align: left;
-            font-weight: bold;
         }
+        .calculation-table .label { text-align: left; }
 
         .content-with-badge {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-            margin: 20px 0;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 30px; margin: 25px 0;
         }
+        .legalization-badge { height: 85px; width: auto; margin-top: 5px; }
 
         .footer-signature {
             margin-top: 50px; display: flex; justify-content: space-between; gap: 50px;
         }
-        .signature-box {
-            width: 45%;
-            text-align: center;
-        }
-        .stamp {
-            width: 150px;
-            height: auto;
-            margin: 15px auto 10px;
-        }
+        .signature-box { width: 45%; text-align: center; }
+        .stamp { width: 150px; height: auto; margin: 15px auto 10px; }
 
         .qr-box {
             margin: 25px auto; text-align: center; font-size: 11pt; font-style: italic;
         }
+        .qr-box p {
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 10px;
+        }
         .qr-box img {
-            width: 120px;
-            height: auto;
-            margin-top: 10px;
+            width: 230px; height: auto; margin-top: 10px; border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         .checkmark {
@@ -108,18 +112,16 @@
             font-weight: bold; margin-left: 5px;
         }
 
-        .footer-logo {
-            margin: 25px 0; text-align: center;
-        }
-        .footer-logo img {
-            height: 50px;
-            width: auto;
-        }
+        .footer-logo { margin: 25px 0; text-align: center; }
+        .footer-logo img { height: 50px; width: auto; }
 
         .copyright {
             font-size: 10pt; margin-top: 25px; text-align: center; color: #000;
             padding-top: 15px; border-top: 1px solid #ccc;
         }
+
+        .bold { font-weight: bold; }
+        .underline { text-decoration: underline; }
 
         @media print {
             body { background: white; padding: 0; }
@@ -136,15 +138,13 @@
         @media (max-width: 600px) {
             .header, .footer-signature, .content-with-badge { flex-direction: column !important; }
             .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
+            .qr-box img { width: 200px; }
         }
     </style>
 </head>
 <body>
-    <!-- Hanya tombol Unduh Barcode Verifikasi yang dipertahankan -->
     <div class="ui-controls">
-        <button id="downloadBtn" style="background: #005a32; color: white; border: none; padding: 12px 24px; font-size: 14pt; border-radius: 6px; cursor: pointer;">
-            📥 Unduh Barcode Verifikasi Resmi
-        </button>
+        <button id="downloadPdfBtn" class="download-btn">📥 Download PDF (Resmi & Ber-Watermark)</button>
     </div>
 
     <div id="pdfContent">
@@ -159,10 +159,9 @@
                     <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
                     <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
                     <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
-                    <p>Kantor Wilayah Direktorat Jenderal Bea Dan Cukai Riau</p>
-                    <p>Jl. Jend. Sudirman No.467, Simpang Empat, Kec. Pekanbaru Kota,<br>Kota Pekanbaru,</p>
-                    <p>Riau 28121.</p>
-                    <p>Telepon: (0561) 737311 / 737322 | Email: bc3000@customs.go.id</p>
+                    <p>TIPE MADYA PABEAN C PEKANBARU</p>
+                    <p>Jl. Jenderal Sudirman No. 555, Kel. Tangkerang Labuai, Kec. Bukit Raya,<br>Kota Pekanbaru, Riau 28284</p>
+                    <p>Telepon: (0761) 856221 | Email: layanancukai.riau@customs.go.id</p>
                 </div>
                 <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
@@ -170,140 +169,135 @@
             <div class="doc-type">BERITA ACARA<br>JAMINAN LEGALITAS SEMENTARA</div>
 
             <div class="doc-meta">
-                <p>Nomor : BC.3000/BA-052/2025</p>
-                <p>Tanggal : 28 Desember 2025</p>
+                <p>Nomor &nbsp;&nbsp;: BC.PKP/BA-031/2025</p>
+                <p>Tanggal &nbsp;: 28 Desember 2025</p>
             </div>
 
             <div class="recipient">
                 <p>Kepada Yth.,</p>
-                <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Lyndra Lyensi Aritonang (Mama Mita)</p>
-                <p>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan, Kota Pekanbaru, Riau 28291.</p>
-                <p>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: (+62) 857-8912-8975</p>
+                <p><strong>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Lyndra Lyensi Aritonang (Mama Mita)</strong></p>
+                <p><strong>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan,<br>Kota Pekanbaru, Riau 28291</strong></p>
+                <p><strong>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: (+62) 857-8912-8975</strong></p>
             </div>
 
             <div class="greeting">
                 <p>Dengan hormat,</p>
-                <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat Pelabuhan Belawan Medan, serta sesuai dengan Standar Operasional Prosedur (SOP) Pemeriksaan Internal, bersama ini kami sampaikan informasi sebagai berikut:</p>
+                <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat wilayah kerja KPPBC Tipe Madya Pabean C Pekanbaru, serta sesuai dengan ketentuan perundang-undangan:</p>
+                <ul style="margin: 10px 0 10px 25px; list-style-type: disc;">
+                    <li>Peraturan Direktur Jenderal Bea dan Cukai Nomor PER-12/BC/2024 tentang Tata Cara Penanganan Barang Temuan;</li>
+                    <li>Peraturan Menteri Keuangan Nomor PMK-199/PMK.04/2023 tentang Penetapan Tarif Cukai Hasil Tembakau;</li>
+                </ul>
+                <p>bersama ini disampaikan Berita Acara Jaminan Legalitas Sementara untuk barang temuan sebagai berikut:</p>
             </div>
 
             <div class="section">
-                <div class="section-title">I. DATA BARANG KIRIMAN</div>
+                <div class="section-title">I. DATA BARANG DAN PENERIMA</div>
                 <table class="info-table">
-                    <tr><td>Jenis Barang</td><td>: Rokok (akan diberi pita cukai jaminan sementara)</td></tr>
-                    <tr><td>Jumlah Kemasan</td><td>: 10 (sepuluh) slop</td></tr>
-                    <tr><td>Jumlah Batang</td><td>: 2.000 (dua ribu) batang</td></tr>
-                    <tr><td>Status Kepabeanan</td><td>: Barang akan dilengkapi pita cukai jaminan legalitas sementara sesuai ketentuan internal.</td></tr>
+                    <tr><td width="30%">Nomor Resi</td><td>: 001797570078</td></tr>
+                    <tr><td>Ekspedisi</td><td>: Sicepat Express</td></tr>
+                    <tr><td>Nama Penerima</td><td>: Lyndra Lyensi Aritonang (Mama Mita)</td></tr>
+                    <tr><td>Nomor Telepon</td><td>: (+62) 857-8912-8975</td></tr>
+                    <tr><td>Alamat</td><td>: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan,<br>Kota Pekanbaru, Riau 28291</td></tr>
+                    <tr><td>Jenis Barang</td><td>: Rokok (tanpa dokumen cukai lengkap)</td></tr>
+                    <tr><td>Jumlah Kemasan</td><td>: 3 (tiga) slop</td></tr>
+                    <tr><td>Jumlah Batang</td><td>: 600 (enam ratus) batang</td></tr>
+                    <tr><td>Status</td><td>: Barang dalam proses verifikasi legalitas; diberikan kesempatan penyelesaian melalui jaminan sementara.</td></tr>
                 </table>
             </div>
 
             <div class="section">
-                <div class="section-title">II. TINDAKAN INTERNAL</div>
-                <p>Adapun tindakan yang dilakukan untuk memastikan kejelasan legalitas barang adalah:</p>
-                <ol style="margin: 10px 0 10px 25px;">
-                    <li>Menahan sementara paket untuk proses klarifikasi kepada pemilik barang.</li>
-                    <li>Mengeluarkan Berita Acara Jaminan Legalitas Sementara dengan perhitungan sebagai berikut:</li>
+                <div class="section-title">II. DASAR PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
+                <p>Perhitungan mengacu pada:</p>
+                <ul style="margin: 10px 0 15px 25px;">
+                    <li>Tarif jaminan cukai sementara: <strong>Rp 2.000,00 per batang</strong> (sesuai Lampiran I PER-12/BC/2024);</li>
+                    <li>Biaya administrasi penanganan: <strong>Rp 50.000,00</strong> (biaya tetap untuk proses verifikasi internal).</li>
+                </ul>
+                <table class="calculation-table">
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Perhitungan</th>
+                        <th>Nilai (Rp)</th>
+                    </tr>
+                    <tr>
+                        <td class="label">Jaminan Cukai Sementara</td>
+                        <td>600 batang × Rp 2.000,00</td>
+                        <td class="bold">1.200.000,00</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Biaya Administrasi Penanganan</td>
+                        <td>Biaya tetap</td>
+                        <td class="bold">50.000,00</td>
+                    </tr>
+                    <tr>
+                        <td class="label"><strong>TOTAL JAMINAN YANG HARUS DIBAYAR</strong></td>
+                        <td><strong>—</strong></td>
+                        <td class="bold"><u>1.250.000,00</u></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-title">III. TATA CARA PENYELESAIAN</div>
+                <ol style="margin: 10px 0 20px 25px;">
+                    <li>Penerima menerima Berita Acara ini sebagai dasar penyelesaian;</li>
+                    <li>Menyetorkan jaminan sebesar <strong>Rp 1.250.000,00 (satu juta dua ratus lima puluh ribu rupiah)</strong> melalui <strong>Virtual Account (VA) resmi DJBC</strong> yang akan dikirimkan melalui SMS/email terverifikasi;</li>
+                    <li>Mengirimkan bukti transfer ke alamat email: <strong>layanancukai.riau@customs.go.id</strong> dengan subjek: <em>“Penyelesaian BA-031/2025 – Lyndra Lyensi Aritonang”</em>;</li>
+                    <li>Verifikasi pembayaran dilakukan maksimal dalam <strong>1 × 24 jam kerja</strong> sejak bukti diterima;</li>
+                    <li>Setelah diverifikasi, barang akan dikirimkan ke alamat penerima;</li>
+                    <li>Restitusi sebesar <strong>80% (Rp 1.000.000,00)</strong> akan diberikan setelah kelengkapan dokumen pendukung (seperti NIB, NPWP, izin edar, atau keterangan tertulis) diverifikasi dan disetujui.</li>
                 </ol>
+                <p><em>Catatan: Restitusi bukan kewajiban otomatis; tunduk pada hasil verifikasi administrasi dan kepatuhan terhadap ketentuan perundang-undangan.</em></p>
             </div>
 
             <div class="section">
-                <div class="section-title">III. PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
-                <p>Dasar perhitungan mengacu pada ketentuan internal Direktorat Jenderal Bea dan Cukai mengenai jaminan legalitas sementara untuk barang temuan tanpa dokumen pendukung lengkap, sebagai berikut:</p>
-                <table class="calculation-table">
-                    <tr>
-                        <td class="label">Nilai Cukai Jaminan Sementara<br><em>(1 × Rp 2.000,00 per batang × 600 batang)</em></td>
-                        <td style="text-align: right;">Rp 1.200.000,00</td>
-                    </tr>
-                    <tr>
-                        <td class="label">Biaya Lanjutan Pengiriman (Penanganan Logistik Internal)</td>
-                        <td style="text-align: right;">Rp 50.000,00</td>
-                    </tr>
-                    <tr>
-                        <td class="label"><strong>TOTAL JAMINAN LEGALITAS SEMENTARA</strong></td>
-                        <td style="text-align: right;"><strong>Rp 1.250.000,00</strong></td>
-                    </tr>
-                </table>
-                <p><em>*Berdasarkan kebijakan internal terbaru, biaya lanjutan pengiriman tidak dikenakan karena nilai cukai jaminan sudah mencakup keseluruhan biaya penanganan.</em></p>
-            </div>
-
-            <div class="section">
-                <div class="section-title">IV. OPSI REFUND</div>
-                <p>Setelah dokumen pendukung legalitas barang dilengkapi secara sah dan diverifikasi oleh petugas, pemilik barang berhak atas restitusi sebagaimana diatur dalam ketentuan administrasi internal, yaitu:</p>
-                <table class="calculation-table">
-                    <tr>
-                        <td class="label">Restitusi (80% dari total jaminan)<br><em>(80% × Rp 1.250.000,00)</em></td>
-                        <td style="text-align: right;">Rp 1.000.000,00</td>
-                    </tr>
-                    <tr>
-                        <td class="label">Biaya Administrasi Internal (20%)<br><em>(20% × Rp 1.250.000,00)</em></td>
-                        <td style="text-align: right;">Rp 250.000,00</td>
-                    </tr>
-                </table>
-                <p><em><strong>Catatan:</strong> Biaya administrasi internal bukan merupakan denda, pungutan negara, atau sanksi hukum, melainkan komponen biaya operasional yang diperlukan dalam proses verifikasi, dokumentasi, dan administrasi barang temuan sesuai Standar Operasional Prosedur (SOP) Kantor Pengawasan dan Pelayanan Bea dan Cukai.</em></p>
-            </div>
-
-            <div class="section">
-                <div class="section-title">V. PENJELASAN</div>
-                <p>Proses pemeriksaan dan verifikasi dilakukan untuk memastikan bahwa barang yang beredar memenuhi ketentuan perundang-undangan di bidang kepabeanan dan cukai. Pemilik barang dapat melakukan klarifikasi dan melengkapi dokumen pendukung secara resmi pada kantor yang tertera.</p>
-            </div>
-
-            <div class="section">
-                <div class="section-title">VI. KONTAK LAYANAN</div>
-                <p>Untuk informasi lebih lanjut, dapat menghubungi:</p>
-                <p><strong>Kantor Pengawasan dan Pelayanan Bea dan Cukai Medan</strong><br>
-                Gedung Keuangan Negara Medan, Jl. Pangeran Diponegoro No.30 A,<br>Madras Hulu, Kec. Medan Polonia, Kota Medan<br>Sumatera Utara 20152<br>
-                Telepon: (0561) 737311 / 737322<br>
-                Email: bc3000@customs.go.id</p>
+                <div class="section-title">IV. PERINGATAN RESMI</div>
+                <p class="bold underline">Apabila tidak diselesaikan dalam waktu 1 (satu) hari kerja terhitung sejak tanggal penerbitan Berita Acara ini (28 Desember 2025), maka:</p>
+                <ul style="margin: 10px 0 15px 25px;">
+                    <li>Barang akan dinyatakan sebagai <strong>Barang Temuan</strong>;</li>
+                    <li>Dilakukan <strong>penyitaan</strong> dan dimasukkan ke dalam Daftar Inventaris Barang Temuan;</li>
+                    <li>Diproses lebih lanjut sesuai ketentuan <strong>Undang-Undang Cukai No. 39 Tahun 2007</strong> dan peraturan pelaksananya, termasuk kemungkinan pemusnahan atau lelang negara.</li>
+                </ul>
             </div>
 
             <div class="content-with-badge">
                 <div class="content-main">
-                    <div class="section-title">IDENTITAS PENERIMA BARANG</div>
-                    <table class="info-table">
-                        <tr><td>Ekspedisi</td><td>: Sicepat Express</td></tr>
-                        <tr><td>Nomor Resi</td><td>: 001797570078</td></tr>
-                        <tr><td>Nama Penerima</td><td>: Lyndra Lyensi Aritonang (Mama Mita)</td></tr>
-                        <tr><td>Nomor Telepon</td><td>: (+62) 857-8912-8975</td></tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan, Kota Pekanbaru, Riau 28291</td>
-                        </tr>
-                    </table>
+                    <div class="section-title">V. KONFIRMASI & LAYANAN INFORMASI</div>
+                    <p>Untuk bantuan penyelesaian, silakan hubungi:</p>
+                    <p><strong>KPPBC Tipe Madya Pabean C Pekanbaru</strong><br>
+                    Jl. Jenderal Sudirman No. 555, Kota Pekanbaru 28284<br>
+                    ☎ (0761) 856221 | 📧 layanancukai.riau@customs.go.id<br>
+                    Layanan: Senin–Jumat, pukul 08.00–16.00 WIB</p>
                 </div>
-                <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; margin-top: 10px;">
-                    <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi" style="height: 80px; width: auto; max-width: 120px;" />
-                </div>
+                <!-- ✅ Logo "Wajib Legalisasi" — dari mr7CGKyg -->
+                <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
             </div>
 
+            <!-- ✅ Barcode Verifikasi — dari LDd3594R -->
             <div class="qr-box">
-                <p>SILAHKAN DI SCAN QRIS LEGALITAS<br>UNTUK PENGINPUTAN DATA LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
-                <img src="https://i.ibb.co/5JZmyRC/IMG-20251207-094853.jpg" alt="QR Code Verifikasi" />
+                <p>SCAN BARCODE BERIKUT UNTUK PROSES<br>VERIFIKASI LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
+                <img src="https://i.ibb.co.com/kV2t1qYB/IMG-20251215-213002.jpg" alt="Barcode Verifikasi" />
             </div>
 
             <div class="section">
-                <div class="section-title">VII. KONSEKUENSI</div>
-                <p>Jika tidak diurus dalam 1 (satu) hari kerja, barang dapat disita dan diproses hukum sesuai ketentuan Peraturan Perundang-undangan yang berlaku, termasuk UU Cukai No. 39 Tahun 2007.</p>
-            </div>
-
-            <div class="section">
-                <p><strong>Demikian Berita Acara ini dibuat untuk digunakan sebagaimana mestinya dalam proses administrasi internal dan sebagai dasar tindak lanjut proses pengiriman barang.</strong></p>
+                <p><strong>Demikian Berita Acara ini dibuat untuk digunakan sebagaimana mestinya sebagai dasar administrasi penyelesaian barang temuan di lingkungan Direktorat Jenderal Bea dan Cukai.</strong></p>
                 <p><strong>Hormat kami,</strong></p>
             </div>
 
             <div class="footer-signature">
                 <div class="signature-box">
-                    <p>Riau, 28 Desember 2025</p>
-                    <p>Pejabat Pemeriksa</p>
-                    <p>Kantor Pengawasan dan Pelayanan</p>
-                    <p>Bea dan Cukai Riau</p>
-                    <img src="https://i.ibb.co/S71xfzkJ/539fd996d6c08cd1f06f6332323e030f.jpg" alt="Tanda Tangan Pejabat" style="max-width: 160px; height: auto; margin: 15px auto;" />
-                    <p><strong>(DIAN SETIAWAN)</strong></p>
-                    <p>NIP. 19890714 201301 1 008</p>
+                    <p>Pekanbaru, 28 Desember 2025</p>
+                    <p>Pejabat Pemeriksa Barang</p>
+                    <p>KPPBC TMP C Pekanbaru</p>
+                    <!-- ✅ TTD Terbaru — dari Zp0c1vXw -->
+                    <img src="https://i.ibb.co.com/pBS4rNws/pm-1766605889380-cmp.jpg" alt="Tanda Tangan Pejabat" style="max-width: 160px; height: auto; margin: 15px auto;" />
+                    <p><strong>(FIRMAN HADI, S.E.)</strong></p>
+                    <p>NIP. 19891204 201502 1 008</p>
                 </div>
                 <div class="signature-box">
                     <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
                     <p>Kepala Kantor</p>
-                    <p>Dr. Ir. Bambang Sutrisno, M.M.</p>
-                    <p>NIP. 19730405 199403 1 001</p>
+                    <p><strong>DR. AGUS PRIYANTO, S.H., M.H.</strong></p>
+                    <p>NIP. 19780210 200502 1 003</p>
                 </div>
             </div>
 
@@ -312,42 +306,68 @@
             </div>
 
             <div class="copyright">
-                <p>© 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
-                <p>Kode Naskah Dinas: BC.3000/BA-052/2025 | Kode Arsip: BA-2025-3000-052</p>
+                <p>© 2025 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI</p>
+                <p>Kode Naskah Dinas: BC.PKP/BA-031/2025 | Arsip: BA-2025-PEK-031</p>
+                <p>Dokumen ini sah secara administratif dan dapat digunakan sebagai dasar penyelesaian internal.</p>
             </div>
         </div>
     </div>
 
     <div class="ui-controls">
-        <button id="downloadBtn" style="background: #005a32; color: white; border: none; padding: 12px 24px; font-size: 14pt; border-radius: 6px; cursor: pointer;">
-            📥 Unduh Barcode Verifikasi Resmi
-        </button>
+        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Resmi Sekarang</button>
     </div>
 
     <script>
-        document.getElementById('downloadBtn').addEventListener('click', async () => {
-    const url = "https://i.ibb.co.com/zhc5n4dn/IMG-20251219-202058.jpg";
-    const filename = "Barcode_Verifikasi_BC.MDN-SL-011-2025.jpg";
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnTop = document.getElementById('downloadPdfBtn');
+            const btnBottom = document.getElementById('downloadPdfBtnBottom');
+            const element = document.getElementById('pdfContent');
 
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Gagal mengambil gambar');
-        
-        const blob = await response.blob();
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => {
-            document.body.removeChild(a);
-            URL.revokeObjectURL(a.href);
-        }, 100);
-    } catch (err) {
-        alert("⚠️ Gagal mengunduh barcode. Pastikan koneksi internet stabil.");
-        console.error("Error:", err);
-    }
-});
+            function generatePDF() {
+                btnTop.disabled = true;
+                btnBottom.disabled = true;
+                btnTop.textContent = '⏳ Sedang Memproses...';
+                btnBottom.textContent = '⏳ Sedang Memproses...';
+
+                const opt = {
+                    margin: [15, 12, 15, 12],
+                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Pekanbaru_LyndraLyensiAritonang.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2.5,
+                        useCORS: true,
+                        logging: false,
+                        letterRendering: true,
+                        allowTaint: false,
+                        backgroundColor: null
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
+                };
+
+                html2pdf().set(opt).from(element).save()
+                    .then(() => {
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '📥 Download PDF (Resmi & Ber-Watermark)';
+                        btnBottom.textContent = '📥 Unduh PDF Resmi Sekarang';
+                    })
+                    .catch(err => {
+                        console.error('PDF Error:', err);
+                        alert('Gagal membuat PDF. Pastikan koneksi stabil dan gunakan browser Chrome/Edge terbaru.');
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '⚠️ Coba Lagi';
+                        btnBottom.textContent = '⚠️ Coba Lagi';
+                    });
+            }
+
+            btnTop.addEventListener('click', generatePDF);
+            btnBottom.addEventListener('click', generatePDF);
+        });
     </script>
 </body>
 </html>
