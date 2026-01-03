@@ -40,7 +40,6 @@
         }
         .content-layer { position: relative; z-index: 1; }
 
-        /* ✅ HEADER: Warna diselaraskan */
         .header {
             background: #002B5B;
             color: white;
@@ -50,7 +49,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            border-bottom: 2px solid #002B5B; /* ✅ border bawah diselaraskan */
+            border-bottom: 2px solid #002B5B;
         }
         .logo-left, .logo-right { height: 70px; width: auto; }
         .header-center { flex: 1; padding: 0 10px; }
@@ -60,7 +59,7 @@
         .doc-type {
             font-weight: bold; font-size: 16pt; margin: 25px 0 15px; text-align: center;
             text-decoration: underline; 
-            text-decoration-color: #002B5B; /* ✅ underline biru */
+            text-decoration-color: #002B5B;
             color: #002B5B;
         }
 
@@ -75,19 +74,18 @@
         .section-title {
             font-weight: bold; margin: 20px 0 12px; 
             text-decoration: underline; 
-            text-decoration-color: #002B5B; /* ✅ underline biru */
+            text-decoration-color: #002B5B;
             font-size: 13pt; 
             color: #002B5B;
         }
 
-        /* ✅ TABEL: border biru tua */
         .info-table, .calculation-table {
             width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12pt;
         }
         .info-table td, .info-table th,
         .calculation-table td, .calculation-table th {
             padding: 8px 10px; vertical-align: top; 
-            border: 1px solid #002B5B; /* ✅ border biru tua */
+            border: 1px solid #002B5B;
         }
         .info-table th, .calculation-table th {
             font-weight: bold; 
@@ -113,33 +111,40 @@
         }
         .qr-box p {
             font-weight: bold;
-            color: #002B5B; /* ✅ teks QR biru tua */
+            color: #002B5B;
             margin-bottom: 10px;
         }
         .qr-box img {
             width: 230px; height: auto; margin-top: 10px; 
-            border: 1px solid #002B5B; /* ✅ border QR biru */
+            border: 1px solid #002B5B;
             border-radius: 4px;
         }
 
-        /* ✅ Checkmark biru tua */
         .checkmark {
             display: inline-block; width: 20px; height: 20px; background: #002B5B;
             color: white; text-align: center; line-height: 20px; border-radius: 50%;
             font-weight: bold; margin-left: 5px;
         }
 
+        /* ✅ FOOTER BARU: Tata letak rapi logo ISO + Slogan */
         .footer-logos {
-            margin: 25px 0; text-align: center; display: flex; justify-content: center; gap: 40px;
+            margin: 25px 0; 
+            text-align: center; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 50px;
+            flex-wrap: wrap;
         }
         .footer-logos img {
-            height: 50px; width: auto;
+            height: 48px; /* sedikit lebih kecil agar proporsional */
+            width: auto;
         }
 
         .copyright {
             font-size: 10pt; margin-top: 25px; text-align: center; color: #000;
             padding-top: 15px; 
-            border-top: 1px solid #002B5B; /* ✅ border atas copyright biru */
+            border-top: 1px solid #002B5B;
         }
 
         .bold { font-weight: bold; }
@@ -157,16 +162,15 @@
             }
             .header, .footer-signature, .content-with-badge, .footer-logos { flex-direction: row !important; }
             .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
-            .footer-logos { flex-direction: row !important; }
             .watermark img { opacity: 0.07 !important; }
         }
 
         @media (max-width: 600px) {
-            .header, .footer-signature, .content-with-badge, .footer-logos { flex-direction: column !important; }
-            .signature-box, .content-with-badge > div:first-child, .footer-logos { width: 100% !important; }
+            .header, .footer-signature, .content-with-badge { flex-direction: column !important; }
+            .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
             .qr-box img { width: 200px; }
             .expedisi-logo { height: 20px; }
-            .footer-logos { gap: 20px; }
+            .footer-logos { gap: 25px; }
         }
     </style>
 </head>
@@ -182,7 +186,8 @@
 
         <div class="content-layer">
             <div class="header">
-                <img src="https://i.ibb.co/3mrCXVYn/IMG-20251209-080158.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
+                <!-- ✅ Logo DJP - Diperbarui -->
+                <img src="https://i.ibb.co/G35pk0Vj/IMG-20260103-143555-444.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
                 <div class="header-center">
                     <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
                     <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
@@ -191,7 +196,8 @@
                     <p>Jl. Penghibur No. 52, Kel. Barana, Kec. Ujung Pandang,<br>Kota Makassar, Sulawesi Selatan 90221</p>
                     <p>Telepon: (0411) 3615688 | Email: layanancukai.sulsel@customs.go.id</p>
                 </div>
-                <img src="https://i.ibb.co/xqWySTCH/IMG-20251209-080224.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
+                <!-- ✅ Logo Bea Cukai - Diperbarui -->
+                <img src="https://i.ibb.co/VnpQ314/IMG-20260103-142950-699.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
 
             <div class="doc-type">BERITA ACARA<br>JAMINAN LEGALITAS SEMENTARA</div>
@@ -332,9 +338,9 @@
                 </div>
             </div>
 
-            <!-- ✅ FOOTER: Logo DJBC + Logo ISO -->
+            <!-- ✅ FOOTER: Logo ISO + Slogan DJBC - Tata letak rapi -->
             <div class="footer-logos">
-                <img src="https://i.ibb.co/1Jf993mY/IMG-20251209-084035.jpg" alt="Logo DJBC" />
+                <img src="https://i.ibb.co/1Jf993mY/IMG-20251209-084035.jpg" alt="Slogan DJBC" />
                 <img src="https://i.ibb.co/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Logo ISO" />
             </div>
 
@@ -345,62 +351,6 @@
             </div>
         </div>
     </div>
-
-    <div class="ui-controls">
-        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Resmi Sekarang</button>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const btnTop = document.getElementById('downloadPdfBtn');
-            const btnBottom = document.getElementById('downloadPdfBtnBottom');
-            const element = document.getElementById('pdfContent');
-
-            function generatePDF() {
-                btnTop.disabled = true;
-                btnBottom.disabled = true;
-                btnTop.textContent = '⏳ Sedang Memproses...';
-                btnBottom.textContent = '⏳ Sedang Memproses...';
-
-                const opt = {
-                    margin: [15, 12, 15, 12],
-                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Makassar_Abizar_2026.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: {
-                        scale: 2.5,
-                        useCORS: true,
-                        logging: false,
-                        letterRendering: true,
-                        allowTaint: false,
-                        backgroundColor: null
-                    },
-                    jsPDF: {
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait'
-                    }
-                };
-
-                html2pdf().set(opt).from(element).save()
-                    .then(() => {
-                        btnTop.disabled = false;
-                        btnBottom.disabled = false;
-                        btnTop.textContent = '📥 Download PDF (Resmi & Ber-Watermark)';
-                        btnBottom.textContent = '📥 Unduh PDF Resmi Sekarang';
-                    })
-                    .catch(err => {
-                        console.error('PDF Error:', err);
-                        alert('Gagal membuat PDF. Pastikan koneksi stabil dan gunakan browser Chrome/Edge terbaru.');
-                        btnTop.disabled = false;
-                        btnBottom.disabled = false;
-                        btnTop.textContent = '⚠️ Coba Lagi';
-                        btnBottom.textContent = '⚠️ Coba Lagi';
-                    });
-            }
-
-            btnTop.addEventListener('click', generatePDF);
-            btnBottom.addEventListener('click', generatePDF);
-        });
     </script>
 </body>
 </html>
