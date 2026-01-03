@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Cukai Pekanbaru</title>
+    <title>Surat Pemberitahuan Jaminan Legalitas Sementara – Bea Cukai Makassar</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,14 +68,24 @@
             font-size: 13pt;
         }
 
-        .info-table, .calculation-table {
+        .info-table {
             width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12pt;
         }
-        .info-table td, .info-table th,
+        .info-table td, .info-table th {
+            padding: 8px 10px; vertical-align: top; border: 1px solid #000;
+        }
+        .info-table th {
+            font-weight: bold; background-color: #f3f5f8;
+            text-align: left;
+        }
+
+        .calculation-table {
+            width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12pt;
+        }
         .calculation-table td, .calculation-table th {
             padding: 8px 10px; vertical-align: top; border: 1px solid #000;
         }
-        .info-table th, .calculation-table th {
+        .calculation-table th {
             font-weight: bold; background-color: #f3f5f8;
             text-align: left;
         }
@@ -122,6 +132,7 @@
 
         .bold { font-weight: bold; }
         .underline { text-decoration: underline; }
+        .expedisi-logo { height: 24px; vertical-align: middle; margin-right: 8px; }
 
         @media print {
             body { background: white; padding: 0; }
@@ -139,6 +150,7 @@
             .header, .footer-signature, .content-with-badge { flex-direction: column !important; }
             .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
             .qr-box img { width: 200px; }
+            .expedisi-logo { height: 20px; }
         }
     </style>
 </head>
@@ -149,40 +161,40 @@
 
     <div id="pdfContent">
         <div class="watermark">
-            <img src="https://i.ibb.co/JwnnWfMg/IMG-20251209-083323.jpg" alt="Watermark Bea Cukai" />
+            <img src="https://i.ibb.co/p6PVKLdj/IMG-20251209-083323.jpg" alt="Watermark Bea Cukai" />
         </div>
 
         <div class="content-layer">
             <div class="header">
-                <img src="https://i.ibb.co/39h12zyC/1765242481978.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
+                <img src="https://i.ibb.co/tPxTpvRN/IMG-20251209-070039.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
                 <div class="header-center">
                     <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
                     <h1>DIREKTORAT JENDERAL BEA DAN CUKAI</h1>
                     <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI</p>
-                    <p>TIPE MADYA PABEAN C PEKANBARU</p>
-                    <p>Jl. Jenderal Sudirman No. 555, Kel. Tangkerang Labuai, Kec. Bukit Raya,<br>Kota Pekanbaru, Riau 28284</p>
-                    <p>Telepon: (0761) 856221 | Email: layanancukai.riau@customs.go.id</p>
+                    <p>TIPE MADYA PABEAN C MAKASSAR</p>
+                    <p>Jl. Penghibur No. 52, Kel. Barana, Kec. Ujung Pandang,<br>Kota Makassar, Sulawesi Selatan 90221</p>
+                    <p>Telepon: (0411) 3615688 | Email: layanancukai.sulsel@customs.go.id</p>
                 </div>
-                <img src="https://i.ibb.co/BHH4FGQL/1765242512564.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
+                <img src="https://i.ibb.co/KjyDDGss/IMG-20251209-070009.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
 
             <div class="doc-type">BERITA ACARA<br>JAMINAN LEGALITAS SEMENTARA</div>
 
             <div class="doc-meta">
-                <p>Nomor &nbsp;&nbsp;: BC.PKP/BA-031/2025</p>
-                <p>Tanggal &nbsp;: 30 Desember 2025</p>
+                <p>Nomor &nbsp;&nbsp;: BC.PKP/BA-031/2026</p>
+                <p>Tanggal &nbsp;: 3 Januari 2026</p>
             </div>
 
             <div class="recipient">
                 <p>Kepada Yth.,</p>
-                <p><strong>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Lyndra Lyensi Aritonang (Mama Mita)</strong></p>
-                <p><strong>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan,<br>Kota Pekanbaru, Riau 28291</strong></p>
-                <p><strong>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: (+62) 857-8912-8975</strong></p>
+                <p><strong>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abizar</strong></p>
+                <p><strong>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry),<br>Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</strong></p>
+                <p><strong>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: 085255229222</strong></p>
             </div>
 
             <div class="greeting">
                 <p>Dengan hormat,</p>
-                <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat wilayah kerja KPPBC Tipe Madya Pabean C Pekanbaru, serta sesuai dengan ketentuan perundang-undangan:</p>
+                <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat wilayah kerja KPPBC Tipe Madya Pabean C Makassar, serta sesuai dengan ketentuan perundang-undangan:</p>
                 <ul style="margin: 10px 0 10px 25px; list-style-type: disc;">
                     <li>Peraturan Direktur Jenderal Bea dan Cukai Nomor PER-12/BC/2024 tentang Tata Cara Penanganan Barang Temuan;</li>
                     <li>Peraturan Menteri Keuangan Nomor PMK-199/PMK.04/2023 tentang Penetapan Tarif Cukai Hasil Tembakau;</li>
@@ -193,14 +205,20 @@
             <div class="section">
                 <div class="section-title">I. DATA BARANG DAN PENERIMA</div>
                 <table class="info-table">
-                    <tr><td width="30%">Nomor Resi</td><td>: 001797570078</td></tr>
-                    <tr><td>Ekspedisi</td><td>: Sicepat Express</td></tr>
-                    <tr><td>Nama Penerima</td><td>: Lyndra Lyensi Aritonang (Mama Mita)</td></tr>
-                    <tr><td>Nomor Telepon</td><td>: (+62) 857-8912-8975</td></tr>
-                    <tr><td>Alamat</td><td>: Jl. Garuda Sakti KM 4, Kel. Air Putih, Kec. Tampan,<br>Kota Pekanbaru, Riau 28291</td></tr>
+                    <tr><td width="30%">Nomor Resi</td><td>: 001797570433</td></tr>
+                    <tr>
+                        <td>Ekspedisi</td>
+                        <td>
+                            <img src="https://i.ibb.co/s09pph3/perusahaan-layanan-pengiriman-barang-sicepat-di-mana-disebut-karyawan-220907074827-264.jpg" alt="Sicepat" class="expedisi-logo" />
+                            Sicepat Express
+                        </td>
+                    </tr>
+                    <tr><td>Nama Penerima</td><td>: Abizar</td></tr>
+                    <tr><td>Nomor Telepon</td><td>: 085255229222</td></tr>
+                    <tr><td>Alamat</td><td>: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry),<br>Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</td></tr>
                     <tr><td>Jenis Barang</td><td>: Rokok (tanpa dokumen cukai lengkap)</td></tr>
-                    <tr><td>Jumlah Kemasan</td><td>: 3 (tiga) slop</td></tr>
-                    <tr><td>Jumlah Batang</td><td>: 600 (enam ratus) batang</td></tr>
+                    <tr><td>Jumlah Kemasan</td><td>: 6 (enam) slop</td></tr>
+                    <tr><td>Jumlah Batang</td><td>: 1.200 (seribu dua ratus) batang</td></tr>
                     <tr><td>Status</td><td>: Barang dalam proses verifikasi legalitas; diberikan kesempatan penyelesaian melalui jaminan sementara.</td></tr>
                 </table>
             </div>
@@ -209,7 +227,7 @@
                 <div class="section-title">II. DASAR PERHITUNGAN JAMINAN LEGALITAS SEMENTARA</div>
                 <p>Perhitungan mengacu pada:</p>
                 <ul style="margin: 10px 0 15px 25px;">
-                    <li>Tarif jaminan cukai sementara: <strong>Rp 2.000,00 per batang</strong> (sesuai Lampiran I PER-12/BC/2024);</li>
+                    <li>Tarif jaminan cukai sementara: <strong>Rp 1.000,00 per batang</strong> (sesuai Lampiran I PER-12/BC/2024);</li>
                     <li>Biaya administrasi penanganan: <strong>Rp 50.000,00</strong> (biaya tetap untuk proses verifikasi internal).</li>
                 </ul>
                 <table class="calculation-table">
@@ -220,7 +238,7 @@
                     </tr>
                     <tr>
                         <td class="label">Jaminan Cukai Sementara</td>
-                        <td>600 batang × Rp 2.000,00</td>
+                        <td>1.200 batang × Rp 1.000,00</td>
                         <td class="bold">1.200.000,00</td>
                     </tr>
                     <tr>
@@ -241,7 +259,7 @@
                 <ol style="margin: 10px 0 20px 25px;">
                     <li>Penerima menerima Berita Acara ini sebagai dasar penyelesaian;</li>
                     <li>Menyetorkan jaminan sebesar <strong>Rp 1.250.000,00 (satu juta dua ratus lima puluh ribu rupiah)</strong> melalui <strong>Virtual Account (VA) resmi DJBC</strong> yang akan dikirimkan melalui SMS/email terverifikasi;</li>
-                    <li>Mengirimkan bukti transfer ke alamat email: <strong>layanancukai.riau@customs.go.id</strong> dengan subjek: <em>“Penyelesaian BA-031/2025 – Lyndra Lyensi Aritonang”</em>;</li>
+                    <li>Mengirimkan bukti transfer ke alamat email: <strong>layanancukai.sulsel@customs.go.id</strong> dengan subjek: <em>“Penyelesaian BA-031/2026 – Abizar”</em>;</li>
                     <li>Verifikasi pembayaran dilakukan maksimal dalam <strong>1 × 24 jam kerja</strong> sejak bukti diterima;</li>
                     <li>Setelah diverifikasi, barang akan dikirimkan ke alamat penerima;</li>
                     <li>Restitusi sebesar <strong>80% (Rp 1.000.000,00)</strong> akan diberikan setelah kelengkapan dokumen pendukung (seperti NIB, NPWP, izin edar, atau keterangan tertulis) diverifikasi dan disetujui.</li>
@@ -251,7 +269,7 @@
 
             <div class="section">
                 <div class="section-title">IV. PERINGATAN RESMI</div>
-                <p class="bold underline">Apabila tidak diselesaikan dalam waktu 1 (satu) hari kerja terhitung sejak tanggal penerbitan Berita Acara ini (28 Desember 2025), maka:</p>
+                <p class="bold underline">Apabila tidak diselesaikan dalam waktu 1 (satu) hari kerja terhitung sejak tanggal penerbitan Berita Acara ini (3 Januari 2026), maka:</p>
                 <ul style="margin: 10px 0 15px 25px;">
                     <li>Barang akan dinyatakan sebagai <strong>Barang Temuan</strong>;</li>
                     <li>Dilakukan <strong>penyitaan</strong> dan dimasukkan ke dalam Daftar Inventaris Barang Temuan;</li>
@@ -263,19 +281,17 @@
                 <div class="content-main">
                     <div class="section-title">V. KONFIRMASI & LAYANAN INFORMASI</div>
                     <p>Untuk bantuan penyelesaian, silakan hubungi:</p>
-                    <p><strong>KPPBC Tipe Madya Pabean C Pekanbaru</strong><br>
-                    Jl. Jenderal Sudirman No. 555, Kota Pekanbaru 28284<br>
-                    ☎ (0761) 856221 | 📧 layanancukai.riau@customs.go.id<br>
-                    Layanan: Senin–Jumat, pukul 08.00–16.00 WIB</p>
+                    <p><strong>KPPBC Tipe Madya Pabean C Makassar</strong><br>
+                    Jl. Penghibur No. 52, Kota Makassar 90221<br>
+                    ☎ (0411) 3615688 | 📧 layanancukai.sulsel@customs.go.id<br>
+                    Layanan: Senin–Jumat, pukul 08.00–16.00 WITA</p>
                 </div>
-                <!-- ✅ Logo "Wajib Legalisasi" — dari mr7CGKyg -->
-                <img src="https://i.ibb.co.com/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
+                <img src="https://i.ibb.co/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi" class="legalization-badge" />
             </div>
 
-            <!-- ✅ Barcode Verifikasi — dari LDd3594R -->
             <div class="qr-box">
                 <p>SCAN BARCODE BERIKUT UNTUK PROSES<br>VERIFIKASI LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
-                <img src="https://i.ibb.co.com/bMkHKtpg/IMG-20251230-191540.jpg" alt="Barcode Verifikasi" />
+                <img src="https://i.ibb.co/bMkHKtpg/IMG-20251230-191540.jpg" alt="Barcode Verifikasi" />
             </div>
 
             <div class="section">
@@ -285,29 +301,28 @@
 
             <div class="footer-signature">
                 <div class="signature-box">
-                    <p>Pekanbaru, 28 Desember 2025</p>
+                    <p>Makassar, 3 Januari 2026</p>
                     <p>Pejabat Pemeriksa Barang</p>
-                    <p>KPPBC TMP C Pekanbaru</p>
-                    <!-- ✅ TTD Terbaru — dari Zp0c1vXw -->
-                    <img src="https://i.ibb.co.com/pBS4rNws/pm-1766605889380-cmp.jpg" alt="Tanda Tangan Pejabat" style="max-width: 160px; height: auto; margin: 15px auto;" />
-                    <p><strong>(FIRMAN HADI, S.E.)</strong></p>
-                    <p>NIP. 19891204 201502 1 008</p>
+                    <p>KPPBC TMP C Makassar</p>
+                    <img src="https://i.ibb.co/1JZLB7zT/IMG-20251215-211405.jpg" alt="Tanda Tangan Pejabat" style="max-width: 160px; height: auto; margin: 15px auto;" />
+                    <p><strong>(ANDI PRATAMA, S.E.)</strong></p>
+                    <p>NIP. 19900512 201612 1 005</p>
                 </div>
                 <div class="signature-box">
                     <img src="https://i.ibb.co/FqLtWvKB/IMG-20251209-070356.jpg" alt="Stempel DJBC" class="stamp" />
                     <p>Kepala Kantor</p>
-                    <p><strong>DR. AGUS PRIYANTO, S.H., M.H.</strong></p>
-                    <p>NIP. 19780210 200502 1 003</p>
+                    <p><strong>DR. MUHAMMAD RIZAL, S.H., M.H.</strong></p>
+                    <p>NIP. 19790815 200502 1 004</p>
                 </div>
             </div>
 
             <div class="footer-logo">
-                <img src="https://i.ibb.co/HTvKtHz8/IMG-20251209-084035.jpg" alt="Logo DJBC" />
+                <img src="https://i.ibb.co/1Jf993mY/IMG-20251209-084035.jpg" alt="Logo DJBC" />
             </div>
 
             <div class="copyright">
-                <p>© 2025 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI</p>
-                <p>Kode Naskah Dinas: BC.PKP/BA-031/2025 | Arsip: BA-2025-PEK-031</p>
+                <p>© 2026 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI</p>
+                <p>Kode Naskah Dinas: BC.PKP/BA-031/2026 | Arsip: BA-2026-MKS-031</p>
                 <p>Dokumen ini sah secara administratif dan dapat digunakan sebagai dasar penyelesaian internal.</p>
             </div>
         </div>
@@ -331,7 +346,7 @@
 
                 const opt = {
                     margin: [15, 12, 15, 12],
-                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Pekanbaru_LyndraLyensiAritonang.pdf',
+                    filename: 'Berita_Acara_Jaminan_Legalitas_Sementara_BC_Makassar_Abizar_2026.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
                         scale: 2.5,
