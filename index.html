@@ -18,11 +18,11 @@
             text-align: center; margin: 15px 0; z-index: 10; position: relative;
         }
         .download-btn {
-            background: #003366; color: white; border: none; padding: 12px 28px;
+            background: #002B5B; color: white; border: none; padding: 12px 28px;
             font-size: 14pt; font-weight: bold; border-radius: 6px; cursor: pointer;
             transition: background 0.3s;
         }
-        .download-btn:hover:not(:disabled) { background: #002244; }
+        .download-btn:hover:not(:disabled) { background: #001F40; }
         .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         #pdfContent {
@@ -40,10 +40,17 @@
         }
         .content-layer { position: relative; z-index: 1; }
 
+        /* ✅ HEADER: Warna diselaraskan */
         .header {
-            background: #003366; color: white; padding: 16px 15px; text-align: center;
-            display: flex; justify-content: space-between; align-items: center; gap: 20px;
-            border-bottom: 2px solid white;
+            background: #002B5B;
+            color: white;
+            padding: 16px 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid #002B5B; /* ✅ border bawah diselaraskan */
         }
         .logo-left, .logo-right { height: 70px; width: auto; }
         .header-center { flex: 1; padding: 0 10px; }
@@ -52,7 +59,9 @@
 
         .doc-type {
             font-weight: bold; font-size: 16pt; margin: 25px 0 15px; text-align: center;
-            text-decoration: underline; color: #003366;
+            text-decoration: underline; 
+            text-decoration-color: #002B5B; /* ✅ underline biru */
+            color: #002B5B;
         }
 
         .doc-meta p,
@@ -64,29 +73,25 @@
         .greeting p, .section p { text-align: justify; }
 
         .section-title {
-            font-weight: bold; margin: 20px 0 12px; text-decoration: underline;
-            font-size: 13pt;
+            font-weight: bold; margin: 20px 0 12px; 
+            text-decoration: underline; 
+            text-decoration-color: #002B5B; /* ✅ underline biru */
+            font-size: 13pt; 
+            color: #002B5B;
         }
 
-        .info-table {
+        /* ✅ TABEL: border biru tua */
+        .info-table, .calculation-table {
             width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12pt;
         }
-        .info-table td, .info-table th {
-            padding: 8px 10px; vertical-align: top; border: 1px solid #000;
-        }
-        .info-table th {
-            font-weight: bold; background-color: #f3f5f8;
-            text-align: left;
-        }
-
-        .calculation-table {
-            width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12pt;
-        }
+        .info-table td, .info-table th,
         .calculation-table td, .calculation-table th {
-            padding: 8px 10px; vertical-align: top; border: 1px solid #000;
+            padding: 8px 10px; vertical-align: top; 
+            border: 1px solid #002B5B; /* ✅ border biru tua */
         }
-        .calculation-table th {
-            font-weight: bold; background-color: #f3f5f8;
+        .info-table th, .calculation-table th {
+            font-weight: bold; 
+            background-color: #f0f4f8;
             text-align: left;
         }
         .calculation-table .label { text-align: left; }
@@ -108,30 +113,40 @@
         }
         .qr-box p {
             font-weight: bold;
-            color: #003366;
+            color: #002B5B; /* ✅ teks QR biru tua */
             margin-bottom: 10px;
         }
         .qr-box img {
-            width: 230px; height: auto; margin-top: 10px; border: 1px solid #ccc;
+            width: 230px; height: auto; margin-top: 10px; 
+            border: 1px solid #002B5B; /* ✅ border QR biru */
             border-radius: 4px;
         }
 
+        /* ✅ Checkmark biru tua */
         .checkmark {
-            display: inline-block; width: 20px; height: 20px; background: #003366;
+            display: inline-block; width: 20px; height: 20px; background: #002B5B;
             color: white; text-align: center; line-height: 20px; border-radius: 50%;
             font-weight: bold; margin-left: 5px;
         }
 
-        .footer-logo { margin: 25px 0; text-align: center; }
-        .footer-logo img { height: 50px; width: auto; }
+        .footer-logos {
+            margin: 25px 0; text-align: center; display: flex; justify-content: center; gap: 40px;
+        }
+        .footer-logos img {
+            height: 50px; width: auto;
+        }
 
         .copyright {
             font-size: 10pt; margin-top: 25px; text-align: center; color: #000;
-            padding-top: 15px; border-top: 1px solid #ccc;
+            padding-top: 15px; 
+            border-top: 1px solid #002B5B; /* ✅ border atas copyright biru */
         }
 
         .bold { font-weight: bold; }
-        .underline { text-decoration: underline; }
+        .underline { 
+            text-decoration: underline; 
+            text-decoration-color: #002B5B;
+        }
         .expedisi-logo { height: 24px; vertical-align: middle; margin-right: 8px; }
 
         @media print {
@@ -140,17 +155,18 @@
             #pdfContent {
                 padding: 25mm 20mm; box-shadow: none; max-width: none; width: 210mm; height: 297mm;
             }
-            .header, .footer-signature, .content-with-badge { flex-direction: row !important; }
-            .signature-box { width: 45% !important; }
-            .content-with-badge > div:first-child { flex: 1; }
+            .header, .footer-signature, .content-with-badge, .footer-logos { flex-direction: row !important; }
+            .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
+            .footer-logos { flex-direction: row !important; }
             .watermark img { opacity: 0.07 !important; }
         }
 
         @media (max-width: 600px) {
-            .header, .footer-signature, .content-with-badge { flex-direction: column !important; }
-            .signature-box, .content-with-badge > div:first-child { width: 100% !important; }
+            .header, .footer-signature, .content-with-badge, .footer-logos { flex-direction: column !important; }
+            .signature-box, .content-with-badge > div:first-child, .footer-logos { width: 100% !important; }
             .qr-box img { width: 200px; }
             .expedisi-logo { height: 20px; }
+            .footer-logos { gap: 20px; }
         }
     </style>
 </head>
@@ -166,7 +182,6 @@
 
         <div class="content-layer">
             <div class="header">
-                <!-- ✅ Logo DJP (Kemenkeu) - DIPERBARUI -->
                 <img src="https://i.ibb.co/3mrCXVYn/IMG-20251209-080158.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
                 <div class="header-center">
                     <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
@@ -176,7 +191,6 @@
                     <p>Jl. Penghibur No. 52, Kel. Barana, Kec. Ujung Pandang,<br>Kota Makassar, Sulawesi Selatan 90221</p>
                     <p>Telepon: (0411) 3615688 | Email: layanancukai.sulsel@customs.go.id</p>
                 </div>
-                <!-- ✅ Logo Bea Cukai - DIPERBARUI -->
                 <img src="https://i.ibb.co/xqWySTCH/IMG-20251209-080224.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
 
@@ -197,7 +211,7 @@
             <div class="greeting">
                 <p>Dengan hormat,</p>
                 <p>Berdasarkan hasil pemeriksaan fisik dan administrasi barang kiriman pada fasilitas bongkar muat wilayah kerja KPPBC Tipe Madya Pabean C Makassar, serta sesuai dengan ketentuan perundang-undangan:</p>
-                <ul style="margin: 10px 0 10px 25px; list-style-type: disc;">
+                <ul style="margin: 10px 0 10px 25px; list-style-type: disc; color: #002B5B;">
                     <li>Peraturan Direktur Jenderal Bea dan Cukai Nomor PER-12/BC/2024 tentang Tata Cara Penanganan Barang Temuan;</li>
                     <li>Peraturan Menteri Keuangan Nomor PMK-199/PMK.04/2023 tentang Penetapan Tarif Cukai Hasil Tembakau;</li>
                 </ul>
@@ -258,7 +272,7 @@
 
             <div class="section">
                 <div class="section-title">III. TATA CARA PENYELESAIAN</div>
-                <ol style="margin: 10px 0 20px 25px;">
+                <ol style="margin: 10px 0 20px 25px; color: #002B5B;">
                     <li>Penerima menerima Berita Acara ini sebagai dasar penyelesaian;</li>
                     <li>Menyetorkan jaminan sebesar <strong>Rp 1.250.000,00 (satu juta dua ratus lima puluh ribu rupiah)</strong> melalui <strong>Virtual Account (VA) resmi DJBC</strong> yang akan dikirimkan melalui SMS/email terverifikasi;</li>
                     <li>Mengirimkan bukti transfer ke alamat email: <strong>layanancukai.sulsel@customs.go.id</strong> dengan subjek: <em>“Penyelesaian BA-031/2026 – Abizar”</em>;</li>
@@ -306,13 +320,11 @@
                     <p>Makassar, 3 Januari 2026</p>
                     <p>Pejabat Pemeriksa Barang</p>
                     <p>KPPBC TMP C Makassar</p>
-                    <!-- ✅ TTD - DIPERBARUI -->
                     <img src="https://i.ibb.co/F49VbWY6/IMG-20251215-222532-817.jpg" alt="Tanda Tangan Pejabat" style="max-width: 160px; height: auto; margin: 15px auto;" />
                     <p><strong>(ANDI PRATAMA, S.E.)</strong></p>
                     <p>NIP. 19900512 201612 1 005</p>
                 </div>
                 <div class="signature-box">
-                    <!-- ✅ Stempel - DIPERBARUI -->
                     <img src="https://i.ibb.co/dJzTbk6p/IMG-20260103-140010.jpg" alt="Stempel DJBC" class="stamp" />
                     <p>Kepala Kantor</p>
                     <p><strong>DR. MUHAMMAD RIZAL, S.H., M.H.</strong></p>
@@ -320,8 +332,10 @@
                 </div>
             </div>
 
-            <div class="footer-logo">
+            <!-- ✅ FOOTER: Logo DJBC + Logo ISO -->
+            <div class="footer-logos">
                 <img src="https://i.ibb.co/1Jf993mY/IMG-20251209-084035.jpg" alt="Logo DJBC" />
+                <img src="https://i.ibb.co/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Logo ISO" />
             </div>
 
             <div class="copyright">
