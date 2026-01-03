@@ -126,7 +126,6 @@
             font-weight: bold; margin-left: 5px;
         }
 
-        /* ✅ FOOTER BARU: Tata letak rapi logo ISO + Slogan */
         .footer-logos {
             margin: 25px 0; 
             text-align: center; 
@@ -137,7 +136,7 @@
             flex-wrap: wrap;
         }
         .footer-logos img {
-            height: 48px; /* sedikit lebih kecil agar proporsional */
+            height: 48px;
             width: auto;
         }
 
@@ -186,7 +185,6 @@
 
         <div class="content-layer">
             <div class="header">
-                <!-- ✅ Logo DJP - Diperbarui -->
                 <img src="https://i.ibb.co/G35pk0Vj/IMG-20260103-143555-444.jpg" alt="Logo Kementerian Keuangan" class="logo-left" />
                 <div class="header-center">
                     <h1>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h1>
@@ -196,7 +194,6 @@
                     <p>Jl. Penghibur No. 52, Kel. Barana, Kec. Ujung Pandang,<br>Kota Makassar, Sulawesi Selatan 90221</p>
                     <p>Telepon: (0411) 3615688 | Email: layanancukai.sulsel@customs.go.id</p>
                 </div>
-                <!-- ✅ Logo Bea Cukai - Diperbarui -->
                 <img src="https://i.ibb.co/VnpQ314/IMG-20260103-142950-699.jpg" alt="Logo Direktorat Jenderal Bea dan Cukai" class="logo-right" />
             </div>
 
@@ -210,7 +207,7 @@
             <div class="recipient">
                 <p>Kepada Yth.,</p>
                 <p><strong>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abizar</strong></p>
-                <p><strong>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry),<br>Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</strong></p>
+                <p><strong>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Jl. Husain Jeddawi dekat Kaluku Resto (Ajija Laundry),<br>Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</strong></p>
                 <p><strong>Telepon &nbsp;&nbsp;&nbsp;&nbsp;: 085255229222</strong></p>
             </div>
 
@@ -313,7 +310,7 @@
 
             <div class="qr-box">
                 <p>SCAN BARCODE BERIKUT UNTUK PROSES<br>VERIFIKASI LEGALITAS JAMINAN SEMENTARA <span class="checkmark">✓</span></p>
-                <img src="https://i.ibb.co/bMkHKtpg/IMG-20251230-191540.jpg" alt="Barcode Verifikasi" />
+                <img src="https://iili.io/fjeno91.md.jpg" alt="Barcode Verifikasi" />
             </div>
 
             <div class="section">
@@ -338,7 +335,6 @@
                 </div>
             </div>
 
-            <!-- ✅ FOOTER: Logo ISO + Slogan DJBC - Tata letak rapi -->
             <div class="footer-logos">
                 <img src="https://i.ibb.co/1Jf993mY/IMG-20251209-084035.jpg" alt="Slogan DJBC" />
                 <img src="https://i.ibb.co/4wcBBxK0/IMG-20251215-205820-651.jpg" alt="Logo ISO" />
@@ -351,6 +347,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('downloadPdfBtn').addEventListener('click', function () {
+            const element = document.getElementById('pdfContent');
+            const opt = {
+                margin: 10,
+                filename: 'Berita_Acara_Jaminan_Legalitas_Sementara.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        });
     </script>
 </body>
 </html>
